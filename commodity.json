@@ -1,0 +1,3662 @@
+[
+    {
+        "model": "api_base.commodity",
+        "pk": 875,
+        "fields": {
+            "deleted": false,
+            "item_name": "A/C Portatil",
+            "length": 0.875,
+            "breadth": 0.5,
+            "height": 0.39,
+            "volume": 0.170625,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/1.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:11.087Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 878,
+        "fields": {
+            "deleted": false,
+            "item_name": "Alfombra mediana",
+            "length": 2.2,
+            "breadth": 2.0,
+            "height": 0.2,
+            "volume": 0.88,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15305657969091.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:11.760Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 879,
+        "fields": {
+            "deleted": false,
+            "item_name": "Alfombra pequeña",
+            "length": 2.4,
+            "breadth": 1.2,
+            "height": 0.1,
+            "volume": 0.288,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/5.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:11.883Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 880,
+        "fields": {
+            "deleted": false,
+            "item_name": "Amplificador / Parlante",
+            "length": 0.5,
+            "breadth": 1.0,
+            "height": 1.0,
+            "volume": 0.5,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/6.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:12.039Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 882,
+        "fields": {
+            "deleted": false,
+            "item_name": "Aspiradora",
+            "length": 0.7,
+            "breadth": 0.7,
+            "height": 0.6,
+            "volume": 0.294,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/8.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:12.499Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 883,
+        "fields": {
+            "deleted": false,
+            "item_name": "Balon de gas 10 Kg",
+            "length": 0.6,
+            "breadth": 0.4,
+            "height": 0.5,
+            "volume": 0.12,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/9.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-21T10:25:12.627Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 887,
+        "fields": {
+            "deleted": false,
+            "item_name": "Banco de bar",
+            "length": 0.5,
+            "breadth": 0.55,
+            "height": 0.91,
+            "volume": 0.25025,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/13.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:13.110Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 889,
+        "fields": {
+            "deleted": false,
+            "item_name": "Bicicleta",
+            "length": 1.0,
+            "breadth": 0.62,
+            "height": 0.81,
+            "volume": 0.5022,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/15.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-21T10:25:13.364Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 892,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cabecera 1 - 1.5 - 2 plaza",
+            "length": 1.4,
+            "breadth": 0.5,
+            "height": 1.0,
+            "volume": 0.7,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/18.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:13.833Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 894,
+        "fields": {
+            "deleted": false,
+            "item_name": "Caja Menaje Biblioteca",
+            "length": 0.785,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.5024,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15301366322131.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Cajas Menajes",
+            "added_on": "2018-06-21T10:25:14.263Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 895,
+        "fields": {
+            "deleted": false,
+            "item_name": "Caja Menaje Cocina",
+            "length": 0.785,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.5024,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/21.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Cajas Menajes",
+            "added_on": "2018-06-21T10:25:14.409Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 897,
+        "fields": {
+            "deleted": false,
+            "item_name": "Caja Menaje Deposito",
+            "length": 0.785,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.5024,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/23.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Cajas Menajes",
+            "added_on": "2018-06-21T10:25:14.687Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 898,
+        "fields": {
+            "deleted": false,
+            "item_name": "Caja Menaje Dormitorios ",
+            "length": 0.785,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.5024,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15371016235061.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Cajas Menajes",
+            "added_on": "2018-06-21T10:25:14.862Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 899,
+        "fields": {
+            "deleted": false,
+            "item_name": "Caja Menaje Lavanderia",
+            "length": 0.785,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.5024,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/25.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Cajas Menajes",
+            "added_on": "2018-06-21T10:25:15.487Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 900,
+        "fields": {
+            "deleted": false,
+            "item_name": "Caja Menaje Sala",
+            "length": 0.785,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.5024,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/26.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Cajas Menajes",
+            "added_on": "2018-06-21T10:25:15.662Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 901,
+        "fields": {
+            "deleted": false,
+            "item_name": "Caja Menaje Terraza",
+            "length": 0.785,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.5024,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15301365888351.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Cajas Menajes",
+            "added_on": "2018-06-21T10:25:15.823Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 902,
+        "fields": {
+            "deleted": false,
+            "item_name": "Calefactor",
+            "length": 0.6,
+            "breadth": 0.4,
+            "height": 0.5,
+            "volume": 0.12,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15297087910221.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:16.059Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 903,
+        "fields": {
+            "deleted": false,
+            "item_name": "Deshumedecedor",
+            "length": 0.4,
+            "breadth": 0.5,
+            "height": 0.8,
+            "volume": 0.16,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/29.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:16.217Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 904,
+        "fields": {
+            "deleted": false,
+            "item_name": "Calentador de Paso ",
+            "length": 1.0,
+            "breadth": 0.45,
+            "height": 0.5,
+            "volume": 0.225,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/30.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:16.336Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 905,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cama Divan 1.5 plz ",
+            "length": 1.9,
+            "breadth": 1.2,
+            "height": 0.69,
+            "volume": 1.5732,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/31.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:16.459Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 906,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cama Divan 2 plz",
+            "length": 1.9,
+            "breadth": 1.6,
+            "height": 0.69,
+            "volume": 2.0976,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/32.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:16.612Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 907,
+        "fields": {
+            "deleted": false,
+            "item_name": "Camarote 1 plz",
+            "length": 0.5,
+            "breadth": 1.0,
+            "height": 1.0,
+            "volume": 0.5,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/33.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:16.805Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 908,
+        "fields": {
+            "deleted": false,
+            "item_name": "Camarote 1.5 plz",
+            "length": 1.9,
+            "breadth": 1.2,
+            "height": 0.3,
+            "volume": 0.684,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/34.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:16.984Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 909,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cambiador de Bebe",
+            "length": 0.9,
+            "breadth": 1.0,
+            "height": 0.9,
+            "volume": 0.81,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/35.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:17.132Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 910,
+        "fields": {
+            "deleted": false,
+            "item_name": "Campana extractora estandar",
+            "length": 0.91,
+            "breadth": 0.5,
+            "height": 0.3,
+            "volume": 0.1365,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/36.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:17.322Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 912,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cava de vinos refrigerada",
+            "length": 0.63,
+            "breadth": 0.8,
+            "height": 1.0,
+            "volume": 0.504,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/38.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:17.701Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 914,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cocina 4 hornillas",
+            "length": 0.75,
+            "breadth": 0.95,
+            "height": 0.71,
+            "volume": 0.505875,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/40.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:18.066Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 915,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cocina 5 hornillas",
+            "length": 1.0,
+            "breadth": 0.95,
+            "height": 0.7,
+            "volume": 0.665,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/41.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:18.172Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 917,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cocina Empotrable",
+            "length": 0.45,
+            "breadth": 0.7,
+            "height": 0.55,
+            "volume": 0.17325,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/43.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:18.475Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 918,
+        "fields": {
+            "deleted": false,
+            "item_name": "Colchon 1 Plaza",
+            "length": 1.9,
+            "breadth": 1.0,
+            "height": 0.27,
+            "volume": 0.513,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/44.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:18.708Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 919,
+        "fields": {
+            "deleted": false,
+            "item_name": "Colchon 1.5 Plaza",
+            "length": 1.9,
+            "breadth": 1.2,
+            "height": 0.25,
+            "volume": 0.57,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/45.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:19.903Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 920,
+        "fields": {
+            "deleted": false,
+            "item_name": "Colchon 2 Plaza",
+            "length": 1.9,
+            "breadth": 1.5,
+            "height": 0.25,
+            "volume": 0.7125,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/46.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:20.036Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 921,
+        "fields": {
+            "deleted": false,
+            "item_name": "Colchon Cuna",
+            "length": 1.4,
+            "breadth": 0.7,
+            "height": 0.25,
+            "volume": 0.245,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/47.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:20.157Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 923,
+        "fields": {
+            "deleted": false,
+            "item_name": "Colchon Queen",
+            "length": 2.0,
+            "breadth": 1.8,
+            "height": 0.4,
+            "volume": 1.44,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/49.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:20.478Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 924,
+        "fields": {
+            "deleted": false,
+            "item_name": "Comoda",
+            "length": 0.9,
+            "breadth": 0.5,
+            "height": 1.3,
+            "volume": 0.585,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/50.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:20.616Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 925,
+        "fields": {
+            "deleted": false,
+            "item_name": "Conjunto Cama Box 1 plz (Tarima + Colchon)",
+            "length": 1.9,
+            "breadth": 1.0,
+            "height": 0.55,
+            "volume": 1.045,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/51.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:20.766Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 926,
+        "fields": {
+            "deleted": false,
+            "item_name": "Conjunto Cama Box 1.5 plz (Tarima + Colchon)",
+            "length": 1.9,
+            "breadth": 1.2,
+            "height": 0.55,
+            "volume": 1.254,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/52.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:20.945Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 927,
+        "fields": {
+            "deleted": false,
+            "item_name": "Conjunto Cama Box 2 plz  (Tarima +  Colchon)",
+            "length": 1.9,
+            "breadth": 1.5,
+            "height": 0.6,
+            "volume": 1.71,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/53.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:21.096Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 929,
+        "fields": {
+            "deleted": false,
+            "item_name": "Conjunto Cama Box Queen  (Tarima + Colchon) ",
+            "length": 1.6,
+            "breadth": 1.75,
+            "height": 0.9,
+            "volume": 2.52,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/55.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:21.419Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 930,
+        "fields": {
+            "deleted": false,
+            "item_name": "Consola",
+            "length": 1.7,
+            "breadth": 0.5,
+            "height": 0.7,
+            "volume": 0.595,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/56.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:21.557Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 931,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cuadro grande",
+            "length": 1.4,
+            "breadth": 1.4,
+            "height": 0.25,
+            "volume": 0.49,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/57.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:21.712Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 932,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cuadro mediano",
+            "length": 1.0,
+            "breadth": 1.0,
+            "height": 0.3,
+            "volume": 0.3,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/58.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:21.832Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 933,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cuadro pequeño",
+            "length": 0.6,
+            "breadth": 0.6,
+            "height": 0.3,
+            "volume": 0.108,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/59.png",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:22.409Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 934,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cuna",
+            "length": 1.25,
+            "breadth": 0.75,
+            "height": 0.54,
+            "volume": 0.50625,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/60.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:22.854Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 936,
+        "fields": {
+            "deleted": false,
+            "item_name": "Escalera",
+            "length": 0.6,
+            "breadth": 1.6,
+            "height": 0.53,
+            "volume": 0.5088,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/62.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-21T10:25:23.235Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 937,
+        "fields": {
+            "deleted": false,
+            "item_name": "Escritorio ",
+            "length": 1.0,
+            "breadth": 1.1,
+            "height": 0.8,
+            "volume": 0.88,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/63.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:23.412Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 938,
+        "fields": {
+            "deleted": false,
+            "item_name": "Escritorio Estudiantil",
+            "length": 0.85,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.544,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/64.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:23.613Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 939,
+        "fields": {
+            "deleted": false,
+            "item_name": "Espejo grande",
+            "length": 2.0,
+            "breadth": 1.0,
+            "height": 0.5,
+            "volume": 1.0,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/65.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:23.790Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 940,
+        "fields": {
+            "deleted": false,
+            "item_name": "Espejo mediano",
+            "length": 1.1,
+            "breadth": 1.0,
+            "height": 0.5,
+            "volume": 0.55,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/66.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:23.905Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 941,
+        "fields": {
+            "deleted": false,
+            "item_name": "Espejo pequeño",
+            "length": 0.7,
+            "breadth": 0.5,
+            "height": 0.5,
+            "volume": 0.175,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/67.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:24.040Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 943,
+        "fields": {
+            "deleted": false,
+            "item_name": "Guitarra ",
+            "length": 1.0,
+            "breadth": 0.5,
+            "height": 0.3,
+            "volume": 0.15,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/69.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-21T10:25:24.263Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 946,
+        "fields": {
+            "deleted": false,
+            "item_name": "Lampara de Mesa",
+            "length": 0.6,
+            "breadth": 0.5,
+            "height": 0.4,
+            "volume": 0.12,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/72.png",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:24.584Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 947,
+        "fields": {
+            "deleted": false,
+            "item_name": "Lampara de Pie",
+            "length": 0.8,
+            "breadth": 0.4,
+            "height": 0.4,
+            "volume": 0.128,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/73.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:25.040Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 948,
+        "fields": {
+            "deleted": false,
+            "item_name": "Lavadora",
+            "length": 1.1,
+            "breadth": 0.9,
+            "height": 1.1,
+            "volume": 1.089,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/74.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:25.139Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 949,
+        "fields": {
+            "deleted": false,
+            "item_name": "Macetero pequeño",
+            "length": 0.4,
+            "breadth": 0.3,
+            "height": 0.4,
+            "volume": 0.048,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/75.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:25.254Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 950,
+        "fields": {
+            "deleted": false,
+            "item_name": "Macetero grande",
+            "length": 0.5,
+            "breadth": 0.5,
+            "height": 2.8,
+            "volume": 0.7,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/76.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:25.384Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 951,
+        "fields": {
+            "deleted": false,
+            "item_name": "Macetero mediano",
+            "length": 0.5,
+            "breadth": 0.5,
+            "height": 0.5,
+            "volume": 0.125,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/77.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:25.548Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 952,
+        "fields": {
+            "deleted": false,
+            "item_name": "Maquina Abdominal",
+            "length": 0.7,
+            "breadth": 1.1,
+            "height": 0.69,
+            "volume": 0.5313,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/78.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Gimnasio",
+            "added_on": "2018-06-21T10:25:25.776Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 953,
+        "fields": {
+            "deleted": false,
+            "item_name": "Maquina de coser",
+            "length": 0.5,
+            "breadth": 0.6,
+            "height": 0.5,
+            "volume": 0.15,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/79.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-21T10:25:26.145Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 954,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa de diario",
+            "length": 1.25,
+            "breadth": 0.9,
+            "height": 0.85,
+            "volume": 0.95625,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/80.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:26.339Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 955,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa de centro ",
+            "length": 1.5,
+            "breadth": 1.0,
+            "height": 0.32,
+            "volume": 0.48,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/81.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:26.427Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 957,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa 4 personas",
+            "length": 0.8,
+            "breadth": 0.8,
+            "height": 0.9,
+            "volume": 0.576,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15353972614311.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:26.662Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 958,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa 6 personas",
+            "length": 1.6,
+            "breadth": 0.9,
+            "height": 0.8,
+            "volume": 1.152,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15353970104931.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:26.807Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 960,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa de Niños",
+            "length": 0.7,
+            "breadth": 0.5,
+            "height": 0.5,
+            "volume": 0.175,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15353970735601.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:27.101Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 961,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa de Noche o Velador",
+            "length": 0.55,
+            "breadth": 0.45,
+            "height": 0.6,
+            "volume": 0.1485,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/87.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:27.234Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 962,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa Lateral de Sala ",
+            "length": 0.6,
+            "breadth": 0.6,
+            "height": 0.6,
+            "volume": 0.216,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/88.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:27.419Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 963,
+        "fields": {
+            "deleted": false,
+            "item_name": "Microondas",
+            "length": 0.6,
+            "breadth": 0.7,
+            "height": 0.5,
+            "volume": 0.21,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/89.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:27.535Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 966,
+        "fields": {
+            "deleted": false,
+            "item_name": "Parrilla mediana",
+            "length": 1.0,
+            "breadth": 0.65,
+            "height": 0.9,
+            "volume": 0.585,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/92.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-21T10:25:27.941Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 968,
+        "fields": {
+            "deleted": false,
+            "item_name": "Perchero ",
+            "length": 0.42,
+            "breadth": 1.6,
+            "height": 0.3,
+            "volume": 0.2016,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/94.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:28.263Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 969,
+        "fields": {
+            "deleted": false,
+            "item_name": "Piano Electronico de mesa (Sintetizador)",
+            "length": 0.5,
+            "breadth": 0.5,
+            "height": 0.75,
+            "volume": 0.1875,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/95.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:28.370Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 970,
+        "fields": {
+            "deleted": false,
+            "item_name": "Planchador reclinable",
+            "length": 1.2,
+            "breadth": 0.5,
+            "height": 0.28,
+            "volume": 0.168,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/96.png",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-21T10:25:28.488Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 972,
+        "fields": {
+            "deleted": false,
+            "item_name": "Puff",
+            "length": 0.7,
+            "breadth": 0.5,
+            "height": 0.7,
+            "volume": 0.245,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15300495376741.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:29.148Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 973,
+        "fields": {
+            "deleted": false,
+            "item_name": "Refrigerador de 301 hasta 500 Litros",
+            "length": 1.82,
+            "breadth": 1.0,
+            "height": 1.0,
+            "volume": 1.82,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15300502291801.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:29.279Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 974,
+        "fields": {
+            "deleted": false,
+            "item_name": "Refrigerador de hasta 300 Litros",
+            "length": 1.7,
+            "breadth": 0.8,
+            "height": 1.23,
+            "volume": 1.6728,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15300502032021.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:29.447Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 975,
+        "fields": {
+            "deleted": false,
+            "item_name": "Refrigerador friobar",
+            "length": 0.8,
+            "breadth": 0.65,
+            "height": 1.0,
+            "volume": 0.52,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15300501332231.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:29.575Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 977,
+        "fields": {
+            "deleted": false,
+            "item_name": "Repisa grande",
+            "length": 1.15,
+            "breadth": 0.6,
+            "height": 0.6,
+            "volume": 0.414,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15317630313871.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:29.910Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 978,
+        "fields": {
+            "deleted": false,
+            "item_name": "Repisa mediana",
+            "length": 0.8,
+            "breadth": 0.8,
+            "height": 0.6,
+            "volume": 0.384,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/104.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:30.051Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 979,
+        "fields": {
+            "deleted": false,
+            "item_name": "Repisa pequeña",
+            "length": 0.8,
+            "breadth": 0.5,
+            "height": 0.75,
+            "volume": 0.3,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/105.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Decoracion",
+            "added_on": "2018-06-21T10:25:30.161Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 980,
+        "fields": {
+            "deleted": false,
+            "item_name": "Ropero 2 Puertas (simple)",
+            "length": 1.0,
+            "breadth": 0.6,
+            "height": 1.3,
+            "volume": 0.78,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15374699910771.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:30.327Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 981,
+        "fields": {
+            "deleted": false,
+            "item_name": "Secadora",
+            "length": 1.1,
+            "breadth": 0.9,
+            "height": 0.9,
+            "volume": 0.891,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/107.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:30.446Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 982,
+        "fields": {
+            "deleted": false,
+            "item_name": "Silla Comedor Diario ",
+            "length": 0.5,
+            "breadth": 0.5,
+            "height": 0.8,
+            "volume": 0.2,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/108.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:30.544Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 983,
+        "fields": {
+            "deleted": false,
+            "item_name": "Silla de Comedor",
+            "length": 1.0,
+            "breadth": 0.5,
+            "height": 0.6,
+            "volume": 0.3,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/109.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:30.660Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 984,
+        "fields": {
+            "deleted": false,
+            "item_name": "Silla de Escritorio Estudiantil",
+            "length": 1.0,
+            "breadth": 0.5,
+            "height": 0.6,
+            "volume": 0.3,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/110.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:30.848Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 985,
+        "fields": {
+            "deleted": false,
+            "item_name": "Silla de Niño",
+            "length": 0.6,
+            "breadth": 0.4,
+            "height": 0.3,
+            "volume": 0.072,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/111.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:30.987Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 986,
+        "fields": {
+            "deleted": false,
+            "item_name": "Silla de Ruedas",
+            "length": 1.0,
+            "breadth": 1.0,
+            "height": 1.1,
+            "volume": 1.1,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/112.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-21T10:25:31.092Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 987,
+        "fields": {
+            "deleted": false,
+            "item_name": "Sillon de Sala",
+            "length": 0.8,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.512,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/113.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:31.193Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 988,
+        "fields": {
+            "deleted": false,
+            "item_name": "Sillon Masaje-Reclinable o TV",
+            "length": 1.0,
+            "breadth": 0.9,
+            "height": 0.9,
+            "volume": 0.81,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/114.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:31.354Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 989,
+        "fields": {
+            "deleted": false,
+            "item_name": "Sofa 1 cuerpo (Sala o Terraza)",
+            "length": 1.0,
+            "breadth": 0.7,
+            "height": 0.8,
+            "volume": 0.56,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/115.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:31.512Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 990,
+        "fields": {
+            "deleted": false,
+            "item_name": "Sofa 2 cuerpos  (Sala o Terraza)",
+            "length": 1.8,
+            "breadth": 0.9,
+            "height": 0.9,
+            "volume": 1.458,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/116.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:31.607Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 991,
+        "fields": {
+            "deleted": false,
+            "item_name": "Sofa 3 cuerpos  (sala o terraza)",
+            "length": 2.4,
+            "breadth": 1.0,
+            "height": 1.0,
+            "volume": 2.4,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/117.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-06-21T10:25:31.810Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 995,
+        "fields": {
+            "deleted": false,
+            "item_name": "Tarima 1 Plaza",
+            "length": 1.99,
+            "breadth": 1.0,
+            "height": 0.26,
+            "volume": 0.5174,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/121.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:32.359Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 996,
+        "fields": {
+            "deleted": false,
+            "item_name": "Tarima 1.5 Plaza",
+            "length": 1.9,
+            "breadth": 1.2,
+            "height": 0.25,
+            "volume": 0.57,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/122.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:32.498Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 997,
+        "fields": {
+            "deleted": false,
+            "item_name": "Tarima 2 Plaza",
+            "length": 1.9,
+            "breadth": 1.5,
+            "height": 0.25,
+            "volume": 0.7125,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/123.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:32.664Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 998,
+        "fields": {
+            "deleted": false,
+            "item_name": "Tarima King ",
+            "length": 2.0,
+            "breadth": 2.0,
+            "height": 0.25,
+            "volume": 1.0,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15371050543851.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-21T10:25:32.773Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1000,
+        "fields": {
+            "deleted": false,
+            "item_name": "Therma 50 Litros",
+            "length": 1.3,
+            "breadth": 0.5,
+            "height": 0.5,
+            "volume": 0.325,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/126.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:33.393Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1002,
+        "fields": {
+            "deleted": false,
+            "item_name": "Therma de 80 Litros",
+            "length": 0.5,
+            "breadth": 1.0,
+            "height": 1.0,
+            "volume": 0.5,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/128.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:33.989Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1005,
+        "fields": {
+            "deleted": false,
+            "item_name": "TV de 14\" a 26\"",
+            "length": 0.5,
+            "breadth": 0.5,
+            "height": 0.5,
+            "volume": 0.125,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/131.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:34.371Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1006,
+        "fields": {
+            "deleted": false,
+            "item_name": "TV de 32\" a  40\"",
+            "length": 0.86,
+            "breadth": 0.86,
+            "height": 0.86,
+            "volume": 0.636056,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/132.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:34.518Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1007,
+        "fields": {
+            "deleted": false,
+            "item_name": "TV de 42\" a 48\"",
+            "length": 1.0,
+            "breadth": 0.9,
+            "height": 1.0,
+            "volume": 0.9,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/133.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:34.675Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1008,
+        "fields": {
+            "deleted": false,
+            "item_name": "TV de 55\" a  65\"",
+            "length": 1.1,
+            "breadth": 1.0,
+            "height": 1.1,
+            "volume": 1.21,
+            "image": "https://storage.googleapis.com/scenic-style-186704.appspot.com/commodity/134.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:34.879Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1010,
+        "fields": {
+            "deleted": false,
+            "item_name": "Ventilador de Pie",
+            "length": 1.35,
+            "breadth": 0.6,
+            "height": 0.62,
+            "volume": 0.5022,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15297036141311.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-21T10:25:35.142Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1011,
+        "fields": {
+            "deleted": false,
+            "item_name": "TV de 28\" a 30\"",
+            "length": 0.8,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.512,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15297045104741.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-22T21:55:14.059Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1012,
+        "fields": {
+            "deleted": false,
+            "item_name": "Impresora Domestica",
+            "length": 0.5,
+            "breadth": 0.6,
+            "height": 0.6,
+            "volume": 0.18,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15297077893761.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electronicos",
+            "added_on": "2018-06-22T22:49:53.336Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1013,
+        "fields": {
+            "deleted": false,
+            "item_name": "Maleta",
+            "length": 0.65,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.416,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15297095494561.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-22T23:19:12.858Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1015,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mueble planchador",
+            "length": 1.5,
+            "breadth": 0.7,
+            "height": 1.3,
+            "volume": 1.365,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15300509972521.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-06-26T22:10:05.252Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1017,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mueble rack TV",
+            "length": 1.6,
+            "breadth": 1.0,
+            "height": 0.8,
+            "volume": 1.28,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15300511274691.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-06-26T22:12:14.826Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1020,
+        "fields": {
+            "deleted": false,
+            "item_name": "Bañera de bebe",
+            "length": 1.0,
+            "breadth": 0.6,
+            "height": 0.6,
+            "volume": 0.36,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15300517946661.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-26T22:23:21.973Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1021,
+        "fields": {
+            "deleted": false,
+            "item_name": "Computadora PC ",
+            "length": 1.0,
+            "breadth": 1.0,
+            "height": 0.5,
+            "volume": 0.5,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15300519070021.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electronicos",
+            "added_on": "2018-06-26T22:25:14.656Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1022,
+        "fields": {
+            "deleted": false,
+            "item_name": "Pizarra",
+            "length": 1.3,
+            "breadth": 0.3,
+            "height": 1.0,
+            "volume": 0.39,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15300520497181.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-26T22:27:37.374Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1024,
+        "fields": {
+            "deleted": false,
+            "item_name": "Silla de Bebe",
+            "length": 1.0,
+            "breadth": 0.4,
+            "height": 0.8,
+            "volume": 0.32,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15300523383231.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-26T22:32:25.155Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1026,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa de computo",
+            "length": 1.2,
+            "breadth": 1.0,
+            "height": 0.84,
+            "volume": 1.008,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15300525586281.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-06-26T22:36:05.224Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1029,
+        "fields": {
+            "deleted": false,
+            "item_name": "Corral de bebe",
+            "length": 1.0,
+            "breadth": 0.8,
+            "height": 1.0,
+            "volume": 0.8,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15301307940541.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-06-27T20:20:11.780Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1031,
+        "fields": {
+            "deleted": false,
+            "item_name": "Conjunto Cama Box King (Tarima + Colchon)",
+            "length": 1.5,
+            "breadth": 0.85,
+            "height": 2.0,
+            "volume": 2.55,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15302007256911.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-28T15:45:40.047Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1032,
+        "fields": {
+            "deleted": false,
+            "item_name": "Colchon King",
+            "length": 2.0,
+            "breadth": 0.4,
+            "height": 2.0,
+            "volume": 1.6,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15302008320541.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-28T15:47:49.218Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1034,
+        "fields": {
+            "deleted": false,
+            "item_name": "Tarima Queen",
+            "length": 2.05,
+            "breadth": 1.55,
+            "height": 0.28,
+            "volume": 0.8897,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15371054446131.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-06-28T15:59:50.611Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1035,
+        "fields": {
+            "deleted": false,
+            "item_name": "TV de 75\" a mas ",
+            "length": 1.3,
+            "breadth": 2.2,
+            "height": 0.65,
+            "volume": 1.859,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15302278377201.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-06-28T23:17:28.767Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1036,
+        "fields": {
+            "deleted": false,
+            "item_name": "Parrilla Grande",
+            "length": 0.9,
+            "breadth": 1.2,
+            "height": 1.2,
+            "volume": 1.296,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15305636481461.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-07-02T20:34:22.198Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1037,
+        "fields": {
+            "deleted": false,
+            "item_name": "Ropero Grande (desarmado)",
+            "length": 2.0,
+            "breadth": 1.0,
+            "height": 0.8,
+            "volume": 1.6,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15305637932931.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-02T20:36:57.930Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1038,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cilindro Parrillero",
+            "length": 1.3,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.832,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15305638893411.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-07-02T20:38:26.939Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1039,
+        "fields": {
+            "deleted": false,
+            "item_name": "Vitrina / Estante",
+            "length": 2.0,
+            "breadth": 1.2,
+            "height": 0.8,
+            "volume": 1.92,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15305639683041.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-02T20:39:51.399Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1040,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cocina 6 hornillas",
+            "length": 1.1,
+            "breadth": 0.8,
+            "height": 1.0,
+            "volume": 0.88,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15305653126921.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-07-02T21:02:07.522Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1041,
+        "fields": {
+            "deleted": false,
+            "item_name": "Sofa 4 cuerpos (sala o terraza)",
+            "length": 2.6,
+            "breadth": 0.95,
+            "height": 1.1,
+            "volume": 2.717,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15305655678571.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-02T21:06:20.550Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1042,
+        "fields": {
+            "deleted": false,
+            "item_name": "Alfombra grande",
+            "length": 2.0,
+            "breadth": 3.0,
+            "height": 0.25,
+            "volume": 1.5,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15305668251041.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-07-02T21:27:26.563Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1043,
+        "fields": {
+            "deleted": false,
+            "item_name": "Butaca Mediana ",
+            "length": 0.5,
+            "breadth": 0.72,
+            "height": 0.7,
+            "volume": 0.252,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15306353292751.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-03T16:29:30.478Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1044,
+        "fields": {
+            "deleted": false,
+            "item_name": "Butaca Larga (Almacenamiento)",
+            "length": 0.44,
+            "breadth": 1.28,
+            "height": 0.9,
+            "volume": 0.50688,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15306357293841.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-03T16:36:14.895Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1045,
+        "fields": {
+            "deleted": false,
+            "item_name": "Silla de Comedor Plegable",
+            "length": 0.8,
+            "breadth": 0.48,
+            "height": 0.56,
+            "volume": 0.21504,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15306370432181.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-07-03T16:57:47.290Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1047,
+        "fields": {
+            "deleted": false,
+            "item_name": "Perchero  Pared",
+            "length": 1.0,
+            "breadth": 1.0,
+            "height": 0.3,
+            "volume": 0.3,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15306384273481.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-03T17:22:17.952Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1048,
+        "fields": {
+            "deleted": false,
+            "item_name": "Silla de Oficina",
+            "length": 0.5,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.32,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15306461224031.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-03T19:29:04.170Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1049,
+        "fields": {
+            "deleted": false,
+            "item_name": "Librero Grande",
+            "length": 0.8,
+            "breadth": 0.95,
+            "height": 1.95,
+            "volume": 1.482,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15306472087801.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-03T19:47:03.483Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1050,
+        "fields": {
+            "deleted": false,
+            "item_name": "Estante",
+            "length": 0.55,
+            "breadth": 1.0,
+            "height": 1.82,
+            "volume": 1.001,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15306478001221.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-03T19:56:57.978Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1051,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mueble de TV (Centro de Entretenimiento)",
+            "length": 0.52,
+            "breadth": 1.95,
+            "height": 1.98,
+            "volume": 2.00772,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15306481010011.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-03T20:02:03.534Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1052,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa 8 personas",
+            "length": 0.9,
+            "breadth": 2.08,
+            "height": 1.2,
+            "volume": 2.2464,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15306508463181.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-03T20:28:45.076Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1053,
+        "fields": {
+            "deleted": false,
+            "item_name": "Aparador Sala",
+            "length": 0.7,
+            "breadth": 1.7,
+            "height": 1.0,
+            "volume": 1.19,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15306517470291.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-03T21:02:32.827Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1054,
+        "fields": {
+            "deleted": false,
+            "item_name": "Comoda 5 cajones ",
+            "length": 0.61,
+            "breadth": 0.83,
+            "height": 1.0,
+            "volume": 0.5063,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15306544758401.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-03T21:48:00.346Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1055,
+        "fields": {
+            "deleted": false,
+            "item_name": "Caja Menaje Comedor",
+            "length": 0.785,
+            "breadth": 0.8,
+            "height": 0.8,
+            "volume": 0.5024,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15307155668581.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Cajas Menajes",
+            "added_on": "2018-07-04T14:45:06.164Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1056,
+        "fields": {
+            "deleted": false,
+            "item_name": "Biombo ",
+            "length": 0.3,
+            "breadth": 1.0,
+            "height": 1.8,
+            "volume": 0.54,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15307157410701.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-07-04T14:49:00.917Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1057,
+        "fields": {
+            "deleted": false,
+            "item_name": "Librero Mediano ",
+            "length": 0.9,
+            "breadth": 0.9,
+            "height": 1.25,
+            "volume": 1.0125,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15307159356971.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-04T14:52:20.369Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1058,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cabecera Queen ",
+            "length": 0.6,
+            "breadth": 1.72,
+            "height": 1.12,
+            "volume": 1.15584,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15371041192381.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-07-04T15:00:21.116Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1059,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cabecera King ",
+            "length": 1.2,
+            "breadth": 2.02,
+            "height": 0.75,
+            "volume": 1.818,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15371038850521.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Camas / Colchones / Cabeceras",
+            "added_on": "2018-07-04T15:02:15.681Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 9100,
+        "fields": {
+            "deleted": false,
+            "item_name": "Trotadora ",
+            "length": 0.9,
+            "breadth": 1.9,
+            "height": 1.5,
+            "volume": 2.565,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15307169445361.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Gimnasio",
+            "added_on": "2018-07-04T15:09:07.287Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 9101,
+        "fields": {
+            "deleted": false,
+            "item_name": "Bicicleta Spinning",
+            "length": 0.8,
+            "breadth": 0.7,
+            "height": 1.05,
+            "volume": 0.588,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15307171983691.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Gimnasio",
+            "added_on": "2018-07-04T15:13:28.071Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 9102,
+        "fields": {
+            "deleted": false,
+            "item_name": "Banco de Sala ",
+            "length": 0.65,
+            "breadth": 1.2,
+            "height": 0.65,
+            "volume": 0.507,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15307186437431.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-04T15:37:26.529Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 9103,
+        "fields": {
+            "deleted": false,
+            "item_name": "Centro de Lavado",
+            "length": 1.0,
+            "breadth": 1.4,
+            "height": 2.0,
+            "volume": 2.8,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15309082287281.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-07-06T20:17:13.509Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 9104,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mini Gimnasio (Desarmado)",
+            "length": 1.0,
+            "breadth": 1.04,
+            "height": 1.5,
+            "volume": 1.56,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15314959486341.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Gimnasio",
+            "added_on": "2018-07-13T15:32:33.702Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 9105,
+        "fields": {
+            "deleted": false,
+            "item_name": "Caja China",
+            "length": 0.55,
+            "breadth": 0.91,
+            "height": 1.0,
+            "volume": 0.5005,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15315232229101.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-07-13T23:07:18.230Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 9106,
+        "fields": {
+            "deleted": false,
+            "item_name": "Refrigerador mayor a 501 Litros",
+            "length": 1.2,
+            "breadth": 1.2,
+            "height": 2.1,
+            "volume": 3.024,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15317791535821.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "electrodomésticos",
+            "added_on": "2018-07-16T22:13:17.339Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 9107,
+        "fields": {
+            "deleted": false,
+            "item_name": "Baul",
+            "length": 1.0,
+            "breadth": 0.76,
+            "height": 0.66,
+            "volume": 0.5016,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15319391060531.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-18T17:55:36.468Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 9109,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa Redonda Mediana",
+            "length": 1.0,
+            "breadth": 0.65,
+            "height": 0.95,
+            "volume": 0.6175,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15319381168381.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Mueble",
+            "added_on": "2018-07-18T18:22:02.983Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1070,
+        "fields": {
+            "deleted": false,
+            "item_name": "Bateria (Instrumento musical)",
+            "length": 1.5,
+            "breadth": 2.0,
+            "height": 1.1,
+            "volume": 3.3,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15319384128151.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-07-18T18:24:32.288Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1071,
+        "fields": {
+            "deleted": false,
+            "item_name": "Piano clásico simple",
+            "length": 1.0,
+            "breadth": 2.5,
+            "height": 1.5,
+            "volume": 3.75,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15319388214341.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Instrumentos",
+            "added_on": "2018-07-18T18:33:46.972Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1072,
+        "fields": {
+            "deleted": false,
+            "item_name": "Zapatera Grande ",
+            "length": 1.0,
+            "breadth": 1.0,
+            "height": 1.0,
+            "volume": 1.0,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15321228488221.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-07-20T21:40:50.857Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1073,
+        "fields": {
+            "deleted": false,
+            "item_name": "Zapatera Mediana",
+            "length": 0.5,
+            "breadth": 1.0,
+            "height": 1.0,
+            "volume": 0.5,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15321228903851.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-07-20T21:41:32.457Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1074,
+        "fields": {
+            "deleted": false,
+            "item_name": "Paleta De Madera",
+            "length": 1.2,
+            "breadth": 1.0,
+            "height": 1.0,
+            "volume": 1.2,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15323680401371.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-07-23T17:47:27.656Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1075,
+        "fields": {
+            "deleted": false,
+            "item_name": "Sofa Esquinero (sala o terraza)",
+            "length": 1.5,
+            "breadth": 1.5,
+            "height": 1.34,
+            "volume": 3.015,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15331627616461.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-08-01T22:32:44.266Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1076,
+        "fields": {
+            "deleted": false,
+            "item_name": "Sofa Esquinero 6 Cuerpos",
+            "length": 1.8,
+            "breadth": 1.8,
+            "height": 1.5,
+            "volume": 4.86,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15331630074571.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-08-01T22:36:50.165Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1077,
+        "fields": {
+            "deleted": false,
+            "item_name": "Sofa Cama",
+            "length": 1.5,
+            "breadth": 1.5,
+            "height": 0.67,
+            "volume": 1.5075,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15332492947421.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-08-02T22:34:56.291Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1078,
+        "fields": {
+            "deleted": false,
+            "item_name": "Tocador",
+            "length": 1.5,
+            "breadth": 0.9,
+            "height": 0.6,
+            "volume": 0.81,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15333073012401.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-08-03T14:41:42.280Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1079,
+        "fields": {
+            "deleted": false,
+            "item_name": "Futon",
+            "length": 0.82,
+            "breadth": 1.85,
+            "height": 0.8,
+            "volume": 1.2136,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15338485513681.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-08-09T21:02:32.848Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1080,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa 12 Personas ",
+            "length": 2.2,
+            "breadth": 1.2,
+            "height": 0.9,
+            "volume": 2.376,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15353968797581.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-08-14T15:22:35.558Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1081,
+        "fields": {
+            "deleted": false,
+            "item_name": "Calefactor a Gas",
+            "length": 1.0,
+            "breadth": 0.5,
+            "height": 2.2,
+            "volume": 1.1,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15349633374361.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-08-22T18:42:17.764Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1082,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mesa Plegable",
+            "length": 1.2,
+            "breadth": 0.76,
+            "height": 0.55,
+            "volume": 0.5016,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15349635032341.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Muebles",
+            "added_on": "2018-08-22T18:45:03.699Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1083,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mueble Alacena",
+            "length": 0.9,
+            "breadth": 0.38,
+            "height": 2.0,
+            "volume": 0.684,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15350366962081.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-08-23T15:04:58.054Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1084,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mostrador",
+            "length": 1.2,
+            "breadth": 1.0,
+            "height": 1.0,
+            "volume": 1.2,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15351198484711.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-08-24T14:10:53.102Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1085,
+        "fields": {
+            "deleted": false,
+            "item_name": "Cama niña 1.5 plz (Castillo )",
+            "length": 1.5,
+            "breadth": 1.5,
+            "height": 0.58,
+            "volume": 1.305,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15357365184471.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-08-31T17:28:39.537Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1086,
+        "fields": {
+            "deleted": false,
+            "item_name": "Microscopio",
+            "length": 0.5,
+            "breadth": 1.7,
+            "height": 1.8,
+            "volume": 1.53,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15366816150071.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Instrumentos",
+            "added_on": "2018-09-11T16:00:18.021Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1087,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mueble lava manos ",
+            "length": 1.0,
+            "breadth": 0.9,
+            "height": 1.4,
+            "volume": 1.26,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15367612345891.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-09-12T14:07:21.910Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1088,
+        "fields": {
+            "deleted": false,
+            "item_name": "Equipo de sonido ",
+            "length": 0.6,
+            "breadth": 0.9,
+            "height": 0.8,
+            "volume": 0.432,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15367620048521.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "eletronicos",
+            "added_on": "2018-09-12T14:20:08.561Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1089,
+        "fields": {
+            "deleted": false,
+            "item_name": "Horno ",
+            "length": 0.8,
+            "breadth": 0.6,
+            "height": 0.6,
+            "volume": 0.288,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15367870966911.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomésticos",
+            "added_on": "2018-09-12T21:18:17.806Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1090,
+        "fields": {
+            "deleted": false,
+            "item_name": "Mueble Microondas",
+            "length": 0.7,
+            "breadth": 0.5,
+            "height": 1.3,
+            "volume": 0.455,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15367877669711.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "MUEBLE",
+            "added_on": "2018-09-12T21:29:28.252Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1091,
+        "fields": {
+            "deleted": false,
+            "item_name": "Consola DJ",
+            "length": 0.85,
+            "breadth": 0.5,
+            "height": 0.25,
+            "volume": 0.91025,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15368467728881.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Equipos Electronicos ",
+            "added_on": "2018-09-13T13:52:56.468Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1092,
+        "fields": {
+            "deleted": false,
+            "item_name": "Parlante ",
+            "length": 0.6,
+            "breadth": 0.5,
+            "height": 0.9,
+            "volume": 0.27,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15368469446271.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Equipos Electronicos ",
+            "added_on": "2018-09-13T13:55:47.766Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1093,
+        "fields": {
+            "deleted": false,
+            "item_name": "Tripode Pedestal ",
+            "length": 0.45,
+            "breadth": 0.4,
+            "height": 1.3,
+            "volume": 0.234,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15368470957081.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Instrumentos",
+            "added_on": "2018-09-13T13:58:18.646Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1094,
+        "fields": {
+            "deleted": false,
+            "item_name": "Lampara Reflector ",
+            "length": 0.4,
+            "breadth": 0.45,
+            "height": 0.6,
+            "volume": 0.108,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15368472530651.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Equipos Electronicos ",
+            "added_on": "2018-09-13T14:00:56.968Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1095,
+        "fields": {
+            "deleted": false,
+            "item_name": "Adorno Grande (Abanico)",
+            "length": 2.0,
+            "breadth": 0.1,
+            "height": 2.0,
+            "volume": 0.4,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15369418602271.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-09-14T16:17:45.359Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1096,
+        "fields": {
+            "deleted": false,
+            "item_name": "Horno Empotrable",
+            "length": 1.0,
+            "breadth": 1.0,
+            "height": 1.0,
+            "volume": 1.0,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15371083529861.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Electrodomesticos",
+            "added_on": "2018-09-16T14:32:31.918Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1097,
+        "fields": {
+            "deleted": false,
+            "item_name": "Balon de gas 45 kg",
+            "length": 1.2,
+            "breadth": 0.45,
+            "height": 0.45,
+            "volume": 0.243,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15371090362761.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-09-16T14:43:55.231Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1098,
+        "fields": {
+            "deleted": false,
+            "item_name": "SI 001",
+            "length": 0.45,
+            "breadth": 0.69,
+            "height": 0.814,
+            "volume": 0.252747,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15378039410411.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-09-24T15:45:43.280Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1099,
+        "fields": {
+            "deleted": false,
+            "item_name": "SI002",
+            "length": 0.39,
+            "breadth": 0.53,
+            "height": 0.645,
+            "volume": 0.1333215,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15378040031611.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-09-24T15:46:44.910Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1100,
+        "fields": {
+            "deleted": false,
+            "item_name": "SI003",
+            "length": 0.27,
+            "breadth": 0.5,
+            "height": 0.47,
+            "volume": 0.06345,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15378040477271.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-09-24T15:47:28.946Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1101,
+        "fields": {
+            "deleted": false,
+            "item_name": "SI004",
+            "length": 0.17,
+            "breadth": 0.33,
+            "height": 0.25,
+            "volume": 0.014025,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15379065831741.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Miscelaneos",
+            "added_on": "2018-09-24T15:48:18.734Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1102,
+        "fields": {
+            "deleted": false,
+            "item_name": "Test Commodity ",
+            "length": 1.0,
+            "breadth": 2.0,
+            "height": 10.0,
+            "volume": 20.0,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15379467479291.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "metallic",
+            "added_on": "2018-09-26T07:24:37.634Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1103,
+        "fields": {
+            "deleted": false,
+            "item_name": "Bicicleta estacionaria (Profesional)",
+            "length": 1.0,
+            "breadth": 1.5,
+            "height": 1.0,
+            "volume": 1.5,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15380616548301.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "Gimnasio",
+            "added_on": "2018-09-27T15:20:57.885Z",
+            "added_by": 910,
+            "city": 10,
+            "is_plugable": false
+        }
+    },
+    {
+        "model": "api_base.commodity",
+        "pk": 1104,
+        "fields": {
+            "deleted": false,
+            "item_name": "test commodity",
+            "length": 20.0,
+            "breadth": 15.0,
+            "height": 12.0,
+            "volume": 3600.0,
+            "image": "https://firebasestorage.googleapis.com/v0/b/muberz-203509.appspot.com/o/15381338182491.jpg",
+            "charge": 0.0,
+            "installation_charge": 0.0,
+            "material_type": "ss",
+            "added_on": "2018-09-28T11:23:38.861Z",
+            "added_by": 910,
+            "city": 18,
+            "is_plugable": false
+        }
+    }
+]

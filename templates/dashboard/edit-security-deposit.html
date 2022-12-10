@@ -1,0 +1,89 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Add Admin start here-->
+                <div class="col-lg-6">
+                    <div class="card-box">
+                        <h4 class="header-title m-t-0 m-b-30">{{ lbl_upd_security_deposit }}</h4>
+
+                        <form class="form-horizontal form-label-left input_mask" method="post" action="{% url 'dashboard:edit-security-deposit' deposit_id=item_data.id %}">
+                        {% csrf_token %}
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_capacity_from }} <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control number-only" required id="capacity_from" value="{{ item_data.capacity_from }}"  name="capacity_from" placeholder="{{ lbl_capacity_from }}">
+                            </div>
+                          </div>
+                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_capacity_to }} <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                 <input type="text" class="form-control number-only" required id="capacity_to" value="{{ item_data.capacity_to }}" name="capacity_to" placeholder="{{ lbl_capacity_to }}">
+                            </div>
+                          </div>
+                           <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_deposit_needed }}<span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                               <input type="number" min="0"  step="0.01" class="form-control number-only" required id="deposit_needed" value="{{ item_data.deposit_needed }}"  name="deposit_needed" placeholder="{{ lbl_deposit_needed }}">
+                            </div>
+                          </div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="submit" class="btn btn-success">{{ lbl_update }}</button>
+                        </div>
+                      </div>
+
+                    </form>
+                    </div>
+                </div><!-- end col -->
+                <!-- Add Admin start here-->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+
+{% endblock %}

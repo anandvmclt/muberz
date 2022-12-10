@@ -1,0 +1,477 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with user='active' %}
+
+{% endblock %}
+{% block title %}Users{% endblock %}
+{% block page-title %}Users{% endblock %}
+{% block users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="row">
+                    <div class="col-lg-12 col-md-12" id="printDiv">
+                        <div class="card-box">
+                            <div class="col-lg-12">
+                                <ul class="nav nav-tabs">
+                                    <li role="presentation" class="active">
+                                        <a href="#profile1" id="vehicle_details" role="tab" data-toggle="tab">Vehicle
+                                            Details</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#home1" role="tab" data-toggle="tab">Basic Details</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#profile2" role="tab" data-toggle="tab">Helpers</a>
+                                    </li>
+                                    {% if not disable_action %}
+                                    <li role="presentation">
+                                        <a href="#profile3" role="tab" data-toggle="tab">Update Deposit</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade" id="home1">
+                                        <table width="100%" class="table table-striped m-0 table-bordered">
+                                            <tr>
+                                                <td width="30%">{{ lbl_name }}</td>
+                                                <td>{{ veh_data.driver_id.user.first_name }} {{ veh_data.driver_id.user.last_name }}  </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ lbl_email }}</td>
+                                                <td>{{ veh_data.driver_id.user.email }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ lbl_mobile }}</td>
+                                                <td>
+                                                    {{ veh_data.driver_id.user.username }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ lbl_profile_picture }}</td>
+                                                <td>
+                                                    {% if veh_data.driver_id.profile_pic %}
+                                                        <img src="{{ veh_data.driver_id.profile_pic }}?alt=media"
+                                                             style="width:100px; height: 100px;">
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ lbl_fleet_or_individual }}</td>
+                                                <td>
+                                                    {% if veh_data.driver_id.fleet_id %}
+                                                        {{ lbl_fleet_name }}
+                                                    {% else %}
+                                                        {{ lbl_individual }}
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            {% if veh_data.driver_id.fleet_id %}
+                                                <tr>
+                                                    <td>{{ lbl_fleet_name }}</td>
+                                                    <td>
+                                                        {{ veh_data.driver_id.fleet_id.user.first_name }} {{ veh_data.driver_id.fleet_id.user.last_name }}
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                            <tr>
+                                                <td>{{ lbl_deposit_amount }}</td>
+                                                <td>
+                                                    {{ veh_data.security_deposit }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ lbl_rating }}</td>
+                                                <td>
+                                                    {{ veh_data.rating }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade in active" id="profile1">
+                                        <table width="100%" class="table table-striped m-0 table-bordered">
+                                            <tr>
+                                                <td width="30%">{{ lbl_vehicle_number }}</td>
+                                                <td style="font-weight:bold ">{{ veh_data.reg_no }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">{{ lbl_vehicle_volume }}</td>
+                                                <td>{{ veh_data.vehicle_volume }} m <sup>3</sup> </td>
+                                            </tr>
+                                                <tr>
+                                                    <td width="30%">{{ lbl_vehicle_height }}</td>
+                                                    {% if veh_data.vehicle_height %}
+                                                        <td>{{ veh_data.vehicle_height }} m</td>
+                                                    {% else %}
+                                                        <td>
+                                                        <form action="" method="POST" id="special_handling_fee_form" >
+                                                            <input type="hidden" name="vehicle_id" value="{{ veh_data.id }}" >
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control number-only" name="vehicle_height" required id="special_handling_fee" value="{{ veh_data.vehicle_height }}">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <button class="btn btn-primary">Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        </td>
+                                                    {% endif %}
+                                                </tr>
+
+
+
+                                            {% for attach in attachments %}
+                                                {% if attach.doc_type == 'driver_license' %}
+                                                    <tr>
+                                                        <td>{{ lbl_driver_licence }}</td>
+                                                        <td>
+                                                            <a href="javascript:void(0)" data-toggle="modal"
+                                                               data-target="#custom-width-modal{{ attach.id }}"><img
+                                                                    src="{{ attach.attachment }}?alt=media"
+                                                                    style="width:100px; height: 100px;"></a>
+                                                        </td>
+                                                    </tr>
+                                                {% elif attach.doc_type == 'commercial_insurance' %}
+                                                    <tr>
+                                                        <td>{{ lbl_commercial_insurance }}</td>
+                                                        <td>
+                                                            <a href="javascript:void(0)" data-toggle="modal"
+                                                               data-target="#custom-width-modal{{ attach.id }}"><img
+                                                                    src="{{ attach.attachment }}?alt=media"
+                                                                    style="width:100px; height: 100px;"></a>
+                                                        </td>
+                                                    </tr>
+                                                {% elif attach.doc_type == 'vehicle_registration' %}
+                                                    <tr>
+                                                        <td>{{ lbl_vehicle_registration }}</td>
+                                                        <td>
+                                                            <a href="javascript:void(0)" data-toggle="modal"
+                                                               data-target="#custom-width-modal{{ attach.id }}"><img
+                                                                    src="{{ attach.attachment }}?alt=media"
+                                                                    style="width:100px; height: 100px;"></a>
+                                                        </td>
+                                                    </tr>
+                                                {% elif attach.doc_type == 'fitness_certificate' %}
+                                                    <tr>
+                                                        <td>{{ lbl_fitness_certificate }}</td>
+                                                        <td>
+                                                            <a href="javascript:void(0)" data-toggle="modal"
+                                                               data-target="#custom-width-modal{{ attach.id }}"><img
+                                                                    src="{{ attach.attachment }}?alt=media"
+                                                                    style="width:100px; height: 100px;"></a>
+                                                        </td>
+                                                    </tr>
+                                                {% elif attach.doc_type == 'tax_certificate' %}
+                                                    <tr>
+                                                        <td>{{ lbl_tax_certificate }}</td>
+                                                        <td>
+                                                            <a href="javascript:void(0)" data-toggle="modal"
+                                                               data-target="#custom-width-modal{{ attach.id }}"><img
+                                                                    src="{{ attach.attachment }}?alt=media"
+                                                                    style="width:100px; height: 100px;"></a>
+                                                        </td>
+                                                    </tr>
+                                                {% endif %}
+                                                <div id="custom-width-modal{{ attach.id }}" class="modal fade"
+                                                     tabindex="-1" role="dialog"
+                                                     aria-labelledby="custom-width-modalLabel" aria-hidden="true"
+                                                     style="display: none;">
+                                                    <div class="modal-dialog" style="width:55%;">
+                                                        <div class="modal-content">
+
+                                                            <div class="modal-body">
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-hidden="true">×
+                                                                </button>
+                                                                <br>
+                                                                <img src="{{ attach.attachment }}?alt=media" style="width:100%; display:block; left:0;
+                                                right:0;
+                                                bottom:0;
+                                                margin:auto;">
+
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+
+                                            {% endfor %}
+
+                                        </table>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="profile2">
+                                        <table width="100%" class="table table-striped m-0 table-bordered">
+                                            <tr>
+                                                <td>#</td>
+                                                <td width="30%">Name</td>
+                                                <td width="30%">ID Proof</td>
+                                                <td width="30%">Photo</td>
+                                            </tr>
+                                            {% if assistants %}
+                                                {% for assistant in assistants %}
+                                                    <tr>
+                                                        <td>{{ forloop.counter }}</td>
+                                                        <td width="30%">{{ assistant.assistant_name }}</td>
+                                                        <td width="30%"><a href="javascript:void(0)" data-toggle="modal"
+                                                                           data-target="#custom-width-modalassistantproof{{ assistant.id }}"><img
+                                                                src="{{ assistant.id_proof }}?alt=media"
+                                                                style="width:100px; height: 100px;"></a></td>
+                                                        <td width="30%"><a href="javascript:void(0)" data-toggle="modal"
+                                                                           data-target="#custom-width-modalassistantphoto{{ assistant.id }}"><img
+                                                                src="{{ assistant.photo }}?alt=media"
+                                                                style="width:100px; height: 100px;"></a></td>
+                                                    </tr>
+                                                    <div id="custom-width-modalassistantproof{{ assistant.id }}"
+                                                         class="modal fade" tabindex="-1" role="dialog"
+                                                         aria-labelledby="custom-width-modalLabel" aria-hidden="true"
+                                                         style="display: none;">
+                                                        <div class="modal-dialog" style="width:55%;">
+                                                            <div class="modal-content">
+
+                                                                <div class="modal-body">
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-hidden="true">×
+                                                                    </button>
+                                                                    <br>
+                                                                    <img src="{{ assistant.id_proof }}?alt=media"
+                                                                         style="width:100%; display:block; left:0;
+                                            right:0;
+                                            bottom:0;
+                                            margin:auto;">
+
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->
+
+                                                    <div id="custom-width-modalassistantphoto{{ assistant.id }}"
+                                                         class="modal fade" tabindex="-1" role="dialog"
+                                                         aria-labelledby="custom-width-modalLabel" aria-hidden="true"
+                                                         style="display: none;">
+                                                        <div class="modal-dialog" style="width:55%;">
+                                                            <div class="modal-content">
+
+                                                                <div class="modal-body">
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-hidden="true">×
+                                                                    </button>
+                                                                    <br>
+                                                                    <img src="{{ assistant.photo }}?alt=media" style="width:100%; display:block; left:0;
+                                            right:0;
+                                            bottom:0;
+                                            margin:auto;">
+
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->
+
+
+                                                {% endfor %}
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="4" align="center">{{ no_items_found }}</td>
+                                                </tr>
+                                            {% endif %}
+                                        </table>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="profile3">
+                                        <div id="content_div">
+                                        <form class="form-horizontal form-label-left input_mask" method="post"
+                                              id="add_form" name="add_form">
+                                            {% csrf_token %}
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_charge }}
+                                                </label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <input type="number" min="{{ security_dep }}"
+                                                           class="form-control number-only" id="topup_amount"
+                                                           value="{{ veh_data.security_deposit }}" name="topup_amount"
+                                                           placeholder="{{ lbl_charge }}">
+                                                    <span class="text-danger alertmessage">Minimum required Deposit is {{ security_dep }}</span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="ln_solid"></div>
+                                            <div class="form-group">
+                                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-2">
+                                                    <button type="button"
+                                                            onclick="RechargeAmount({{ veh_data.driver_id.id }})"
+                                                            class="btn btn-success">{{ lbl_update }}</button>
+                                                    <input type="hidden" name="status" id="status" value="{{ veh_data.driver_id.status }}">
+                                                    <input type="hidden" name="veh_id" id="veh_id" value="{{ veh_data.id }}">
+                                                </div>
+                                            </div>
+                                        </form>
+                                        </div>
+                                        <div class="panel-body" id="div_validation" style="display: none"><label
+                                                    class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                                <div class="form-group" class="col-md-9 col-sm-9 col-xs-12">
+                                                    <font size="4px"><img src="/static/assets/images/loader.gif" style="align-self: center" width="100"
+                                                                          height="100"></font>
+                                                </div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+                            </div><!-- end col -->
+
+
+                            <table width="100%" class="table table-striped m-0 table-bordered">
+
+
+                            </table>
+                        </div>
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include 'dashboard/footer.html' %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form').parsley();
+        });
+
+        $(function () {
+            $(".delete_form").submit(function () {
+                var r = confirm("Are you sure you want to delete this user?");
+                return r == true;
+            })
+        });
+    </script>
+    <!-- Datatables-->
+    <script src={% static "assets/plugins/datatables/jquery.dataTables.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.bootstrap.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.buttons.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/jszip.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/pdfmake.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/vfs_fonts.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.html5.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.print.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.fixedHeader.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.keyTable.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.responsive.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/responsive.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.scroller.min.js" %}></script>
+
+    <!-- Datatable init js -->
+    <script src={% static "assets/pages/datatables.init.js" %}></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable({
+                "aaSorting": [],
+                "oLanguage": {"sEmptyTable": "{{ no_items_found }}"}
+            });
+            $('#datatable-keytable').DataTable({keys: true});
+            $('#datatable-responsive').DataTable();
+            $('#datatable-scroller').DataTable({
+                ajax: "assets/plugins/datatables/json/scroller-demo.json",
+                deferRender: true,
+                scrollY: 380,
+                scrollCollapse: true,
+                scroller: true
+            });
+            var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+        });
+        TableManageButtons.init();
+    </script>
+    <script type="text/javascript">
+
+        $('#topup_amount').keydown(function () {
+            $('.alertmessage').html('');
+            var deposit = parseFloat($('#topup_amount').val());
+            if (deposit > 2500) {
+                $('#topup_amount').val(00);
+                $('.alertmessage').html('Maximum value of 2500');
+            }
+        });
+
+        function RechargeAmount(user_id) {
+            if ($('#topup_amount').val() == '') {
+                $('.alertmessage').html('Value Cannot be empty');
+            }
+            if (isNaN(parseFloat($('#topup_amount').val()))) {
+                return false;
+            }
+            else {
+                if (parseFloat($('#topup_amount').val()) < {{ security_dep }}) {
+                    $('#topup_amount').css(
+                        {'border': '1px solid red'}
+                    );
+                    $('.alertmessage').html('Deposite value less than minimum required value');
+
+                    return false;
+                }
+            }
+            document.getElementById('content_div').style.display = 'none';
+            document.getElementById('div_validation').style.display = '';
+            $.ajax({
+                url: '/dashboard/update-security-deposit/',
+                data: {
+                    'topup_amount': parseFloat(document.getElementById('topup_amount').value.trim()),
+                    'user_id': user_id,
+                },
+
+                dataType: 'json',
+                success: function (data) {
+                    document.getElementById('content_div').style.display = '';
+                    document.getElementById('div_validation').style.display = 'none';
+                    alert(data)
+                    driver_status = document.getElementById('status').value;
+                    vehicle_id = document.getElementById('veh_id').value;
+                    if(driver_status=='not_verified' || driver_status=='fleet_verified'){
+                      location.href="{% url 'dashboard:manage-partners' 'not_verified'  %}";
+                    }
+                    else{
+{#                        location.href="{% url 'dashboard:manage-partners' 'not_verified'  %}";#}
+                        location.href="{% url 'dashboard:partner-view' vehicle_id %}"
+                    }
+                    document.getElementById("vehicle_details").setAttribute("aria-expanded", true);
+
+                }
+            });
+        }
+    </script>
+{% endblock %}

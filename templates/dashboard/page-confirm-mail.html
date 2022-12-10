@@ -1,0 +1,22 @@
+{% extends 'dashboard/front-base.html' %}
+{% load staticfiles %}
+{% block heading %}
+   {{ lbl_conf_mail }}
+{% endblock %}
+{% block page_content %}
+    <div class="panel-body text-center">
+        <img src="{% static 'assets/images/mail_confirm.png' %}" alt="img" class="thumb-lg m-t-20 center-block"/>
+        <p class="text-muted font-13 m-t-20"> {{ lbl_email_sent_to }} <b>{{ email }}</b> {{ lbl_with_reset_link }}. </p>
+        <strong> {{ lbl_page_redirect_5_sec }}... </strong>
+    </div>
+{% endblock %}
+
+{% block extra_javascript %}
+    <script type="application/javascript">
+    $(function () {
+       setTimeout(function () {
+           window.location.href = "{% url 'dashboard:dashboard-login' %}";
+       }, 5000);
+    });
+    </script>
+{% endblock %}

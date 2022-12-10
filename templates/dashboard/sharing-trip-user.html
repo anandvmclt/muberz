@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Muberz | Login</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'dashboard/vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static 'dashboard/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{% static 'dashboard/vendors/nprogress/nprogress.css' %}" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="{% static 'dashboard/vendors/animate.css/animate.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{% static 'dashboard/build/css/custom.min.css' %}" rel="stylesheet">
+</head>
+<body style="background-color: #ffffff">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="col-md-12">
+                    {{ pickup_lat }}
+                    {{ pickup_long }}
+                </div>
+            </div>
+        </div>
+        <div class="row" style="height: 1000px">
+
+            <div id="map" style="height: 100%"></div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+{% block extra_stylesheet %}
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" type="text/css"/>
+    <script>
+    var marker;
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: {lat: {{ pickup_lat }}, lng: {{ pickup_long }} }  // Australia.
+        });
+
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+          draggable: true,
+          map: map,
+          panel: document.getElementById('right-panel')
+        });
+
+
+        displayRoute('{{ pickup_location }}','{{ drop_location }}',  directionsService,
+            directionsDisplay);
+        updateLocation(10,76,map)
+
+          function updateLocation(lat,lng,map){
+                var marker = new google.maps.Marker({
+                    position: {lat: {{ driver_lat }}, lng: {{ driver_long }} },
+                    title:"Hello World!",
+                    icon: 'https://img.icons8.com/ios/2x/car.png'
+                });
+
+        // To add the marker to the map, call setMap();
+                marker.setMap(map);
+
+          setInterval(function(){
+
+              $.ajax({
+            method: "GET",
+            url: '/api/get-driver-location?transfer_id='+{{ transfer_id }},
+            success: function (data) {
+                        {#updateLocation({{ driver_lat }},{{ driver_long }})#}
+            var lat = parseFloat(data.data.driver_lat)
+            var lng = parseFloat(data.data.driver_long)
+                myLatlng = new google.maps.LatLng(lat,lng);
+            marker.setPosition(myLatlng)
+                {#alert(data)#}
+                {#window.location.href = "/dashboard/list-service/";#}
+            }
+        });
+
+          }, 5000);
+
+
+
+      }
+
+
+      }
+
+      function displayRoute(origin, destination, service, display) {
+        service.route({
+          origin: origin,
+          destination: destination,
+          waypoints: [{location: '{{ pickup_location }}'}, {location: '{{ drop_location }}'}],
+          travelMode: 'DRIVING',
+          avoidTolls: true
+        }, function(response, status) {
+          if (status === 'OK') {
+            display.setDirections(response);
+          } else {
+            alert('Could not display directions due to: ' + status);
+          }
+        });
+      }
+
+
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyrgCLDevukshYA0hWJeWLiJM_nhrkhqs&callback=initMap"></script>
+
+{% endblock %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script type="text/javascript">
+ </script>

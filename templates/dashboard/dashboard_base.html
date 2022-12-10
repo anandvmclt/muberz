@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Muberz">
+    <meta name="author" content="Muberz">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'favicon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Muberz</title>
+
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/morris/morris.css' %}">
+
+    <!-- App css -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'assets/css/core.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'assets/css/components.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'assets/css/pages.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'assets/css/menu.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css"/>
+    {#    <link href="{% static 'assets/css/' %}" rel="stylesheet" type="text/css"/>#}
+    <link href="{% static 'assets/plugins/toastr/toastr.min.css' %}" rel="stylesheet" type="text/css"/>
+
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" type="text/css"/>
+
+    {% block extra_stylesheet %}
+
+    {% endblock %}
+    <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="{% static 'assets/js/modernizr.min.js' %}"></script>
+    <!--   FIREBASE FOR FILEUPLOAD -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+{#    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>#}
+    <script src="{% static 'assets/js/firebase.js' %}"></script>
+    <style>
+        li {
+            color: white !important;
+        }
+
+        span {
+            color: white !important;
+        }
+
+        i {
+            color: white !important;
+        }
+
+        .reports_card {
+            background: #01579b !important;
+
+        }
+
+        .reports_card h4 {
+            color: white !important;
+        }
+
+        .reports_card h2 {
+            color: white !important;
+        }
+
+        .text-muted {
+            color: white;
+        }
+
+        td > a > i {
+            color: grey !important;
+        }
+
+        span > i {
+            color: grey !important;
+        }
+        .parsley-errors-list > li{
+            color: red !important;
+        }
+    </style>
+
+</head>
+
+
+<body class="fixed-left">
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Top Bar Start -->
+    <div class="topbar" style="max-width: 200px">
+
+        <!-- LOGO -->
+        <div class="topbar-left" style="background-color:#01579b">
+            {#            <a href="{% url 'dashboard-home-page' %}" class="logo"><img#}
+            {#                    src="{% static 'assets/images/track.png' %}" width="65%" height="auto" alt=""></a>#}
+            <a href="{% url 'dashboard:dashboard-home-page' %}" class="logo">
+                <img class="hidden-sm hidden-xs" style="width: 200px; height: 44px;"
+                     src="{% static 'assets/images/mubers-logo-white.png' %}">
+                <span class="hidden-lg hidden-md">Muberz <i class="zmdi zmdi-layers"></i></span></a>
+        </div>
+
+        <!-- Button mobile view to collapse sidebar menu -->
+
+    </div>
+    <!-- Top Bar End -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="left side-menu" style="background:#01579b">
+        <div class="sidebar-inner slimscrollleft">
+
+            <!-- User -->
+            <div class="user-box">
+                <div class="user-img">
+                    {% if request.session.image %}
+                        <img style="width: 88px;height: 88px;" src="{{ request.session.image }}?alt=media"
+                             alt="user-img"
+                             title="{{ request.user.email }}"
+                             class="img-circle img-thumbnail img-responsive">
+                    {% else %}
+                        <img style="width: 88px;height: 88px;" src="{% static 'assets/images/profile-icon.png' %}"
+                             alt="user-img"
+                             title="{{ request.user.email }}"
+                             class="img-circle img-thumbnail img-responsive">
+                    {% endif %}
+
+                    {#                    <div class="user-status online"><i class="zmdi zmdi-dot-circle"></i></div>#}
+                </div>
+                <h5><a href="#" style="color: white">{{ request.user.email }}</a></h5>
+                {% if request.session.user_type == 'Admin User' %}
+                    <p style="color: white">{{ request.session.city }} Admin</p>
+                {% else %}
+                    <p style="color: white">{{ request.session.user_name }} ({{ request.session.user_type }})</p>
+                {% endif %}
+
+                <ul class="list-inline">
+
+                    <li>
+                        <a href="{% url 'dashboard:dashboard-home-page' %}" title="Home">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'dashboard:update-profile' %}" title="Update your profile">
+                            <i class="zmdi zmdi-settings"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'dashboard:logout-user' %}" id="logout-button" title="Logout">
+                            <i class="zmdi zmdi-power"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- End User -->
+
+            {% block side_menu_block %}
+
+            {% endblock %}
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+    <!-- Left Sidebar End -->
+
+    {% block page_content %}
+
+    {% endblock %}
+
+</div>
+<!-- END wrapper -->
+
+<script>
+    var resizefunc = [];
+</script>
+{# <script src={% static "assets/plugins/switchery/switchery.min.js" %}></script>#}
+{#    <script src={% static "assets/js/jquery.core.js" %}></script>#}
+{#    <script src={% static "assets/js/jquery.app.js" %}></script>#}
+<!-- jQuery  -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/detect.js' %}"></script>
+<script src="{% static 'assets/js/fastclick.js' %}"></script>
+<script src="{% static 'assets/js/jquery.blockUI.js' %}"></script>
+<script src="{% static 'assets/js/waves.js' %}"></script>
+<script src="{% static 'assets/js/jquery.nicescroll.js' %}"></script>
+<script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'assets/js/jquery.scrollTo.min.js' %}"></script>
+
+
+<!-- Form wizard -->
+<script src="{% static 'assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js' %}"></script>
+<script src="{% static 'assets/plugins/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+
+<!-- KNOB JS -->
+<!--[if IE]>
+        <script type="text/javascript" src="{% static 'assets/plugins/jquery-knob/excanvas.js' %}"></script>
+        <![endif]-->
+<script src="{% static 'assets/plugins/jquery-knob/jquery.knob.js' %}"></script>
+
+<!--Morris Chart-->
+<script src="{% static 'assets/plugins/morris/morris.min.js' %}"></script>
+<script src="{% static 'assets/plugins/raphael/raphael-min.js' %}"></script>
+
+
+<script src="{% static 'assets/plugins/counterup/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'assets/plugins/waypoints/lib/jquery.waypoints.js' %}"></script>
+<!-- App js -->
+<script src="{% static 'assets/js/jquery.core.js' %}"></script>
+<script src="{% static 'assets/js/jquery.app.js' %}"></script>
+
+
+<script src="{% static 'assets/plugins/toastr/toastr.min.js' %}"></script>
+
+
+
+<script type="text/javascript">
+    {#  NUMBER CHECKING #}
+    {#for(var i=0; i<document.querySelectorAll(".number-only").length; i++){#}
+    {#    var ele = document.querySelectorAll('.number-only')[i];#}
+    {#  ele.onkeypress = function(e) {#}
+    {#     if(isNaN(this.value+""+String.fromCharCode(e.charCode)))#}
+    {#     return false#}
+    {#  }#}
+    {#  ele.onpaste = function(e){#}
+    {#     e.preventDefault();#}
+    {#  }#}
+
+    $('.number-only').keypress(function (event) {
+        {#  if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0) ) {#}
+        {#    eve.preventDefault();#}
+        {#  }#}
+        if ((event.which !== 46 || $(this).val().indexOf('.') !== -1) && ((event.which < 48 && event.which !== 8 && event.which === 9) || event.which > 57)) {
+            event.preventDefault();
+        }
+
+
+    });
+    // this part is when left part of number is deleted and leaves a . in the leftmost position. For example, 33.25, then 33 is deleted
+    {# $('.number-only').keyup(function(eve) {#}
+    {#  if($(this).val().indexOf('.') == 0) {    $(this).val($(this).val().substring(1));#}
+    {#  }#}
+    {# });#}
+
+</script>
+{% block extra_javascript %}
+
+{% endblock %}
+
+</body>
+
+</html>

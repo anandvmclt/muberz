@@ -1,0 +1,46 @@
+{% extends "dashboard/front-base.html" %}
+{% load staticfiles %}
+{% block heading %}
+    {{ login }}
+{% endblock %}
+{% block page_content %}
+    <div class="panel-body">
+        <form class="form-horizontal m-t-20" action="" method="post" style="color: white">
+            {% csrf_token %}
+            <div class="form-group ">
+                <div class="col-xs-12">
+                    <input class="form-control" type="text" required="" placeholder="{{ username }}" name="username"
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value="{{ request.GET.email }}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input class="form-control" type="password" required="" placeholder="{{ password }}" name="password"
+                           minlength="8" maxlength="20" value="{{ request.GET.pass }}">
+                </div>
+            </div>
+
+            <div class="form-group text-center m-t-30">
+                <div class="col-xs-12">
+                    <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">{{ login }}
+                    </button>
+                    <br>
+                     <span style="left: 0px;">{{ lbl_dont_have_account }} <a href="{% url 'dashboard:fleet-signup' %}" class="text-white">{{ lbl_fleet_registration }}</a></span>
+                </div>
+            </div>
+
+            <div class="form-group m-t-30 m-b-0">
+                <div class="col-sm-6">
+                    <a href="{% url 'dashboard:forgot-password' %}" class="text-white"><i class="fa fa-lock m-r-5"></i> {{ lbl_forgot_password }}</a>
+                </div>
+                <div class="col-sm-6 text-white" style="color:white;">
+                    <span style="float: right;color: white"><a href="javascript:void(0)" onclick="SetSession(1)" id=session_english" style="color:white;"> English</a>
+                &nbsp;&nbsp;<a onclick="SetSession(2)" href="javascript:void(0)" id=session_spanish" style="color:white;">Español</a></span>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+{% endblock %}

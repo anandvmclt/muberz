@@ -1,0 +1,182 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with user='active' %}
+
+{% endblock %}
+{% block title %}Users{% endblock %}
+{% block page-title %}Users{% endblock %}
+{% block users-active %}active{% endblock %}
+
+
+{% block page_content %}
+    <style>
+        .label-requested {
+            background-color: red;
+        }
+
+        .label-processing {
+            background-color: dodgerblue;
+        }
+
+        .label-initiated {
+            background-color: grey;
+        }
+
+        .label-completed {
+            background-color: green;
+        }
+    </style>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+
+                            <h4 class="header-title m-t-0 m-b-30">Refund Management</h4>
+
+                            <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <!--TODO: Translations to be done-->
+                                    <td>User</td>
+                                    <td>Request Raised By</td>
+                                    <td>Refund Amount</td>
+                                    <td>Cause</td>
+                                    <td>Status</td>
+                                    <td>Action</td>
+
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% if refunds %}
+                                    {% for refund in refunds %}
+                                        <tr>
+                                            <td>
+                                                {{ refund.transfer.added_by.user.first_name }}
+                                                ({{ refund.transfer.added_by.user.username }})
+                                            </td>
+                                            <td>
+                                                {{ refund.added_by.user.first_name }}
+                                                ({{ refund.added_by.user.username }})
+                                            </td>
+                                            <td>
+                                                {{ refund.amount_to_refund }}
+                                            </td>
+                                            <td>
+                                                {{ refund.refund_cause }}
+                                            </td>
+                                            <td>
+
+                                                <span class="label label-{{ refund.status }}">{{ refund.status|title }}</span>
+
+                                            </td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-instagram dropdown-toggle" type="button"
+                                                            data-toggle="dropdown">Status
+                                                        <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a href="processing/{{ refund.id }}">
+                                                                In Process
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="initiated/{{ refund.id }}">
+                                                                Initiated
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="completed/{{ refund.id }}">
+                                                                Completed
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+                                    {% endfor %}
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include 'dashboard/footer.html' %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+
+
+    <!-- Datatables-->
+    <script src={% static "assets/plugins/datatables/jquery.dataTables.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.bootstrap.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.buttons.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/jszip.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/pdfmake.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/vfs_fonts.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.html5.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.print.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.fixedHeader.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.keyTable.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.responsive.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/responsive.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.scroller.min.js" %}></script>
+
+    <!-- Datatable init js -->
+    <script src={% static "assets/pages/datatables.init.js" %}></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable({
+                "aaSorting": [],
+                "oLanguage": {"sEmptyTable": "{{ no_items_found }}"}
+            });
+            $('#datatable-keytable').DataTable({keys: true});
+            $('#datatable-responsive').DataTable();
+            $('#datatable-scroller').DataTable({
+                ajax: "assets/plugins/datatables/json/scroller-demo.json",
+                deferRender: true,
+                scrollY: 380,
+                scrollCollapse: true,
+                scroller: true
+            });
+            var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+        });
+        TableManageButtons.init();
+    </script>
+{% endblock %}

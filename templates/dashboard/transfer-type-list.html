@@ -1,0 +1,218 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% if not disable_action %}
+            <!-- Add Admin start here-->
+                <div class="col-lg-12">
+                    <div class="card-box">
+
+                        <h4 class="header-title m-t-0">{{ add_new_density_factor }} <span
+                                class="col-md-2 pull-right expand_click">
+                                <i class="fa fa-plus pull-right btn btn-success"></i>
+                            </span></h4>
+                        <div id="add_offer_form" style="padding: 10px;margin-top: 30px ;width: 100%">
+
+                            <form class="form-horizontal form-label-left input_mask" method="post"
+                                  action="{% url 'dashboard:add-transfer-type' %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_transfer_from }}
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select class="form-control" name="transfer_from" id="transfer_from" required>
+                                            <option value="CH" {% if item_data.transfer_from == 'CH' %}
+                                                    selected {% endif %} >CH
+                                            </option>
+                                            <option value="EMBD" {% if item_data.transfer_from == 'EMBD' %}
+                                                    selected {% endif %}>EMBD
+                                            </option>
+                                            <option value="EMAD" {% if item_data.transfer_from == 'EMAD' %}
+                                                    selected {% endif %}>EMAD
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_transfer_to }} <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select class="form-control" name="transfer_to" id="transfer_to" required>
+                                            <option value="CH" {% if item_data.transfer_to == 'CH' %}
+                                                    selected {% endif %} >CH
+                                            </option>
+                                            <option value="EMBD" {% if item_data.transfer_to == 'EMBD' %}
+                                                    selected {% endif %}>EMBD
+                                            </option>
+                                            <option value="EMAD" {% if item_data.transfer_to == 'EMAD' %}
+                                                    selected {% endif %}>EMAD
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_density_factor }}<span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="number" min="1" step="0.001" max="5" class="form-control number-only"  pattern="\d{2}" required id="charge" value="
+                                                {% if item_data.charge != None %}{{ item_data.charge }}{% endif %}"
+                                               name="charge" placeholder="{{ lbl_density_factor }}">
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success">{{ lbl_submit }}</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <!-- Add Admin start here-->
+                {% endif %}
+                <div class="col-lg-12">
+                    <div class="card-box table-responsive">
+
+                        <h4 class="header-title m-t-0 m-b-30"> {{ lbl_density_factor_list }}</h4>
+
+
+                        <table class="table m-0">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ lbl_density_factor_between }}</th>
+                                <th>{{ lbl_density_factor }}</th>
+                                {% if not disable_action %}
+                                <th>{{ lbl_edit }}</th>
+                                <th>{{ delete }}</th>
+                                {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if not type_list %}
+                                <tr>
+                                    <td align="center" colspan="6">
+                                        <strong>{{ no_items_found }}</strong>
+                                    </td>
+                                </tr>
+                            {% else %}
+
+                                {% for type_obj in type_list %}
+                                    <tr>
+                                        <th scope="row">{{ forloop.counter }}</th>
+                                        <td>{{ type_obj.get_transfer_from_display }}
+                                            - {{ type_obj.get_transfer_to_display }}</td>
+                                        <td>{{ type_obj.charge }}</td>
+                                        {% if not disable_action %}
+                                        <td>
+                                            &nbsp;&nbsp;&nbsp;<a
+                                                href="{% url 'dashboard:edit-transfer-type' transfer_type_id=type_obj.id %}"><i
+                                                class="fa fa-edit"></i></a>
+                                        </td>
+                                        <td>
+                                            &nbsp;&nbsp;&nbsp;<a onclick="DeleteItem({{ type_obj.id }})"
+                                                                 id=type_obj.id"><i class="fa  fa-trash"></i></a>
+                                        </td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- end col -->
+
+
+
+
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+    <script type="text/javascript" src={% static "assets/js/slide_toggle.js" %}></script>
+    <script type="text/javascript">
+{#    $(function(){#}
+{#        $('#charge').keyup({#}
+{#        });#}
+{##}
+{#    })#}
+    </script>
+    <script type="text/javascript">
+        function DeleteItem(type_id) {
+            if (confirm('{{ lbl_want_to_delete_transfer_type }}')) {
+                $.ajax({
+                    url: '/dashboard/delete-transfer-type/',
+                    data: {
+                        'transfer_type_id': type_id,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        alert(data)
+                        window.location.href = "/dashboard/list-transfer-type/";
+                    }
+                });
+            }
+
+        }
+        function validate_number() {
+            charge = document.getElementById('charge').value
+            if(charge>0 && charge<=5){
+                return true
+            }
+            else{
+                return false
+
+
+            }
+
+        }
+    </script>
+
+
+{% endblock %}

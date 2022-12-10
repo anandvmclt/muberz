@@ -1,0 +1,406 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+
+{% block page_content %}
+    <style>
+        .pac-item span {
+            color: grey !important;
+        }
+    </style>
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <!-- Add Admin start here-->
+                <div class="col-lg-12">
+                    <div class="card-box">
+
+                        <h4 class="header-title m-t-0">{{ lbl_add_new_city }}<span
+                                class="col-md-2 pull-right expand_click">
+                                <i class="fa fa-plus pull-right btn btn-success"></i>
+                            </span>
+                        </h4>
+                        <div id="add_offer_form" style="padding: 10px;margin-top: 30px ;width: 100%">
+
+                            <form class="form-horizontal form-label-left input_mask" id="city_add_form" method="post"
+                                  action="{% url 'dashboard:add-city' %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_city_name }} <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-5 col-sm-5 col-xs-12">
+                                        <input type="text" class="form-control" name="city" required id="autocomplete"
+                                               placeholder="{{ lbl_city_name }}" type="text" name="city_name">
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Payment Method <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-5 col-sm-5 col-xs-12">
+                                        <select name="payment_type" id="" class="form-control">
+                                            <option value="" disabled>Choose Payment Method</option>
+                                            <option value="both">Cash/Card</option>
+                                            <option value="cash">Cash Only</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-5 col-sm-5 col-xs-12">Mark Area<span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        {#                                        <input id="pac-input" class="controls" type="text" placeholder="Search Box">#}
+                                        <div id="map" style="height: 500px"></div>
+                                    </div>
+                                    <textarea id="info" name="polygon" style="display: none"></textarea>
+                                </div>
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <button type="button" onclick="validate_city()"
+                                                class="btn btn-success">{{ lbl_submit }}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <!-- Add Admin start here-->
+                <div class="col-lg-12">
+                    <div class="card-box table-responsive">
+
+                        <h4 class="header-title m-t-0 m-b-30"> {{ lbl_city_list }}</h4>
+
+
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ lbl_city_name }}</th>
+                                <th>{{ lbl_edit }}</th>
+                                {#                                <th>{{ lbl_districts }}</th>#}
+                                {#                                                              <th>{{ delete }}</th>#}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if not city_list %}
+                                <tr>
+                                    <td align="center" colspan="6">
+                                        <strong>{{ no_items_found }}</strong>
+                                    </td>
+                                </tr>
+                            {% else %}
+
+                                {% for city_obj in city_list %}
+                                    <tr>
+                                        <th scope="row">{{ forloop.counter }}</th>
+                                        <td>{{ city_obj.city_name }}</td>
+                                        <td>
+                                            &nbsp;&nbsp;&nbsp;<a
+                                                href="{% url 'dashboard:edit-city' city_id=city_obj.id %}"><i
+                                                class="fa fa-edit"></i></a>
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- end col -->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+    <script type="text/javascript" src={% static "assets/js/slide_toggle.js" %}></script>
+
+    <script type="text/javascript">
+        function DeleteItem(service_id) {
+            if (confirm('{{ lbl_want_to_delete_service }}')) {
+                $.ajax({
+                    url: '/dashboard/delete-service/',
+                    data: {
+                        'service_id': service_id,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        alert(data)
+                        window.location.href = "/dashboard/list-service/";
+                    }
+                });
+            }
+
+        }
+    </script>
+
+    <!-- DataTables  css-->
+    <link href={% static "assets/plugins/datatables/jquery.dataTables.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/buttons.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/fixedHeader.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/responsive.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/scroller.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+
+
+    <!-- Datatables js -->
+    <script src={% static "assets/plugins/datatables/jquery.dataTables.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.bootstrap.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.buttons.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/jszip.min.js" %}></script>
+{#    <script src={% static "assets/plugins/datatables/pdfmake.min.js" %}></script>#}
+    <script src={% static "assets/plugins/datatables/vfs_fonts.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.html5.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.print.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.fixedHeader.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.keyTable.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.responsive.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/responsive.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.scroller.min.js" %}></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <!-- Datatable init js -->
+        <script src={% static "assets/pages/datatables.init.js" %}></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable({
+                "aaSorting": [],
+                "oLanguage": {
+                    "sLengthMenu": "{{ lbl_display }} _MENU_ {{ lbl_entries }}",
+                    "sEmptyTable": "{{ no_items_found }}",
+                    "sSearch": "{{ lbl_search }}: ",
+                    "sInfo": "{{ lbl_showing }} _START_ to _END_ of _TOTAL_ {{ lbl_entries }}",
+                    "oPaginate": {
+                        "sPrevious": "{{ lbl_previous }}", // This is the link to the previous page
+                        "sNext": "{{ lbl_next }}", // This is the link to the next page
+                    },
+
+                },
+            });
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+{#            TableManageButtons.init();#}
+        </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&libraries=places,drawing&callback=initAutocomplete"
+            async defer></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(window).keydown(function (event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        });
+
+        function validate_city() {
+            if (document.getElementById('autocomplete').value == '') {
+                alert('{{ lbl_city_name_validate }}');
+                document.getElementById('autocomplete').focus();
+            }
+            else if ($('#info').val() == '') {
+                alert('Please mark the city limits in the Map');
+                return false;
+            }
+            else {
+                $("#city_add_form").submit();
+            }
+        }
+
+        var styles = [{
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{"color": "#e9e9e9"}, {"lightness": 17}]
+        }, {
+            "featureType": "landscape",
+            "elementType": "geometry",
+            "stylers": [{"color": "#f5f5f5"}, {"lightness": 20}]
+        }, {
+            "featureType": "road.highway",
+            "elementType": "geometry.fill",
+            "stylers": [{"color": "#ffffff"}, {"lightness": 17}]
+        }, {
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [{"color": "#ffffff"}, {"lightness": 29}, {"weight": 0.2}]
+        }, {
+            "featureType": "road.arterial",
+            "elementType": "geometry",
+            "stylers": [{"color": "#ffffff"}, {"lightness": 18}]
+        }, {
+            "featureType": "road.local",
+            "elementType": "geometry",
+            "stylers": [{"color": "#ffffff"}, {"lightness": 16}]
+        }, {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [{"color": "#f5f5f5"}, {"lightness": 21}]
+        }, {
+            "featureType": "poi.park",
+            "elementType": "geometry",
+            "stylers": [{"color": "#dedede"}, {"lightness": 21}]
+        }, {
+            "elementType": "labels.text.stroke",
+            "stylers": [{"visibility": "on"}, {"color": "#ffffff"}, {"lightness": 16}]
+        }, {
+            "elementType": "labels.text.fill",
+            "stylers": [{"saturation": 36}, {"color": "#333333"}, {"lightness": 40}]
+        }, {"elementType": "labels.icon", "stylers": [{"visibility": "off"}]}, {
+            "featureType": "transit",
+            "elementType": "geometry",
+            "stylers": [{"color": "#f2f2f2"}, {"lightness": 19}]
+        }, {
+            "featureType": "administrative",
+            "elementType": "geometry.fill",
+            "stylers": [{"color": "#fefefe"}, {"lightness": 20}]
+        }, {
+            "featureType": "administrative",
+            "elementType": "geometry.stroke",
+            "stylers": [{"color": "#fefefe"}, {"lightness": 17}, {"weight": 1.2}]
+        }];
+        var placeSearch, autocomplete, geocoder, polygonArray = [];
+
+        function initAutocomplete() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: -12.0264987, lng: -77.2679746},
+                zoom: 8,
+                styles: styles
+            });
+
+            var drawingManager = new google.maps.drawing.DrawingManager({
+                drawingControl: true,
+                drawingControlOptions: {
+                    position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: ['polygon']
+                },
+                markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
+                circleOptions: {
+                    fillColor: '#6cbbff',
+                    fillOpacity: 1,
+                    strokeWeight: 5,
+                    clickable: false,
+                    editable: true,
+
+                    zIndex: 1
+                }
+            });
+            drawingManager.setMap(map);
+            geocoder = new google.maps.Geocoder();
+            options = {
+                language: 'en-GB',
+                types: ['(regions)'],
+            };
+            autocomplete = new google.maps.places.Autocomplete(
+                (document.getElementById('autocomplete')), options);
+
+            autocomplete.addListener('place_changed', fillInAddress);
+            google.maps.event.addListener(drawingManager, 'polygoncomplete', function (polygon) {
+                drawingManager.setMap(null);
+                polygonArray.push(polygon);
+                console.log(polygonArray);
+                var polygonJsonArray = [];
+                //Fetching data from polygon array received from g-maps
+                var polygonArrayData = polygonArray[0].getPath();
+                for (var i =0; i < polygonArrayData.getLength(); i++) {
+                    var loc = polygonArrayData.getAt(i);
+                    polygonJsonArray.push({lat: loc.lat(), lng: loc.lng()});
+                }
+
+{#                polygonArray[0].getPath().b.forEach(function (one) {#}
+{#                    polygonJsonArray.push({lat: one.lat(), lng: one.lng()});#}
+{#                });#}
+                console.log(polygonJsonArray.toString());
+                if(polygonJsonArray.length>=2) {
+                    document.getElementById('info').innerHTML = JSON.stringify(polygonJsonArray);
+                }
+                else{
+                    // For removing the polygon
+                    polygonArray.length = 0;  // Deleting the polygon from the polygon array
+                    polygon.setMap(null);
+                    drawingManager.setMap(map);
+                    polygonJsonArray.length = 0;
+                    document.getElementById('info').innerHTML = "";
+                }
+
+                // For removing the polygon
+                google.maps.event.addListener(polygon, 'rightclick', function () {
+                    polygonArray.length = 0;  // Deleting the polygon from the polygon array
+                    polygon.setMap(null);
+                    drawingManager.setMap(map);
+                    polygonJsonArray.length = 0;
+                    document.getElementById('info').innerHTML = "";
+                });
+
+            });
+        }
+
+
+        function codeAddress(address) {
+            geocoder.geocode({'address': address}, function (results, status) {
+                if (status == 'OK') {
+                } else {
+                    {#        alert('Geocode was not successful for the following reason: ' + status);#}
+                }
+            });
+        }
+
+        function fillInAddress() {
+//            var place = autocomplete.getPlace();
+            //          map.center.lat = place.geometry.location.lat();
+            //map.center.lng = place.geometry.location.lng();
+            return true
+
+            {#var place = autocomplete.getPlace();#}
+            {#document.getElementById('city_lat').value = place.geometry.location.lat();#}
+            {#document.getElementById('city_lng').value = place.geometry.location.lng();#}
+            {#codeAddress(document.getElementById('autocomplete').value);#}
+        }
+    </script>
+{% endblock %}

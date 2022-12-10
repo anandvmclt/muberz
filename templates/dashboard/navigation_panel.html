@@ -1,0 +1,226 @@
+<!--- Sidemenu -->
+<div id="sidebar-menu">
+    <ul>
+        <li class="text-muted menu-title">{{ management }}</li>
+
+        {% if request.user.is_superuser %}
+            <li>
+                <a href="{% url 'dashboard:list-city' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-city/' %} active{% endif %} {% if request.path == '/dashboard/edit-city/' %} active{% endif %}"><i
+                        class="ti-location-arrow"></i>
+                    <span> {{ lbl_cities }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:list-admin' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-admin/' %} active{% endif %}"><i
+                        class="fa fa-user"></i>
+                    <span> {{ admins }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:manage-users' %}"
+                   class="waves-effect {% if request.path == '/dashboard/manage-users/' %} active{% endif %}"><i
+                        class="fa fa-users"></i>
+                    <span> {{ lbl_app_users }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:list-partners' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-partners/' %} active{% endif %} {% if request.path == '/dashboard/list-partners/' %} active{% endif %}"><i
+                        class="ti-dashboard"></i>
+                    <span> {{ lbl_partners }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:rental-management' %}"
+                   class="waves-effect {% if request.path == '/dashboard/rental-management/' %} active{% endif %} {% if request.path == '/dashboard/view-rental/' %} active{% endif %}"><i
+                        class="ti-truck"></i>
+                    <span> {{ lbl_rentals }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:list-documents' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-documents/' %} active{% endif %}"><i
+                        class="ti-list"></i>
+                    <span> {{ lbl_list_documents }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:damage-reports' %}"
+                   class="waves-effect {% if request.path == '/dashboard/damage-reports/' %} active{% endif %}"><i
+                        class="ti-alert"></i>
+                    <span> {{ lbl_damages_reported }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:manage-fleets' status='all' %}"
+                   class="waves-effect {% if request.path == '/dashboard/manage-partners/' %} active{% endif %}"><i
+                        class="ti-truck"></i>
+                    <span> {{ lbl_fleets }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:offer-management' %}"
+                   class="waves-effect {% if request.path == '/dashboard/offer-management/' %} active{% endif %} {% if request.path == '/dashboard/offer-management/' %} active{% endif %}"><i
+                        class="ti-notepad"></i>
+                    <span> {{ lbl_offers }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:refunds' %}"
+                   class="waves-effect {% if request.path == '/dashboard/refunds/' %} active{% endif %} {% if request.path == '/dashboard/refunds/' %} active{% endif %}"><i
+                        class="fa fa-refresh"></i>
+                    <!--TODO:Translate-->
+                    <span> Refund</span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:logs' %}"
+                   class="waves-effect {% if request.path == '/dashboard/logs/' %} active{% endif %} {% if request.path == '/dashboard/logs/' %} active{% endif %}"><i
+                        class="fa fa-warning"></i>
+                    <!--TODO:Translate-->
+                    <span> Logs</span> </a>
+            </li>
+        {% elif request.session.user_type == 'Fleet Admin' %}
+            <li>
+                <a href="{% url 'dashboard:add-partner' %}"
+                   class="waves-effect {% if request.path == '/dashboard/add-partner/' %} active{% endif %} {% if request.path == '/dashboard/add-partner/' %} active{% endif %}"><i
+                        class="ti-plus"></i>
+                    <span> {{ lbl_add_partner }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:list-partners' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-partners/' %} active{% endif %} {% if request.path == '/dashboard/list-partners/' %} active{% endif %}"><i
+                        class="ti-dashboard"></i>
+                    <span> {{ lbl_partners }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:rental-management' %}"
+                   class="waves-effect {% if request.path == '/dashboard/rental-management/' %} active{% endif %} {% if request.path == '/dashboard/view-rental/' %} active{% endif %}"><i
+                        class="ti-truck"></i>
+                    <span> {{ lbl_rentals }} </span> </a>
+            </li>
+
+            <li>
+                <a href="{% url 'dashboard:damage-reports' %}"
+                   class="waves-effect {% if request.path == '/dashboard/damage-reports/' %} active{% endif %}"><i
+                        class="ti-alert"></i>
+                    <span> {{ lbl_damages_reported }} </span> </a>
+            </li>
+
+
+
+        {% else %}
+            {% if request.session.user_type == 'Admin User' %}
+                <li>
+                <a href="{% url 'dashboard:list-operator' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-operator/' %} active{% endif %}"><i
+                        class="fa fa-user"></i>
+                    <span> {{ operators }} </span> </a>
+            </li>
+            {% endif %}
+            <li class="has_sub">
+                <a href="javascript:void(0);"
+                   class="waves-effect {% if request.path == '/dashboard/manage-fleets/' %} active subdrop{% endif %}"><i
+                        class="fa fa-truck"></i> <span> {{ lbl_fleets }} </span> <span class="menu-arrow"></span></a>
+                <ul class="list-unstyled">
+                    <li class="active"><a
+                            href="{% url 'dashboard:manage-fleets' status='not_verified' %}">{{ lbl_new_fleets }}</a>
+                    </li>
+                    <li class="active"><a
+                            href="{% url 'dashboard:manage-fleets' status='active' %}">{{ lbl_fleets }}</a></li>
+                    <li class="active"><a
+                            href="{% url 'dashboard:manage-fleets' status='blocked' %}">{{ lbl_blocked_fleets }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="has_sub">
+                <a href="javascript:void(0);"
+                   class="waves-effect {% if request.path == '/dashboard/manage-partners/' %} active subdrop{% endif %}"><i
+                        class="fa fa-dashboard"></i> <span> {{ lbl_partners }} </span> <span class="menu-arrow"></span></a>
+                <ul class="list-unstyled">
+                    <li class="active"><a
+                            href="{% url 'dashboard:manage-partners' status='not_verified' %}">{{ lbl_new_partners }}</a>
+                    </li>
+                    <li class="active"><a
+                            href="{% url 'dashboard:manage-partners' status='active' %}">{{ lbl_partners }}</a></li>
+                    <li class="active"><a
+                            href="{% url 'dashboard:manage-partners' status='blocked' %}">{{ lbl_blocked_partners }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+            <li>
+                <a href="{% url 'dashboard:rental-management' %}"
+                   class="waves-effect {% if request.path == '/dashboard/rental-management/' %} active{% endif %} {% if request.path == '/dashboard/view-rental/' %} active{% endif %}"><i
+                        class="ti-truck"></i>
+                    <span> {{ lbl_rentals }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:manage-users' %}"
+                   class="waves-effect {% if request.path == '/dashboard/manage-users/' %} active{% endif %}"><i
+                        class="fa fa-users"></i>
+                    <span> {{ lbl_app_users }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:list-commodity' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-commodity/' %} active{% endif %} {% if request.path == '/dashboard/edit-commodity/' %} active{% endif %}"><i
+                        class="fa fa-plug"></i>
+                    <span> {{ lbl_commodity }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:list-transfer-type' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-transfer-type/' %} active{% endif %} {% if request.path == '/dashboard/edit-transfer-type/' %} active{% endif %}"><i
+                        class="ti-list-ol"></i>
+                    <span> {{ lbl_density_factor_list }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:trucktypes' %}"
+                   class="waves-effect {% if request.path == '/dashboard/trucktypes/' %} active{% endif %}"><i
+                        class="ti-truck"></i>
+                    <span> {{ lbl_truck_types }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:list-service' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-service/' %} active{% endif %} {% if request.path == '/dashboard/edit-service/' %} active{% endif %}"><i
+                        class="ti-server"></i>
+                    <span> {{ lbl_services }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:list-discount' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-discount/' %} active{% endif %} {% if request.path == '/dashboard/edit-discount/' %} active{% endif %}"><i
+                        class="fa fa-percent"></i>
+                    <span> {{ lbl_discount }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:commission-management' %}"
+                   class="waves-effect {% if request.path == '/dashboard/commission/manage/' %} active{% endif %}"><i
+                        class="fa fa-money"></i>
+                    <span> {{ lbl_commission }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:damage-reports' %}"
+                   class="waves-effect {% if request.path == '/dashboard/damage-reports/' %} active{% endif %}"><i
+                        class="ti-alert"></i>
+                    <span> {{ lbl_damages_reported }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:offer-management' %}"
+                   class="waves-effect {% if request.path == '/dashboard/offer-management/' %} active{% endif %} {% if request.path == '/dashboard/offer-management/' %} active{% endif %}"><i
+                        class="ti-notepad"></i>
+                    <span> {{ lbl_offers }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:payout-management' %}"
+                   class="waves-effect {% if request.path == '/dashboard/payout-management/' %} active{% endif %} {% if request.path == '/dashboard/payout-management/' %} active{% endif %}"><i
+                        class="fa fa-money"></i>
+                    <span> {{ lbl_payout_management }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:list-truck-crew' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-truck-crew/' %} active{% endif %} {% if request.path == '/dashboard/edit/truck-crew/' %} active{% endif %}"><i
+                        class="ti-plus"></i>
+                    <span> {{ lbl_crew_mgmt }} </span> </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard:list-security-deposit' %}"
+                   class="waves-effect {% if request.path == '/dashboard/list-security-deposit/' %} active{% endif %} {% if request.path == '/dashboard/edit-security-deposit/' %} active{% endif %}"><i
+                        class="fa fa-money"></i>
+                    <span> {{ lbl_security_deposit_management }} </span> </a>
+            </li>
+
+        {% endif %}
+    </ul>
+    <div class="clearfix"></div>
+</div>

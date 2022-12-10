@@ -1,0 +1,126 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container" role="main">
+        <div class="col-md-12 col-sm-12">
+            <div class="col-md-12 col-sm-12">
+                <div class="title_left" style="text-align: center">
+                    <h3>User Profile</h3>
+                </div>
+
+
+            </div>
+            {% if messages %}
+                <div class="messages" style="margin-bottom: 20px;width: 100%">
+                    {% for message in messages %}
+                        <span{% if message.tags %}
+                            class="alert alert-{{ message.tags }}"{% endif %} style="width: 100%"> {{ message }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+
+                            <form class="form-horizontal form-label-left" novalidate method="post">
+                                {% csrf_token %}
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input id="name" class="form-control col-md-7 col-xs-12"
+                                               data-validate-length-range="6" data-validate-words="2" name="name"
+                                               placeholder="both name(s) e.g Jon Doe" required="required" type="text"
+                                               value="{{ user_profile.user.first_name }}">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="email" id="email" name="email" required="required"
+                                               class="form-control col-md-7 col-xs-12"
+                                               value="{{ user_profile.user.email }}">
+                                        <input type="hidden" value="profile" name="request_type">
+                                    </div>
+                                </div>
+                                {#                                <div class="item form-group">#}
+                                {#                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Photo <span#}
+                                {#                                            class="required">*</span>#}
+                                {#                                    </label>#}
+                                {#                                    <div class="col-md-6 col-sm-6 col-xs-12">#}
+                                {#                                        <input type="number" id="number" name="number" required="required"#}
+                                {#                                               data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <button type="submit" class="btn btn-primary">Cancel</button>
+                                        <button id="send" type="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div class="col-md-12 col-sm-12">
+                <div class="title_left" style="text-align: center">
+                    <h3>Reset Password</h3>
+                </div>
+
+
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+
+                            <form id="passwordval" class="form-horizontal form-label-left" novalidate method="post">
+                                {% csrf_token %}
+                                <div class="item form-group">
+                                    <label for="password" class="control-label col-md-3">New Password</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input id="password" type="password" name="password" data-validate-length="6,8"
+                                               class="form-control col-md-7 col-xs-12" required="required">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Repeat
+                                                                                                             Password</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input id="password2" type="password" name="password2"
+                                               data-validate-linked="password" class="form-control col-md-7 col-xs-12"
+                                               required="required">
+                                    </div>
+                                </div>
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <button type="submit" class="btn btn-primary">Cancel</button>
+                                        <button id="send" type="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extrascripts %}
+    <script>
+
+    </script>
+{% endblock %}

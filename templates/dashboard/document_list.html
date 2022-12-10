@@ -1,0 +1,251 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with admin='active' %}
+
+{% endblock %}
+{% block title %}Admin Users{% endblock %}
+{% block page-title %}Admin Users{% endblock %}
+{% block admin-active %}active{% endblock %}
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="col-lg-12">
+                    <div class="card-box" id="content_div">
+
+                        <h4 class="header-title m-t-0 m-b-30">{{ lbl_add_update_document }}<span
+                                class="col-md-2 pull-right expand_click">
+                                <i class="fa fa-plus pull-right btn btn-success"></i>
+                            </span>
+                        </h4>
+                        <div id="add_offer_form" style="padding: 10px;margin-top: 30px ;width: 100%">
+
+                            <form class="form-horizontal" role="form" data-parsley-validate novalidate
+                                  action="{% url 'dashboard:add-document' %}" method="POST" id="add_form"
+                                  name="add_form">
+                                {% csrf_token %}
+
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">{{ lbl_doc_type }}*</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control" name="document_type" id="document_type" required>
+                                            <option value="">{{ lbl_doc_type }}</option>
+                                            {% for doc_type, doc_value in doc_type_list %}
+                                                <option value="{{ doc_type }}">{{ doc_value }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">{{ lbl_language }}*</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control" name="language" id="language" required>
+                                            <option value="">{{ lbl_language }}</option>
+                                            {% for lan_id, lan_val in languages %}
+                                                <option value="{{ lan_id }}">{{ lan_val }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                             <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Application*</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control" name="app_type" id="app_type" required>
+                                            {% for app_id, app_val in app_type %}
+                                                <option value="{{ app_id }}">{{ app_val }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">{{ lbl_document }}*</label>
+                                    <div class="col-sm-5">
+                                        <input id="filebutton1" class="file-upload" name="filebutton1" required
+                                               type="file" accept="application/pdf"/>
+                                        <input type="hidden" name="image1" id="image1">
+                                        <input type="hidden" name="success1" id="success1" value="1">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-8">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-2">
+                                            <button type="button" class="btn btn-success">{{ lbl_submit }}</button>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-box" id="div_validation" style="display: none"><label
+                            class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                        <div class="form-group" class="col-md-9 col-sm-9 col-xs-12">
+                            <font size="4px"><img src="/static/assets/images/loader.gif" style="align-self: center"
+                                                  width="100" height="100"></font>
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-lg-12">
+                    <div class="card-box table-responsive">
+
+                        <h4 class="header-title m-t-0 m-b-30">{{ lbl_list_documents }}</h4>
+
+
+                        <table class="table m-0">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>{{ lbl_doc_type }}</th>
+                                <th>{{ lbl_language }}</th>
+                                <th>Application</th>
+                                <th>{{ lbl_document }}</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if not document_list %}
+                                <tr>
+                                    <td align="center" colspan="6">
+                                        <strong>{{ no_items_found }}</strong>
+                                    </td>
+                                </tr>
+                            {% else %}
+
+                                {% for doc in document_list %}
+                                    <tr>
+                                        <th scope="row">{{ forloop.counter }}</th>
+                                        <td>{{ doc.get_document_type_display }}</td>
+                                        <td>{{ doc.get_language_display }}</td>
+                                        <td>{{ doc.get_app_type_display }}</td>
+                                        <td><a href="{{ doc.document }}?alt=media" target="_blank">
+                                            {{ lbl_view_file }}
+                                        </a>
+                                        </td>
+
+
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- end col -->
+
+                <!-- Add Admin start here-->
+
+                <!-- Add Admin start here-->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+    <script type="text/javascript" src={% static "assets/js/firebase.js" %}></script>
+    <script type="text/javascript" src={% static "assets/js/slide_toggle.js" %}></script>
+    <script>
+
+        $("button").click(function (event) {
+
+            if (document.getElementById('document_type').value == '') {
+                alert('{{ lbl_validation_document_type }}')
+                document.getElementById('document_type').focus()
+            }
+            if (document.getElementById('language').value == '') {
+                alert('{{ lbl_validation_language }}')
+                document.getElementById('language').focus()
+            }
+            else if (document.getElementById('filebutton1').value == '') {
+                alert('{{ lbl_validation_document }}')
+                document.getElementById('filebutton1').focus()
+            }
+            else {
+
+                // IMAGE1
+                // Listen for file selection
+                var filebutton1 = document.getElementById('filebutton1');
+                if (filebutton1.value != '') {
+                    // get file
+                    var file1 = filebutton1.files[0];
+
+                    if (file1.type === 'application/pdf') {
+
+                        // Create a root reference
+                        var storageRef1 = firebase.storage().ref();
+                        document.getElementById('success1').value = 0;
+                        document.getElementById('div_validation').style.display = '';
+                        document.getElementById('content_div').style.display = 'none';
+                        // Create a reference to millis
+                        var d = new Date();
+                        var timeMilli = d.getTime();
+
+                        var uploadTask1 = storageRef1.child(document.getElementById('document_type').value + '_' + document.getElementById('language').value + '_' + document.getElementById('app_type').value + '.pdf').put(file1);
+                        uploadTask1.on('state_changed', function (snapshot) {
+                            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                            console.log('Upload is ' + progress + '% done');
+                        }, function (error) {
+                            // Handle unsuccessful uploads
+                        }, function () {
+                            // Handle successful uploads on complete
+                            document.getElementById('success1').value = 1;
+                            formsubmit();
+                        });
+
+                        document.getElementById('image1').value = document.getElementById('document_type').value + '_' + document.getElementById('language').value + '_' + document.getElementById('app_type').value + '.pdf';
+                        formsubmit();
+                    }
+                    else {
+                        alert('{{ lbl_validation_document }}')
+                        document.getElementById('filebutton1').focus()
+                    }
+                }
+
+            }
+
+        });
+
+        function formsubmit() {
+            {#        $("form").css("display",'none');#}
+            {#         $("#loading-img").css({"display": "block"});#}
+
+            var success1 = document.getElementById('success1').value
+
+            if (success1 == 1) {
+                $("#add_form").submit();
+                document.getElementById('div_validation').style.display = 'none';
+                document.getElementById('content_div').style.display = '';
+            }
+
+        }
+    </script>
+
+{% endblock %}

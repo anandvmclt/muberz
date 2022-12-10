@@ -1,0 +1,242 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with user='active' %}
+
+{% endblock %}
+{% block title %}Users{% endblock %}
+{% block page-title %}Users{% endblock %}
+{% block users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+
+                            <h4 class="header-title m-t-0 m-b-30">{{ display_template_label }}</h4>
+
+                            <table id="datatable-serverside" class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <td>{{ lbl_user }}</td>
+                                    <td>{{ lbl_driver_name }}</td>
+                                    <td>{{ lbl_pickup_location }}</td>
+                                    <td>{{ lbl_drop_location }}</td>
+                                    <td>{{ lbl_total_amount }}</td>
+                                    <td>{{ lbl_payment_type }}</td>
+                                    <td>{{ lbl_transfer_on }}</td>
+                                    <td>{{ lbl_status }}</td>
+                                    <td>Special Handling Fee</td>
+                                    <td>{{ lbl_details }}</td>
+                                    <td>Refund Requested</td>
+                                    <td>Payout Status</td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% if transfers %}
+                                    {% for transfer in transfers %} {{ transfer.transferon }}
+                                        <tr>
+                                            <td>{% autoescape on %}{{ transfer.added_by_user.user.first_name }}
+                                                {{ transfer.added_by_user.user.last_name }}{% endautoescape %}</td>
+                                            <td>{% autoescape on %}
+                                                {{ transfer.driver_name.user.first_name }}
+                                                {{ transfer.driver_name.user.last_name }}
+                                            {% endautoescape %}</td>
+                                            <td>{% autoescape on %}
+                                                {{ transfer.transfer_pickup }}{% endautoescape %}</td>
+                                            <td>{% autoescape on %}{{ transfer.transfer_drop }}{% endautoescape %}</td>
+                                            <td>{% autoescape on %}
+                                                {{ transfer.total_amount|floatformat:2 }} S/{% endautoescape %}</td>
+                                            <td>{% autoescape on %}
+                                                {{ transfer.payment_type_value }}{% endautoescape %}</td>
+                                            <td>{% autoescape on %}{{ transfer.added_time }}{% endautoescape %}</td>
+                                            <td>{% autoescape on %}
+                                                {{ transfer.status_value }}{% endautoescape %}
+                                            </td>
+                                            <td>
+                                                {% if transfer.is_special_handling_required %}
+                                                    {{ transfer.special_handling_fee }}
+                                                {% else %}
+                                                    --
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <a href="{% url 'dashboard:view-rental' transfer_id=transfer.id %}">{{ lbl_view }}</a>
+                                            </td>
+                                            <td>
+                                                {% if transfer.refund_initiated %}
+                                                    <span class="label label-success">Refund Initiated</span>
+                                                {% else %}
+                                                    <span class="label label-info">NA</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if transfer.payout_status == True %}
+                                                    <span class="label label-success">Paid</span>
+                                                {% else %}
+                                                    <span class="label label-danger">Not Paid</span>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    {% if is_paginated %}
+                        <div class="pull-right">
+                        <ul class="pagination">
+
+                            {% if page_obj.has_previous %}
+                                <li style="background-color: #0c7cd5"><a href="?page=1">{{ lbl_first }}</a></li>
+                                <li style="background-color: #0c7cd5"><a href="?page={{ page_obj.previous_page_number }}"><i style="color:#000 !important" class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+
+                            {% else %}
+                                <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+                            {% endif %}
+
+                            {% if page_obj.number|add:'-2' > 1 %}
+                                <li><a href="?page={{ page_obj.number|add:'-3' }}">&hellip;</a></li>
+                            {% endif %}
+
+                            {% for i in page_obj.paginator.page_range %}
+                                {% if page_obj.number == i %}
+                                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                                {% if  i == page_obj.page2.start_index %}
+                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.paginator.num_pages > page_obj.number|add:'2' %}
+                                <li><a href="?page={{ page_obj.number|add:'3' }}">&hellip;</a></li>
+                            {% endif %}
+
+                            {% if page_obj.has_next %}
+
+                                <li style="background-color: #0c7cd5"><a href="?page={{ page_obj.next_page_number }}"><i style="color:#000 !important" class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                                <li style="background-color: #0c7cd5"><a href="?page={{ paginator.num_pages }}">{{ lbl_last }}</a></li>
+                            {% else %}
+                                <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                {% endif %}
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include 'dashboard/footer.html' %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form').parsley();
+        });
+
+        $(function () {
+            $(".delete_form").submit(function () {
+                var r = confirm("Are you sure you want to delete this user?");
+                return r == true;
+            })
+        });
+    </script>
+
+    <!-- DataTables  css-->
+    <link href={% static "assets/plugins/datatables/jquery.dataTables.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/buttons.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/fixedHeader.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/responsive.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/scroller.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+
+
+
+    <!-- Datatables js -->
+    <script src={% static "assets/plugins/datatables/jquery.dataTables.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.bootstrap.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.buttons.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.bootstrap.min.js" %}></script>
+{#    <script src={% static "assets/plugins/datatables/jszip.min.js" %}></script>#}
+    <script src={% static "assets/plugins/datatables/pdfmake.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/vfs_fonts.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.html5.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.print.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.fixedHeader.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.keyTable.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.responsive.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/responsive.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.scroller.min.js" %}></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <!-- Datatable init js -->
+    <script src={% static "assets/pages/datatables.init.js" %}></script>
+{#    <script type="text/javascript">#}
+{#        $(document).ready(function () {#}
+{##}
+{#            $('#datatable-serverside').DataTable({#}
+{#                    "processing": true,#}
+{#                   "serverSide": true,#}
+{#                ajax: {#}
+{#                    url: "/dashboard/trip-list-server/",#}
+{#                    method : 'post',#}
+{#                },#}
+{#                columns: [#}
+{#                    {data: "user"},#}
+{#                    {data: "driver_name"},#}
+{#                    {data: "pickup-location"},#}
+{#                    {data: "drop-location"},#}
+{#                    {data: "office"},#}
+{#                    {data: "start_date"},#}
+{#                    {data: "salary"}#}
+{#                ]#}
+{#            });#}
+{#            var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});#}
+{#        });#}
+        {#TableManageButtons.init();#}
+{#    </script>#}
+{% endblock %}

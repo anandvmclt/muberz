@@ -1,0 +1,329 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with user='active' %}
+
+{% endblock %}
+{% block title %}Users{% endblock %}
+{% block page-title %}Users{% endblock %}
+{% block users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="row">
+                    <div class="col-lg-12 col-md-12" id="printDiv">
+                        <div class="card-box">
+                            <div class="col-lg-12">
+                                <ul class="nav nav-tabs">
+                                    <li role="presentation" class="active">
+                                        <a href="#home1" role="tab" data-toggle="tab">{{ lbl_damage_details }}</a>
+                                    </li>
+                                    {% if not disable_action %}
+                                    <li role="presentation">
+                                        <a href="#profile1" role="tab" data-toggle="tab">Update Penalty</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade in active" id="home1">
+                                        <table width="100%" class="table table-striped m-0 table-bordered">
+                                            <tr>
+                                                <td width="30%">{{ lbl_name }}</td>
+                                                <td>{{ transfer_data.added_by.user.first_name }} {{ transfer.added_by.user.last_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ lbl_transfer_on }}</td>
+                                                <td>{{ transfer_data.added_time }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ lbl_transfer_loc }}</td>
+                                                <td>
+                                                    {{ transfer_pickup }}
+                                                    {% if transfer_drop %} -
+                                                        {{ transfer_drop }} {% endif %}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ lbl_driver_name }}</td>
+                                                <td>
+                                                    {{ transfer_data.driver.user.first_name }}{{ transfer_data.driver.user.last_name }}
+                                                </td>
+                                            </tr>
+                                            {% if transfer_data.driver.fleet_id %}
+                                                <tr>
+                                                    <td>{{ lbl_fleet_name }}</td>
+                                                    <td>
+                                                        {{ transfer_data.driver.fleet_id.user.first_name }}{{ transfer_data.driver.fleet_id.user.last_name }}
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                            <tr>
+                                                <td>{{ lbl_total_amount }}</td>
+                                                <td>
+                                                    {{ transfer_data.total_amount|floatformat:2 }} S/
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ lbl_status }}</td>
+                                                <td>
+                                                    {{ transfer_data.get_status_display }}
+                                                </td>
+                                            </tr>
+                                            {% if damage_description %}
+                                            <tr>
+                                                <td>{{ lbl_description }}</td>
+                                                <td>
+                                                    {% for each in damage_description %}
+                                                        {{ each.description }}<br>
+                                                    {% endfor %}
+
+                                                </td>
+                                            </tr>
+                                            {% endif %}
+                                            <tr>
+                                                <td colspan="2" style="font-size: 17px;"><strong>{{ lbl_damaged_items }}</strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" class="table table-striped m-0 table-bordered">
+                                                        <tr>
+                                                            <td width="30%"><strong>{{ lbl_item }}</strong></td>
+                                                            <td width="30%"><strong>{{ lbl_damage_type }}</strong></td>
+                                                            <td width="30%"><strong>{{ lbl_image }}</strong></td>
+                                                        </tr>
+                                                        {% for damage in damages %}
+                                                            <tr>
+                                                                <td width="30%">{{ damage.item_name }}</td>
+                                                                <td width="30%">
+                                                                    {% if damage.stolen %}{{ lbl_stolen }}
+                                                                        <strong>({{ damage.stolen }})</strong>
+                                                                        <br>{% endif %}
+                                                                    {% if damage.partial %}Partially Damaged
+                                                                        <strong>({{ damage.partial }})</strong>
+                                                                        <br>{% endif %}
+                                                                    {% if damage.full %}{{ lbl_fully_damaged }}
+                                                                        <strong>({{ damage.full }})</strong>
+                                                                        <br>{% endif %}
+                                                                </td>
+                                                                <td>
+                                                                    <table cellpadding="3" cellspacing="3">
+                                                                        <tr>
+                                                                            {% for photo in damage.photos %}
+                                                                                <td align="center"><a
+                                                                                        href="javascript:void(0)"
+                                                                                        data-toggle="modal"
+                                                                                        data-target="#custom-width-modal{{ photo.id }}"><img
+                                                                                        src="{{ photo.photo }}?alt=media"
+                                                                                        style="width:30px; height: 30px;"></a><br>
+                                                                                <td style="width: 10px;"></td>
+
+                                                                                <div id="custom-width-modal{{ photo.id }}"
+                                                                                     class="modal fade" tabindex="-1"
+                                                                                     role="dialog"
+                                                                                     aria-labelledby="custom-width-modalLabel"
+                                                                                     aria-hidden="true"
+                                                                                     style="display: none;">
+                                                                                    <div class="modal-dialog"
+                                                                                         style="width:55%;">
+                                                                                        <div class="modal-content">
+
+                                                                                            <div class="modal-body">
+                                                                                                <button type="button"
+                                                                                                        class="close"
+                                                                                                        data-dismiss="modal"
+                                                                                                        aria-hidden="true">
+                                                                                                    ×
+                                                                                                </button>
+                                                                                                <br>
+                                                                                                <img src="{{ photo.photo }}?alt=media"
+                                                                                                     style="width:100%; display:block; left:0;
+                                                right:0;
+                                                bottom:0;
+                                                margin:auto;">
+
+                                                                                            </div>
+                                                                                        </div><!-- /.modal-content -->
+                                                                                    </div><!-- /.modal-dialog -->
+                                                                                </div><!-- /.modal -->
+
+                                                                            {% endfor %}
+                                                                        </tr>
+                                                                    </table>
+
+                                                                    {#                                                  {% for photo in damage.photos %}#}
+                                                                    {#                                                      {{ photo.photo }}#}
+                                                                    {##}
+                                                                    {#                                                  {% endfor %}#}
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    </table>
+
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="profile1">
+                                        {% if transfer_data.penalty %}
+                                            {{ lbl_penalty_amt_already_added }} -
+                                            <strong>{{ transfer_data.penalty }}</strong>
+                                        {% else %}
+                                            <form class="form-horizontal form-label-left input_mask" method="post"
+                                                  id="add_form" name="add_form">
+                                                {% csrf_token %}
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_penalty }}
+                                                    </label>
+                                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                                        <input type="text" required
+                                                               {% if user.is_superuser %}disabled{% endif %}
+                                                               class="form-control number-only" id="topup_amount"
+                                                               value="" name="topup_amount" maxlength="6"
+                                                               placeholder="{{ lbl_penalty }}">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="ln_solid"></div>
+                                                <div class="form-group">
+                                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                                        <button {% if user.is_superuser %}disabled{% endif %}
+                                                                type="button"
+                                                                onclick="UpdatePenalty({{ transfer_data.id }})"
+                                                                class="btn btn-success">{{ lbl_submit }}</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+                            </div><!-- end col -->
+
+
+                            <table width="100%" class="table table-striped m-0 table-bordered">
+
+
+                            </table>
+                        </div>
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include 'dashboard/footer.html' %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form').parsley();
+        });
+
+        $(function () {
+            $(".delete_form").submit(function () {
+                var r = confirm("Are you sure you want to delete this user?");
+                return r == true;
+            })
+        });
+    </script>
+    <!-- Datatables-->
+    <script src={% static "assets/plugins/datatables/jquery.dataTables.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.bootstrap.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.buttons.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/jszip.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/pdfmake.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/vfs_fonts.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.html5.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.print.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.fixedHeader.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.keyTable.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.responsive.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/responsive.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.scroller.min.js" %}></script>
+
+    <!-- Datatable init js -->
+    <script src={% static "assets/pages/datatables.init.js" %}></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable({
+                "aaSorting": [],
+                "oLanguage": {"sEmptyTable": "{{ no_items_found }}"}
+            });
+            $('#datatable-keytable').DataTable({keys: true});
+            $('#datatable-responsive').DataTable();
+            $('#datatable-scroller').DataTable({
+                ajax: "assets/plugins/datatables/json/scroller-demo.json",
+                deferRender: true,
+                scrollY: 380,
+                scrollCollapse: true,
+                scroller: true
+            });
+            var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+        });
+        TableManageButtons.init();
+    </script>
+    <script type="text/javascript">
+        function UpdatePenalty(transfer_id) {
+            if (document.getElementById('topup_amount').value.trim() == '') {
+                alert("Amount cannot be empty");
+                return false;
+            }
+            else if((parseFloat(document.getElementById('topup_amount').value))<0){
+                alert("Amount Cannot be negetive");
+                return false
+            }
+            else {
+                $.ajax({
+                    url: '/dashboard/update-panalty/',
+                    data: {
+                        'topup_amount': parseFloat(document.getElementById('topup_amount').value.trim()),
+                        'transfer_id': transfer_id,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        alert(data)
+                        location.reload();
+
+                    }
+                });
+            }
+
+        }
+    </script>
+{% endblock %}

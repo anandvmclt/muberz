@@ -1,0 +1,535 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                <!-- Add Admin start here-->
+                <div class="col-lg-12">
+                    <div class="card-box" id="content_div">
+
+                        <h4 class="header-title m-t-0 m-b-30">{{ lbl_add_partner }}</h4>
+
+                        <form class="form-horizontal form-label-left input_mask" method="post" id="add_form"
+                              name="add_form" action="{% url 'dashboard:add-partner' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_driver_name }} <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-9">
+                                    <input type="text" class="form-control" name="name" required id="name"
+                                           placeholder="{{ lbl_driver_name }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_email }} <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-9">
+                                    <input type="email" class="form-control" name="email" required id="email"
+                                           placeholder="{{ lbl_email }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_mobile }} <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-9">
+                                    <input type="text" class="form-control number-only" name="mobile_number" required
+                                           id="mobile_number" placeholder="{{ lbl_mobile }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_vehicle_volume }} <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-9">
+                                    <input type="text" class="form-control number-only" id="vehicle_volume" value=""
+                                           name="vehicle_volume" placeholder="{{ lbl_vehicle_volume }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_vehicle_number }}
+                                    <span
+                                            class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-9">
+                                    <input type="text" class="form-control" id="registration_number" value=""
+                                           name="registration_number" placeholder="{{ lbl_vehicle_number }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_profile_picture }}
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <input id="filebutton1" class="file-upload" name="filebutton1" type="file"
+                                           accept="image/jpeg"/>
+                                    <input type="hidden" name="image1" id="image1">
+                                    <input type="hidden" name="success1" id="success1" value="1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_driver_licence }} <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <input id="filebutton2" class="file-upload" name="filebutton2" required type="file"
+                                           accept="image/jpeg, application/pdf"/>
+                                    <input type="hidden" name="image2" id="image2">
+                                    <input type="hidden" name="success2" id="success2" value="1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_commercial_insurance }}
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <input id="filebutton3" class="file-upload" name="filebutton3" required type="file"
+                                           accept="image/jpeg, application/pdf"/>
+                                    <input type="hidden" name="image3" id="image3">
+                                    <input type="hidden" name="success3" id="success3" value="1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_vehicle_registration }}
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <input id="filebutton4" class="file-upload" name="filebutton4" required type="file"
+                                           accept="image/jpeg, application/pdf"/>
+                                    <input type="hidden" name="image4" id="image4">
+                                    <input type="hidden" name="success4" id="success4" value="1">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_fitness_certificate }}
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <input id="filebutton5" class="file-upload" name="filebutton5" required type="file"
+                                           accept="image/jpeg, application/pdf"/>
+                                    <input type="hidden" name="image5" id="image5">
+                                    <input type="hidden" name="success5" id="success5" value="1">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_tax_certificate }} <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <input id="filebutton6" class="file-upload" name="filebutton6" required type="file"
+                                           accept="image/jpeg, application/pdf"/>
+                                    <input type="hidden" name="image6" id="image6">
+                                    <input type="hidden" name="success6" id="success6" value="1">
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                    <button type="button" class="btn btn-success">{{ lbl_submit }}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card-box" id="div_validation" style="display: none"><label
+                            class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                        <div class="form-group" class="col-md-9 col-sm-9 col-xs-12">
+                            <font size="4px"><img src="/static/assets/images/loader.gif" style="align-self: center"
+                                                  width="100" height="100"></font>
+                        </div>
+                    </div>
+                </div><!-- end col -->
+
+                <!-- Add Admin start here-->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+    <script type="text/javascript">
+        function DeleteItem(commodity_id) {
+            if (confirm('{{ want_to_delete }}')) {
+                $.ajax({
+                    url: '/dashboard/delete-commodity/',
+                    data: {
+                        'commodity_id': commodity_id,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        alert(data)
+                        window.location.href = "/dashboard/list-commodity/";
+                    }
+                });
+            }
+
+        }
+    </script>
+
+
+    <script>
+
+        var email_pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+{#        var email_pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;#}
+        var mobile_number_pattern = /^\+(?:[0-9] ?){6,14}[0-9]$/;
+
+        $("button").click(function (event) {
+
+            var email = document.getElementById('email').value;
+            var mobile = document.getElementById('mobile_number').value;
+            var volume = document.getElementById('vehicle_volume').value;
+            var name = document.getElementById('name').value;
+            var registration_number = document.getElementById('registration_number').value;
+
+            if (name == '') {
+                alert('{{ lbl_validation_name }}');
+                document.getElementById('name').focus()
+            }
+            else if(name.length>60){
+                alert('Name should be less than 60 characters');
+                document.getElementById('name').focus()
+            }
+            else if (email != '' && !email_pattern.test(email) ) {
+                alert('{{ lbl_validation_email }}');
+                document.getElementById('email').focus()
+            }
+            else if (mobile == '' || mobile.length < 8 || mobile.length > 16 || !mobile_number_pattern.test(mobile)) {
+                alert('{{ lbl_validation_mobile_number }}');
+                document.getElementById('mobile_number').focus()
+            }
+            else if (volume == '' || parseInt(volume) > 40 ) {
+                alert('{{ lbl_validation_vehicle_volume }}');
+                document.getElementById('vehicle_volume').focus()
+            }
+            else if (registration_number == '' || registration_number.length < 4 || registration_number.length > 10) {
+                alert('Please enter valid registration number');
+                document.getElementById('registration_number').focus()
+            }
+            else if (document.getElementById('filebutton1').value == '') {
+                alert('Please choose a profile picture');
+                document.getElementById('filebutton1').focus()
+            }
+            else if (document.getElementById('filebutton2').value == '') {
+                alert('{{ lbl_validation_driver_licence }}');
+                document.getElementById('filebutton2').focus()
+            }
+            else if (document.getElementById('filebutton3').value == '') {
+                alert('{{ lbl_validation_commercial_insurance }}');
+                document.getElementById('filebutton3').focus()
+            }
+            else if (document.getElementById('filebutton4').value == '') {
+                alert('{{ lbl_validation_vehicle_registration }}');
+                document.getElementById('filebutton4').focus()
+            }
+            else if (document.getElementById('filebutton5').value == '') {
+                alert('{{ lbl_validation_fitness_certificate }}');
+                document.getElementById('filebutton5').focus()
+            }
+            else if (document.getElementById('filebutton6').value == '') {
+                alert('{{ lbl_validation_tax_certificate }}');
+                document.getElementById('filebutton6').focus()
+            }
+            else {
+                // IMAGE1
+                // Listen for file selection
+                var filebutton1 = document.getElementById('filebutton1');
+                if (filebutton1.value != '') {
+                    // get file
+                    var fileExt;
+                    var file1 = filebutton1.files[0];
+                    if (file1.type === "application/pdf") {
+                        fileExt = "1.pdf"
+
+                    }
+                    else {
+                        fileExt = "1.jpg"
+                    }
+                    // Create a root reference
+                    var storageRef1 = firebase.storage().ref();
+                    document.getElementById('success1').value = 0;
+                    document.getElementById('content_div').style.display = 'none';
+                    document.getElementById('div_validation').style.display = '';
+                    // Create a reference to millis
+                    var d = new Date();
+                    var timeMilli = d.getTime();
+
+                    var uploadTask1 = storageRef1.child(timeMilli + fileExt).put(file1);
+                    uploadTask1.on('state_changed', function (snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, function (error) {
+                        // Handle unsuccessful uploads
+                    }, function () {
+                        // Handle successful uploads on complete
+                        document.getElementById('success1').value = 1;
+                        console.log(timeMilli + fileExt);
+                        document.getElementById('image1').value = timeMilli + fileExt;
+                        formsubmit();
+                    });
+
+                }
+
+                // IMAGE2
+                // Listen for file selection
+                var filebutton2 = document.getElementById('filebutton2');
+                if (filebutton2.value != '') {
+                    // get file
+                    var fileExt2;
+                    var file2 = filebutton2.files[0];
+                    if (file2.type === "application/pdf") {
+                        fileExt2 = "2.pdf"
+
+                    }
+                    else {
+                        fileExt2 = "2.jpg"
+                    }
+                    // Create a root reference
+                    var storageRef2 = firebase.storage().ref();
+                    document.getElementById('success2').value = 0;
+                    document.getElementById('content_div').style.display = 'none';
+                    document.getElementById('div_validation').style.display = '';
+                    // Create a reference to millis
+                    var d = new Date();
+                    var timeMilli2 = d.getTime();
+
+                    var uploadTask2 = storageRef2.child(timeMilli2 + fileExt2).put(file2);
+                    uploadTask2.on('state_changed', function (snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, function (error) {
+                        // Handle unsuccessful uploads
+                    }, function () {
+                        // Handle successful uploads on complete
+                        document.getElementById('success2').value = 1;
+                        console.log(timeMilli + fileExt);
+                        document.getElementById('image2').value = timeMilli2 + fileExt2;
+                        formsubmit();
+                    });
+                }
+
+                // IMAGE3
+                // Listen for file selection
+                var filebutton3 = document.getElementById('filebutton3');
+                if (filebutton3.value != '') {
+                    // get file
+                    var fileExt3;
+                    var file3 = filebutton3.files[0];
+                    if (file3.type === "application/pdf") {
+                        fileExt3 = "3.pdf"
+
+                    }
+                    else {
+                        fileExt3 = "3.jpg"
+                    }
+                    // Create a root reference
+                    var storageRef3 = firebase.storage().ref();
+                    document.getElementById('success3').value = 0;
+                    document.getElementById('content_div').style.display = 'none';
+                    document.getElementById('div_validation').style.display = '';
+                    // Create a reference to millis
+                    var d = new Date();
+                    var timeMilli3 = d.getTime();
+
+                    var uploadTask3 = storageRef3.child(timeMilli3 + fileExt3).put(file3);
+                    uploadTask3.on('state_changed', function (snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, function (error) {
+                        // Handle unsuccessful uploads
+                    }, function () {
+                        // Handle successful uploads on complete
+                        document.getElementById('success3').value = 1;
+                        console.log(timeMilli + fileExt);
+                        document.getElementById('image3').value = timeMilli3 + fileExt3;
+                        formsubmit();
+                    });
+
+                }
+
+                // IMAGE4
+                // Listen for file selection
+                var filebutton4 = document.getElementById('filebutton4');
+                if (filebutton4.value != '') {
+                    // get file
+                    var fileExt4;
+                    var file4 = filebutton4.files[0];
+                    if (file4.type === "application/pdf") {
+                        fileExt4 = "4.pdf"
+
+                    }
+                    else {
+                        fileExt4 = "4.jpg"
+                    }
+                    // Create a root reference
+                    var storageRef4 = firebase.storage().ref();
+                    document.getElementById('success4').value = 0;
+                    document.getElementById('content_div').style.display = 'none';
+                    document.getElementById('div_validation').style.display = '';
+                    // Create a reference to millis
+                    var d = new Date();
+                    var timeMilli4 = d.getTime();
+
+                    var uploadTask4 = storageRef4.child(timeMilli4 + fileExt4).put(file4);
+                    uploadTask4.on('state_changed', function (snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, function (error) {
+                        // Handle unsuccessful uploads
+                    }, function () {
+                        // Handle successful uploads on complete
+                        document.getElementById('success4').value = 1;
+                        console.log(timeMilli + fileExt);
+                        document.getElementById('image4').value = timeMilli4 + fileExt4;
+                        formsubmit();
+                    });
+
+                }
+
+                // IMAGE5
+                // Listen for file selection
+                var filebutton5 = document.getElementById('filebutton5');
+                if (filebutton5.value != '') {
+                    // get file
+                    var fileExt5;
+                    var file5 = filebutton5.files[0];
+                    if (file5.type === "application/pdf") {
+                        fileExt5 = "5.pdf"
+
+                    }
+                    else {
+                        fileExt5 = "5.jpg"
+                    }
+                    // Create a root reference
+                    var storageRef5 = firebase.storage().ref();
+                    document.getElementById('success5').value = 0;
+                    document.getElementById('content_div').style.display = 'none';
+                    document.getElementById('div_validation').style.display = '';
+                    // Create a reference to millis
+                    var d = new Date();
+                    var timeMilli5 = d.getTime();
+
+                    var uploadTask5 = storageRef5.child(timeMilli5 + fileExt5).put(file5);
+                    uploadTask5.on('state_changed', function (snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, function (error) {
+                        // Handle unsuccessful uploads
+                    }, function () {
+                        // Handle successful uploads on complete
+                        document.getElementById('success5').value = 1;
+                        console.log(timeMilli + fileExt);
+                        document.getElementById('image5').value = timeMilli5 + fileExt5;
+                        formsubmit();
+                    });
+
+                }
+                // IMAGE6
+                // Listen for file selection
+                var filebutton6 = document.getElementById('filebutton6');
+                if (filebutton6.value != '') {
+                    // get file
+                    var fileExt6;
+                    var file6 = filebutton6.files[0];
+                    if (file6.type === "application/pdf") {
+                        fileExt6 = "6.pdf"
+
+                    }
+                    else {
+                        fileExt6 = "6.jpg"
+                    }
+                    // Create a root reference
+                    var storageRef6 = firebase.storage().ref();
+                    document.getElementById('success6').value = 0;
+                    document.getElementById('content_div').style.display = 'none';
+                    document.getElementById('div_validation').style.display = '';
+                    // Create a reference to millis
+                    var d = new Date();
+                    var timeMilli6 = d.getTime();
+                    var uploadTask6 = storageRef6.child(timeMilli6 + fileExt6).put(file6);
+                    uploadTask6.on('state_changed', function (snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, function (error) {
+                        // Handle unsuccessful uploads
+                    }, function () {
+                        // Handle successful uploads on complete
+                        document.getElementById('success6').value = 1;
+                        console.log(timeMilli + fileExt);
+                        document.getElementById('image6').value = timeMilli6 + fileExt6;
+                        formsubmit();
+                    });
+                }
+
+
+                formsubmit();
+            }
+
+        });
+
+        function formsubmit() {
+            {#        $("form").css("display",'none');#}
+            {#         $("#loading-img").css({"display": "block"});#}
+            var success1 = document.getElementById('success1').value;
+            var success2 = document.getElementById('success2').value;
+            var success3 = document.getElementById('success3').value;
+            var success4 = document.getElementById('success4').value;
+            var success5 = document.getElementById('success5').value;
+            var success6 = document.getElementById('success6').value;
+
+            if (success2 == 1 && success3 == 1 && success4 == 1 && success5 == 1 && success6 == 1) {
+                $("#add_form").submit();
+                document.getElementById('div_validation').style.display = 'none';
+                document.getElementById('content_div').style.display = '';
+            }
+
+        }
+    </script>
+
+
+{% endblock %}

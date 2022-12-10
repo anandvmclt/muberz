@@ -1,0 +1,95 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                <!-- Add Admin start here-->
+                <div class="col-lg-6">
+                    <div class="card-box">
+
+                        <h4 class="header-title m-t-0 m-b-30">{{ update_admins }}</h4>
+
+                        <form class="form-horizontal form-label-left input_mask" method="post"  action="{% url 'dashboard:edit-admin' admin_id=item_data.id %}">
+                        {% csrf_token %}
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ first_name }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" value="{{ item_data.user.first_name }}" name="first_name" required id="first_name" placeholder="{{ first_name }}">
+                        </div>
+                      </div>
+                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ last_name }}
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" id="last_name"  value="{{ item_data.user.last_name }}" placeholder="{{ last_name }}" name="last_name">
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_city_name }}
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" name="city_name" id="city_name" required>
+                             <option value="">{{ lbl_city_name }}</option>
+                                {% for city in city_list %}
+                                <option {% if item_data.city.id == city.id %}selected{% endif %} value="{{ city.id }}">{{ city.city_name }}</option>
+                             {% endfor %}
+                            </select>
+                        </div>
+                      </div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="submit" class="btn btn-success">{{ lbl_update }}</button>
+                        </div>
+                      </div>
+
+                    </form>
+                    </div>
+                </div><!-- end col -->
+                <!-- Add Admin start here-->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+{% endblock %}

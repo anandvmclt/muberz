@@ -1,0 +1,416 @@
+{% extends 'dashboard/dashboard_base.html' %}
+{% load staticfiles %}
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with home='active' %}
+
+{% endblock %}
+<!-- Left Sidebar End -->
+{% block extra_stylesheet %}
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" type="text/css"/>
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&callback=initMap">
+    </script>
+
+{% endblock %}
+{% block page_content %}
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content" style="margin-top: 2px">
+            <div class="container" style="margin-top: 0 !important;padding: 0">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                                      class="alert alert-{{ message.tags }}" {% endif %}>
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                </div>
+                <div class="row" style="height: 500px">
+                    <div id="markermap" style="height: 100%"></div>
+                </div>
+                <div class="row" style="margin-top: 20px">
+                <p style="text-align: right; margin-right: 20px;">
+                    <a href="javascript:location.reload();">
+                      <span title="Refresh Analytics" style="color: #01579b !important; font-size: 20px;" class="glyphicon glyphicon-refresh"></span>
+                    </a></p>
+                    <div class="col-md-12">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card-box reports_card">
+                                <h4 class="header-title m-t-0 m-b-30">{{ lbl_active_users }}</h4>
+
+                                <div class="widget-chart-1">
+                                    <div class="widget-chart-box-1">
+                                        <div style="display:inline;width:80px;height:80px;">
+                                            <i class="fa fa-users fa-4x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-detail-1">
+                                        <h2 class="p-t-10 m-b-0" data-plugin="counterup">{{ users }}</h2>
+                                        <p class="text-muted">{{ lbl_active_users }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {% if partner %}
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card-box reports_card">
+                                <h4 class="header-title m-t-0 m-b-30">{{ lbl_active_partners }}</h4>
+
+                                <div class="widget-chart-1">
+                                    <div class="widget-chart-box-1">
+                                        <div style="display:inline;width:80px;height:80px;">
+                                            <i class="fa fa-truck fa-4x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-detail-1">
+                                        <h2 class="p-t-10 m-b-0" data-plugin="counterup">{{ partner }}</h2>
+                                        <p class="text-muted">{{ lbl_active_partners }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {% endif %}
+                        <div class="{% if partner %} col-lg-4 col-md-4 col-sm-6 {% else %}col-lg-6 col-md-6 col-sm-6{% endif %}">
+                            <div class="card-box reports_card">
+                                <h4 class="header-title m-t-0 m-b-30">{{ lbl_active_trips }}</h4>
+
+                                <div class="widget-chart-1">
+                                    <div class="widget-chart-box-1">
+                                        <div style="display:inline;width:80px;height:80px;">
+                                            <i class="fa fa-location-arrow fa-4x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-detail-1">
+                                        <h2 class="p-t-10 m-b-0" data-plugin="counterup">{{ active_trips }}</h2>
+                                        <p class="text-muted">{{ lbl_active_trips }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="{% if partner %} col-lg-4 col-md-4 col-sm-6 {% else %}col-lg-6 col-md-6 col-sm-6{% endif %}">
+                            <div class="card-box reports_card">
+                                <h4 class="header-title m-t-0 m-b-30">{{ lbl_damages_reported }}</h4>
+
+                                <div class="widget-chart-1">
+                                    <div class="widget-chart-box-1">
+                                        <div style="display:inline;width:80px;height:80px;">
+                                            <i class="fa fa-warning fa-4x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-detail-1">
+                                        <h2 class="p-t-10 m-b-0" data-plugin="counterup">{{ damage }}</h2>
+                                        <p class="text-muted">{{ lbl_damages_reported }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="{% if partner %} col-lg-4 col-md-4 col-sm-6 {% else %}col-lg-6 col-md-6 col-sm-6{% endif %}">
+                            <div class="card-box reports_card">
+                                <h4 class="header-title m-t-0 m-b-30">{{ lbl_completed_trips }}</h4>
+
+                                <div class="widget-chart-1">
+                                    <div class="widget-chart-box-1">
+                                        <div style="display:inline;width:80px;height:80px;">
+                                            <i class="fa fa-map-marker fa-4x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-detail-1">
+                                        <h2 class="p-t-10 m-b-0" data-plugin="counterup">{{ completed_trips }}</h2>
+                                        <p class="text-muted">{{ lbl_completed_trips }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <div class="col-lg-12">
+                                <div class="card-box table-responsive" style="border: 2px solid #01579b">
+                                    <h4 class="header-title m-t-0 m-b-30">{{ lbl_active_trips }}</h4>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>{{ lbl_user }}</th>
+                                                <th>{{ lbl_driver_name }}</th>
+                                                <th>{{ lbl_pickup_location }}</th>
+                                                <th>{{ lbl_drop_location }}</th>
+                                                <th>{{ lbl_total_amount }}</th>
+                                                <th>{{ lbl_payment_type }}</th>
+                                                <th>{{ lbl_transfer_on }}</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% if transfers %}
+                                                {% for transfer in transfers %} {{ transfer.transferon }}
+                                                    <tr>
+
+                                                        <td>{% autoescape on %}{{ transfer.added_by.user.first_name }}
+                                                            {{ transfer.added_by.user.last_name }}{% endautoescape %}</td>
+                                                        <td>{% autoescape on %}
+                                                            {{ transfer.driver.user.first_name }}
+                                                            {{ transfer.driver.user.last_name }}
+                                                        {% endautoescape %}</td>
+                                                        <td>{% autoescape on %}
+                                                            {{ transfer.transfer_pickup }}{% endautoescape %}</td>
+                                                        <td>{% autoescape on %}
+                                                            {{ transfer.transfer_drop }}{% endautoescape %}</td>
+                                                        <td>{% autoescape on %}
+                                                            {{ transfer.total_amount|floatformat:2 }}{% endautoescape %}</td>
+                                                        <td>{% autoescape on %}
+                                                            {{ transfer.get_payment_type_display }}{% endautoescape %}</td>
+                                                        <td>{% autoescape on %}
+                                                            {{ transfer.added_time }}{% endautoescape %}</td>
+
+
+                                                    </tr>
+                                                {% endfor %}
+                                            {% endif %}
+                                            </tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div><!-- end col -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- content -->
+
+    {% include "dashboard/footer.html" %}
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Right content here -->
+    <!-- ============================================================== -->
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/detect.js' %}"></script>
+    <script src="{% static 'assets/js/fastclick.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.blockUI.js' %}"></script>
+    <script src="{% static 'assets/js/waves.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.nicescroll.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.scrollTo.min.js' %}"></script>
+    <!-- Sparkline charts -->
+    <script src="{% static 'assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js' %}"></script>
+    <script src="{% static 'assets/js/canvasjs.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/gmaps/gmaps.min.js' %}"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+
+    <script>
+        var resizefunc = [];
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tab2info").removeClass("active")
+            $("#tab3info").removeClass("active")
+        });
+
+
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            var marker_list = [];  // Array used for storing the markers plotted in map
+            var bounds = new google.maps.LatLngBounds();  // Declaring bounds variable
+            var initial_place_lat_lng = {lat: 36.2470898, lng: -113.71754};
+            var zoom = 5;
+            var styles = [{
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [{"color": "#e9e9e9"}, {"lightness": 17}]
+            }, {
+                "featureType": "landscape",
+                "elementType": "geometry",
+                "stylers": [{"color": "#f5f5f5"}, {"lightness": 20}]
+            }, {
+                "featureType": "road.highway",
+                "elementType": "geometry.fill",
+                "stylers": [{"color": "#ffffff"}, {"lightness": 17}]
+            }, {
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
+                "stylers": [{"color": "#ffffff"}, {"lightness": 29}, {"weight": 0.2}]
+            }, {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [{"color": "#ffffff"}, {"lightness": 18}]
+            }, {
+                "featureType": "road.local",
+                "elementType": "geometry",
+                "stylers": [{"color": "#ffffff"}, {"lightness": 16}]
+            }, {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [{"color": "#f5f5f5"}, {"lightness": 21}]
+            }, {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [{"color": "#dedede"}, {"lightness": 21}]
+            }, {
+                "elementType": "labels.text.stroke",
+                "stylers": [{"visibility": "on"}, {"color": "#ffffff"}, {"lightness": 16}]
+            }, {
+                "elementType": "labels.text.fill",
+                "stylers": [{"saturation": 36}, {"color": "#333333"}, {"lightness": 40}]
+            }, {"elementType": "labels.icon", "stylers": [{"visibility": "off"}]}, {
+                "featureType": "transit",
+                "elementType": "geometry",
+                "stylers": [{"color": "#f2f2f2"}, {"lightness": 19}]
+            }, {
+                "featureType": "administrative",
+                "elementType": "geometry.fill",
+                "stylers": [{"color": "#fefefe"}, {"lightness": 20}]
+            }, {
+                "featureType": "administrative",
+                "elementType": "geometry.stroke",
+                "stylers": [{"color": "#fefefe"}, {"lightness": 17}, {"weight": 1.2}]
+            }];
+            var map = new GMaps({
+                el: '#markermap',
+                center: initial_place_lat_lng,
+                zoom: zoom,
+                mapTypeId: 'roadmap',
+                styles: styles,
+{#                markerClusterer: function (map) {#}
+{#                    options = {#}
+{#                        gridSize: 40,#}
+{#                        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'#}
+{#                    };#}
+{##}
+{#                    return new MarkerClusterer(map, [], options);#}
+{#                }#}
+
+            });
+
+            var icon_active = {
+                url: "{% static 'assets/images/dark.png' %}", // url
+                scaledSize: new google.maps.Size(50, 50) // scaled size
+            };
+            var icon_passive = {
+                url: "{% static 'assets/images/light.png' %}", // url
+                scaledSize: new google.maps.Size(50, 50) // scaled size
+            };
+            $.ajax({
+                url: "get-trucks/",
+                type: "get",
+                contentType: "json",
+                success: function (response) {
+                    deleteAllMarkers();  // Deleting all markers before plotting new
+                    var truck_list = response['data']['trucks'];
+                    truck_list.forEach(function (data) {
+                        if (data.truck_status) {
+                            if (data.latitude != null && data.longitude != null && data.latitude != "" && data.longitude != "") {
+                                addMapMarker(data, icon_active, data.truck_status, data.driver_name, data.reg_no, data.mobile_number, data.online_status);  // Plotting new marker to map
+                            }
+
+                        }
+                        else {
+                            if (data.latitude != null && data.longitude != null && data.latitude != "" && data.longitude != "") {
+                                addMapMarker(data, icon_passive, data.truck_status, data.driver_name, data.reg_no, data.mobile_number, data.online_status);  // Plotting new marker to map
+                            }
+                        }
+                        //addMapMarker(data, icon, response['data']['type']);  // Plotting new marker to map
+                    });
+                    map.setZoom(zoom);  // Resetting the map zoom level
+                    // Re-centering the map to first bike's location
+                    if (truck_list.length > 0) {
+                        //var latLng = {lat: bike_list[0].latitude, lng: bike_list[0].longitude};
+                        //map.setCenter(latLng);
+                        map.fitBounds(bounds);  // Fitting bounds so that markers won't go out of vision
+                    }
+
+                },
+                error: function () {
+                    deleteAllMarkers();  // Deleting all markers from maps and marker_list
+                    alert("Map filtering failed");
+
+                }
+            });
+
+            // Function for adding marker to map and to push that marker to marker_list
+            var currentInfoWindow = null;
+            function addMapMarker(object, my_icon, type, driver_name, reg_no, mobile_number, online_status) {
+                var LatLng = {lat: parseFloat(object.latitude), lng: parseFloat(object.longitude)};
+                var marker = map.addMarker({
+                    position: LatLng,
+                    icon: my_icon,
+                    animation: google.maps.Animation.DROP,
+
+                });
+                bounds.extend(LatLng);
+                marker_list.push(marker);
+                if(online_status == true){
+                    style = "color:blue";
+                    status = "Online"
+                }
+                else{
+                    style = "color:red";
+                    status = "Offline"
+                }
+                var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h4 class="firstHeading" style=' + style + '>' + driver_name +  '(' + status + ')</h4> ' +
+                    '<div id="bodyContent">' +
+                    '<p><b>Plate Number : </b>' + reg_no + '</p>'+
+                    '<p><b>Contact Number: </b>' + mobile_number + '</p>'+
+                    '</div>'+
+                    '</div>';
+
+
+
+                var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+                });
+                 marker.addListener('click', function() {
+                     if (currentInfoWindow) {
+                        currentInfoWindow.close();
+                    }
+                    infowindow.open(map, marker);
+                    currentInfoWindow = infowindow;
+                });
+            }
+
+            // Function for deleting all the markers in map and clearing the marker list
+            function deleteAllMarkers() {
+                marker_list.forEach(function (marker) {
+                    marker.setMap(null);
+                });
+                marker_list = [];
+                bounds = new google.maps.LatLngBounds();
+            }
+
+            $("#active").click();  // Triggering the active button click to plot it in map
+
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,166 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% if not disable_action %}
+                <!-- Add Admin start here-->
+                <div class="col-lg-12">
+                    <div class="card-box">
+
+                        <h4 class="header-title m-t-0">{{ lbl_add_new_security_deposit }}
+                            <span class="col-md-2 pull-right expand_click">
+                                <i class="fa fa-plus pull-right btn btn-success"></i>
+                            </span></h4>
+
+                        <div id="add_offer_form" style="padding: 10px;margin-top: 30px ;width: 100%">
+                        <form class="form-horizontal form-label-left input_mask" method="post" action="{% url 'dashboard:add-security-deposit' %}">
+                        {% csrf_token %}
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_capacity_from }} <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="number" min="1" max="40" step="0.01" class="form-control number-only" required id="capacity_from"  name="capacity_from" placeholder="{{ lbl_capacity_from }}">
+                            </div>
+                          </div>
+                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_capacity_to }} <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                 <input type="number" min="1" max="40" step="0.01" class="form-control number-only" required id="capacity_to"  name="capacity_to" placeholder="{{ lbl_capacity_to }}">
+                            </div>
+                          </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_deposit_needed }} <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                 <input type="number" min="0"  step="0.01" class="form-control number-only" required id="deposit_needed"  name="deposit_needed" placeholder="{{ lbl_deposit_needed }}">
+                            </div>
+                          </div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="submit" class="btn btn-success">{{ lbl_submit }}</button>
+                        </div>
+                      </div>
+
+                    </form>
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <!-- Add Admin start here-->
+            {% endif %}
+                <div class="col-lg-12">
+                    <div class="card-box table-responsive">
+
+                        <h4 class="header-title m-t-0 m-b-30"> {{ lbl_security_deposit_list }}</h4>
+
+
+                        <table class="table m-0">
+                            <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>{{ lbl_truck_capacity }}</th>
+                              <th>{{ lbl_deposit_needed }}</th>
+                              {% if not disable_action %}
+                                <th>{{ lbl_edit }}</th>
+                                <th>{{ delete }}</th>
+                            {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if not deposit_list %}
+                                <tr>
+                                    <td align="center" colspan="6">
+                                       <strong>{{ no_items_found }}</strong>
+                                    </td>
+                                </tr>
+                            {% else %}
+
+                            {% for deposit_obj in deposit_list %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ deposit_obj.capacity_from }} - {{ deposit_obj.capacity_to }}</td>
+                                    <td>{{ deposit_obj.deposit_needed|floatformat:2 }}</td>
+                                    {% if not disable_action %}
+                                    <td>
+                                       &nbsp;&nbsp;&nbsp;<a href="{% url 'dashboard:edit-security-deposit' deposit_id=deposit_obj.id %}"><i class="fa fa-edit"></i></a>
+                                    </td>
+                                    <td>
+                                       &nbsp;&nbsp;&nbsp;<a onclick="DeleteItem({{ deposit_obj.id }})" id=deposit_obj.id"><i class="fa  fa-trash"></i></a>
+                                    </td>
+                                {% endif %}
+                                </tr>
+                            {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- end col -->
+
+
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+    <script type="text/javascript" src={% static "assets/js/slide_toggle.js" %}></script>
+
+    <script type="text/javascript">
+        function DeleteItem(deposit_id) {
+        if(confirm('{{ lbl_want_to_delete }}')) {
+            $.ajax({
+                url: '/dashboard/delete-security-deposit/',
+                data: {
+                    'deposit_id': deposit_id,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    alert(data)
+                    window.location.href = "/dashboard/list-security-deposit/";
+                }
+            });
+        }
+
+    }
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,466 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block extra_stylesheet %}
+    <style>
+        .time {
+            display: none;
+        }
+
+        .trip {
+            display: none;
+        }
+
+        .cash {
+            display: none;
+        }
+
+        .perc {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <!-- Add Admin start here-->
+                {% if not user.is_superuser and not disable_action %}
+                    <div class="col-lg-12">
+                        <div class="card-box">
+
+                            <h4 class="header-title m-t-0 ">{{ lbl_add_offer }}
+                                <span class="col-md-2 pull-right expand_click">
+                                <i class="fa fa-plus pull-right btn btn-success"></i>
+                            </span>
+                            </h4>
+                            <div id="add_offer_form" style="padding: 10px;margin-top: 30px ;width: 100%">
+                                <form class="form-horizontal form-label-left input_mask" method="post" action=""
+                                >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_type }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <select class="form-control" name="type" id="trip_type" required>
+                                                <option value="time">{{ lbl_time }}</option>
+                                                <option value="trip">{{ lbl_trip }}</option>
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_appliedto }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <select class="form-control" name="applied_to" id="applied" required>
+                                                <option value="user">{{ lbl_driver }}</option>
+                                                <option value="fleet">{{ lbl_fleet }}</option>
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_based_on }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <select class="form-control" name="based_on" id="based_on" required>
+                                                <option value="daily">{{ lbl_daily }}</option>
+                                                <option value="weekly">{{ lbl_weekly }}</option>
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group time">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_trip_duration }}(in
+                                            Hours)
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <input class="form-control" name="duration" id="duration" min="0.5" step="0.1" type="number"
+                                                   value="1">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group trip">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_count }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <input class="form-control" name="trip_count" min="1" id="count" type="number"
+                                                   value="1">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_cash }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <select class="form-control" name="cashcomm" id="cashcom" required>
+                                                <option value="cash">{{ lbl_cash }}</option>
+                                                <option value="discount">{{ lbl_perc }}</option>
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group cash">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_cashamt }}(S/)
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <input class="form-control" name="offer_cash" id="cash" min="1" step="0.1" max="1000" type="number"
+                                                   value="1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group perc">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_perc }}
+                                            %<span
+                                                    class="required"> *</span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <input class="form-control" name="offer_perc" id="perc" min="0.5" step="0.1" type="number"
+                                                   value="1"  max="100">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_duration }}<span
+                                                class="required"> *</span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <input id="demo" type="text" name="daterange" class="form-control"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button type="submit" class="btn btn-success">{{ lbl_submit }}</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+                {% endif %}
+                <!-- Add Admin start here-->
+                <div class="col-lg-12">
+                    <div class="card-box table-responsive">
+
+                        <h4 class="header-title m-t-0 m-b-30"> {{ lbl_offer_list }}</h4>
+
+
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>{{ lbl_offer_type }}</th>
+                                <th>{{ lbl_appliedto }}</th>
+                                <th>{{ lbl_offer_based_on }}</th>
+                                <th>{{ lbl_trip_duration }}</th>
+                                <th>{{ lbl_offer_count }}</th>
+                                <th>{{ lbl_offer_cash }}</th>
+                                <th>{{ lbl_offer_cashamt }}</th>
+                                <th>{{ lbl_offer_perc }}</th>
+                                {% if user.is_superuser %}
+                                    <th>Added By</th>
+                                {% endif %}
+                                <th>{{ lbl_offer_duration }}</th>
+                                {% if not user.is_superuser and not disable_action %}
+                                    <th>Edit</th>
+                                    <th>{{ delete }}</th>
+                                {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for offer_obj in offer_list %}
+                                    <tr>
+
+                                        <td>
+                                            {{ offer_obj.offer_based_on|title }}
+                                        </td>
+
+                                        <td>
+                                            {% if offer_obj.offer_applied_to == 'user' %}
+                                                Driver
+                                            {% else %}
+                                                {{ offer_obj.offer_applied_to|title }}
+                                            {% endif %}
+                                        </td>
+
+                                        <td>
+                                            {{ offer_obj.offer_base|title }}
+                                        </td>
+
+                                        <td>
+                                            {% if offer_obj.offer_based_on == 'time' %}
+                                                {% if offer_obj.total_duration == 0 %}
+                                                    NA
+                                                {% else %}
+                                                    {{ offer_obj.total_duration }}
+                                                {% endif %}
+                                            {% endif %}
+                                        </td>
+
+                                        <td>
+                                            {% if offer_obj.offer_based_on == 'trip' %}
+                                                {% if offer_obj.total_trip_count == 0 %}
+                                                    NA
+                                                {% else %}
+                                                    {{ offer_obj.total_trip_count }}
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </td>
+
+                                        <td>
+                                            {{ offer_obj.offer_type|title }}
+                                        </td>
+                                        <td>
+                                            {% if offer_obj.offer_type == 'cash' %}
+                                                {% if offer_obj.offer_commission_cash == 0 %}
+                                                    NA
+                                                {% else %}
+                                                    {{ offer_obj.offer_commission_cash|floatformat:2 }}(S/)
+                                                {% endif %}
+                                            {% endif %}
+                                        </td>
+
+                                        <td>
+                                            {% if offer_obj.offer_type == 'discount' %}
+                                                {% if offer_obj.offer_commission_percent == 0 %}
+                                                    NA
+                                                {% else %}
+                                                    {{ offer_obj.offer_commission_percent }} %
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </td>
+                                        {% if user.is_superuser %}
+                                            <td>{{ offer_obj.added_by.user.first_name }}</td>
+                                        {% endif %}
+
+                                        <td>
+                                            {{ offer_obj.offer_valid_from }} - {{ offer_obj.offer_valid_to }}
+                                        </td>
+
+                                        {% if not user.is_superuser and not disable_action %}
+                                            <td>
+                                                &nbsp;&nbsp;&nbsp;<a
+                                                    href="{% url 'dashboard:edit-offer' offer_id=offer_obj.id %}"><i
+                                                    class="fa fa-edit"></i></a>
+                                            </td>
+                                            <td ><a onclick="DeleteItem({{ offer_obj.id }})"
+                                                                     id="{{ offer_obj.id }}"><i
+                                                    class="fa  fa-trash"></i></a>
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- end col -->
+
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <script src="{% static 'assets/plugins/moment/moment.js' %}"></script>
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+    <script type="text/javascript"
+            src={% static "assets/plugins/bootstrap-daterangepicker/daterangepicker.js" %}></script>
+
+    <!-- DataTables  css-->
+    <link href={% static "assets/plugins/datatables/jquery.dataTables.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/buttons.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/fixedHeader.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/responsive.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/scroller.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+
+
+    <!-- Datatables js -->
+    <script src={% static "assets/plugins/datatables/jquery.dataTables.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.bootstrap.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.buttons.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/jszip.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/pdfmake.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/vfs_fonts.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.html5.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.print.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.fixedHeader.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.keyTable.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.responsive.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/responsive.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.scroller.min.js" %}></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <!-- Datatable init js -->
+        <script src={% static "assets/pages/datatables.init.js" %}></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable({
+                "aaSorting": [],
+                "oLanguage": {
+                    "sLengthMenu": "{{ lbl_display }} _MENU_ {{ lbl_entries }}",
+                    "sEmptyTable": "{{ no_items_found }}",
+                    "sSearch": "{{ lbl_search }}: ",
+                    "sInfo": "{{ lbl_showing }} _START_ to _END_ of _TOTAL_ {{ lbl_entries }}",
+                    "oPaginate": {
+                        "sPrevious": "{{ lbl_previous }}", // This is the link to the previous page
+                        "sNext": "{{ lbl_next }}", // This is the link to the next page
+                    },
+
+                },
+            });
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+        </script>
+
+    <script type="text/javascript">
+
+
+        function DeleteItem(offer_id) {
+            if (confirm('{{ lbl_want_to_delete_offer }}')) {
+                $.ajax({
+                    url: '/dashboard/delete-offer/',
+                    data: {
+                        'offer_id': offer_id,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        alert(data);
+                        window.location.href = "/dashboard/offer-management/";
+                    }
+                });
+            }
+
+        }
+
+        $(function () {
+            $('#add_offer_form').css('display', 'none');
+            var date = new Date();
+            $('.time').css('display', 'block');
+            $('.cash').css('display', 'block');
+            var today = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+            $('#demo').daterangepicker({
+                calendarWeeks: true,
+                "alwaysShowCalendars": true,
+                "startDate": today,
+                "minDate": today
+            }, function (start, end, label) {
+
+            });
+
+            $('#trip_type').change(function () {
+                var typ = $(this).val();
+                if (typ == 'trip') {
+                    $('.trip').slideDown();
+                    $('.time').slideUp();
+                }
+                else {
+
+                    $('.time').slideDown();
+                    $('.trip').slideUp();
+                }
+            });
+
+            $('#cashcom').change(function () {
+                var typ = $(this).val();
+                if (typ == 'cash') {
+                    $('.cash').slideDown();
+                    $('.perc').slideUp();
+                }
+                else {
+
+                    $('.perc').slideDown();
+                    $('.cash').slideUp();
+                }
+            });
+
+            $('.expand_click').click(function () {
+                $('#add_offer_form').slideToggle();
+                if ($(this).find('i').hasClass('fa-plus')) {
+                    $(this).find('i').removeClass('btn-success');
+                    $(this).find('i').removeClass('fa-plus');
+
+                    $(this).find('i').addClass('btn-danger');
+                    $(this).find('i').addClass('fa-minus');
+                }
+                else {
+                    $(this).find('i').removeClass('btn-danger');
+                    $(this).find('i').removeClass('fa-minus');
+
+                    $(this).find('i').addClass('btn-success');
+                    $(this).find('i').addClass('fa-plus');
+                }
+            })
+
+
+        })
+    </script>
+
+
+{% endblock %}

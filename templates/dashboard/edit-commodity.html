@@ -1,0 +1,311 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                <!-- Add Admin start here-->
+                <div class="col-lg-12">
+                    <div class="card-box" id="content_div">
+
+                        <h4 class="header-title m-t-0 m-b-30">{{ lbl_upd_commodity }}</h4>
+
+                        <form class="form-horizontal form-label-left input_mask" id="add_form" method="post" enctype="multipart/form-data" action="{% url 'dashboard:edit-commodity' commodity_id=item_data.id %}">
+                        {% csrf_token %}
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_item }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" value="{{ item_data.item_name }}" name="item_name" required id="item_name" placeholder="{{ lbl_item }}">
+                        </div>
+                      </div>
+                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_volume }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control number-only"  value="{{ item_data.length }}" onkeyup="calculate()" required id="length" placeholder="{{ lbl_length }}" name="length" style="width: 22%; display:inline">
+                          <input type="text" class="number-only form-control" value="{{ item_data.breadth }}" onkeyup="calculate()" required id="breadth" placeholder="{{ lbl_breadth }}" name="breadth" style="width: 22%; display:inline">
+                          <input type="text" class="number-only form-control" value="{{ item_data.height }}" onkeyup="calculate()" required id="height" placeholder="{{ lbl_height }}" name="height" style="width: 22%; display:inline">
+                          <input type="text" readonly class="form-control"  value="{{ item_data.volume }}" required id="volume" placeholder="{{ lbl_volume }}" name="volume" style="width: 22%; display:inline">
+                        </div>
+                      </div>
+                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_material_type }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" required id="material_type"  value="{{ item_data.material_type }}" name="material_type" placeholder="{{ lbl_material_type }}">
+                        </div>
+                      </div>
+                        <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_loaders }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="number" class="form-control" required id="loaders"
+                                                   name="loader" value="{{ item_data.loaders }}"
+                                                   placeholder="{{ lbl_loaders }}">
+                                        </div>
+                                    </div>
+{#                        <div class="form-group">#}
+{#                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_charge }} <span class="required">*</span>#}
+{#                        </label>#}
+{#                        <div class="col-md-9 col-sm-9 col-xs-12">#}
+{#                          <input type="text" class="form-control number-only" required id="charge"  value="{% if item_data.charge != None %}{{ item_data.charge }}{% endif %}" name="charge" placeholder="{{ lbl_charge }}">#}
+{#                        </div>#}
+{#                      </div>#}
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_image }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <span id="image_display" style="{% if not item_data.image %} display: none {% endif %} ">
+                            <a href="{{ item_data.image }}?alt=media" target="_blank"><img src="{{ item_data.image }}?alt=media" style="width:100px; height: 100px;"></a><br>
+                          <a onclick="DeleteImage({{ item_data.id }}, {{ item_data.id }})" href='javascript:void(0)' class="on-default edit-row">Delete</a>
+                          </span>
+                          <span id="file_display" style="{% if item_data.image %} display: none {% endif %} ">
+                             <input id="filebutton1" class="file-upload" name="filebutton1" required
+                                                   type="file"
+                                                   accept="image/*"/>
+                              
+                            <input type="hidden" name="image1" id="image1" value="">
+                            <input type="hidden" name="success1" id="success1" value="1">
+                          </span>
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label for="checkbox08" class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_is_plugable }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                             <div class="checkbox checkbox-primary checkbox-single checkbox-circle">
+                                        <input type="checkbox" id="singleCheckbox21" {% if item_data.is_plugable %} checked="checked"{% endif %}  value="1" name="is_plugable" aria-label="Single checkbox Two" class="is_plugable">
+                                        <label></label>
+                                    </div>
+
+
+                        </div>
+                      </div>
+                        <div class="form-group" id="inst_charge_div">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_installation_charge }}                         </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control number-only" id="installation_charge"  value="{% if item_data.installation_charge != None %}{{ item_data.installation_charge }}{% endif %}" name="installation_charge" placeholder="{{ lbl_installation_charge }}">
+                        </div>
+                      </div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="button" class="btn btn-success">{{ lbl_update }}</button>
+                        </div>
+                      </div>
+                    </form>
+                    </div>
+                <div class="card-box" id="div_validation" style="display: none"><label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                    <div class="form-group"  class="col-md-9 col-sm-9 col-xs-12">
+                        <font size="4px"><img src="/static/assets/images/loader.gif" style="align-self: center" width="100" height="100"></font>
+                    </div>
+                 </div>
+                </div><!-- end col -->
+                <!-- Add Admin start here-->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+ <script>
+     $(function () {
+        $(".is_plugable").click(function () {
+            if ($(".is_plugable").is(":checked")) {
+                $("#inst_charge_div").show();
+                console.log('show')
+            }
+            else {
+                console.log('hide')
+                $("#inst_charge_div").hide();
+                $("#installation_charge").val('')
+            }
+        });
+        if ($(".is_plugable").is(":checked")) {
+            $("#inst_charge_div").show();
+            console.log('show')
+        }
+        else {
+            console.log('hide')
+            $("#inst_charge_div").hide();
+            $("#installation_charge").val('')
+        }
+
+    });
+</script>
+
+    <script>
+    function calculate()
+    {
+        length = document.getElementById("length").value;
+        breadth = document.getElementById("breadth").value;
+        height = document.getElementById("height").value;
+        volume = length * breadth * height;
+        result = document.getElementById("volume").value = volume;
+    }
+    </script>
+    <script type="text/javascript">
+        function DeleteItem(commodity_id) {
+        if(confirm('{{ want_to_delete }}')) {
+            $.ajax({
+                url: '/dashboard/delete-commodity/',
+                data: {
+                    'commodity_id': commodity_id,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    alert(data)
+                    window.location.href = "/dashboard/list-commodity/";
+                }
+            });
+        }
+
+    }
+    function DeleteImage(item_id) {
+        if(confirm('{{ lbl_want_to_delete_image }}')) {
+            $.ajax({
+                url: '/dashboard/delete-commodity-image/',
+                data: {
+                    'item_id': item_id,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    alert(data);
+                    document.getElementById('image_display').style.display= 'none';
+                    document.getElementById('file_display').style.display='';
+
+{#                    window.location.reload();#}
+                }
+            });
+        }
+
+    }
+    </script>
+
+<script>
+    $( "button" ).click(function( event ) {
+
+        if(document.getElementById('item_name').value==''){
+            alert('{{ lbl_validation_item_name }}')
+            document.getElementById('item_name').focus()
+        }
+        else if(document.getElementById('length').value==''){
+            alert('{{ lbl_validation_length }}')
+            document.getElementById('length').focus()
+        }
+        else if(document.getElementById('breadth').value==''){
+            alert('{{ lbl_validation_breadth }}')
+            document.getElementById('breadth').focus()
+        }
+        else if(document.getElementById('height').value==''){
+            alert('{{ lbl_validation_height }}')
+            document.getElementById('height').focus()
+        }
+        else if(document.getElementById('material_type').value==''){
+            alert('{{ lbl_validation_material_type }}')
+            document.getElementById('material_type').focus()
+        }
+        else{
+            {% if item_data.image %}
+                $("#add_form").submit();
+            {% else %}
+                if(document.getElementById('filebutton1').value==''){
+                alert('{{ lbl_validation_icon }}')
+                document.getElementById('filebutton1').focus()
+            }
+            else{
+
+                // IMAGE1
+                // Listen for file selection
+                var filebutton1 = document.getElementById('filebutton1');
+                if (filebutton1.value != '') {
+                    // get file
+                    var file1 = filebutton1.files[0];
+                    // Create a root reference
+                    var storageRef1 = firebase.storage().ref();
+                    document.getElementById('success1').value = 0;
+                    document.getElementById('content_div').style.display='none';
+                    document.getElementById('div_validation').style.display='';
+                    // Create a reference to millis
+                    var d = new Date();
+                    var timeMilli = d.getTime();
+
+                    var uploadTask1 = storageRef1.child(timeMilli + '1.jpg').put(file1);
+                    uploadTask1.on('state_changed', function (snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, function (error) {
+                        // Handle unsuccessful uploads
+                    }, function () {
+                        // Handle successful uploads on complete
+                        document.getElementById('success1').value = 1;
+                        formsubmit();
+                    });
+
+                    document.getElementById('image1').value = timeMilli + '1.jpg';
+                }
+
+                formsubmit();
+            }
+
+            {% endif %}
+
+        }
+    });
+    function formsubmit() {
+{#        $("form").css("display",'none');#}
+{#         $("#loading-img").css({"display": "block"});#}
+
+        var success1 = document.getElementById('success1').value
+
+        if(success1==1){
+            $("#add_form").submit();
+            document.getElementById('div_validation').style.display='none';
+            document.getElementById('content_div').style.display='';
+        }
+
+    }
+    </script>
+
+
+{% endblock %}

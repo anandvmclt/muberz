@@ -1,0 +1,483 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                   {% if not disable_action %}
+                    <div class="col-lg-12">
+                        <div class="card-box" id="content_div">
+
+                            <h4 class="header-title m-t-0">Upload Commodity CSV</h4>
+                            <div id="add_offer_form" style="padding: 10px;margin-top: 30px ;width: 100%">
+                                <form method="POST" enctype="multipart/form-data" id="csv_upload_form" name="csv_upload_form"
+                                      class="form-horizontal form-label-left input_mask"
+                                      action="{% url 'dashboard:upload-commodity-as-csv' %}">
+                                    {% csrf_token %}
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2 p-0">CSV
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+
+                                            <input id="commodity-upload" class="file-upload" name="commodity_upload"
+                                                   required type="file"/>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <button type="submit" class="btn btn-success">Upload</button>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="ln_solid"></div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="card-box" id="div_validation" style="display: none"><label
+                                class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                            <div class="form-group" class="col-md-9 col-sm-9 col-xs-12">
+                                <font size="4px"><img src="/static/assets/images/loader.gif" style="align-self: center"
+                                                      width="100" height="100"></font>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+                {% endif %}
+
+
+                {% if not disable_action %}
+                    <div class="col-lg-12">
+                        <div class="card-box" id="content_div">
+
+                            <h4 class="header-title m-t-0">{{ add_new_commodity }}
+                                <span class="col-md-2 pull-right expand_click">
+                                <i class="fa fa-plus pull-right btn btn-success"></i>
+                            </span></h4>
+                            <div id="add_offer_form" style="padding: 10px;margin-top: 30px ;width: 100%">
+                                <form method="POST" enctype="multipart/form-data" id="add_form" name="add_form"
+                                      class="form-horizontal form-label-left input_mask"
+                                      action="{% url 'dashboard:add-commodity' %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-3 col-sm-3 col-xs-12">{{ lbl_item }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" name="item_name" required
+                                                   id="item_name"
+                                                   placeholder="{{ lbl_item }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_volume }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="number" min="1" max="40" step="0.01"
+                                                   class="form-control number-only" onkeyup="calculate()"
+                                                   required
+                                                   id="length" placeholder="{{ lbl_length }}" name="length"
+                                                   style="width: 22%; display:inline">
+                                            <input type="number" min="1" max="40" step="0.01"
+                                                   class="number-only form-control" onkeyup="calculate()"
+                                                   required
+                                                   id="breadth" placeholder="{{ lbl_breadth }}" name="breadth"
+                                                   style="width: 22%; display:inline">
+                                            <input type="number" min="1" max="40" step="0.01"
+                                                   class="number-only form-control" onkeyup="calculate()"
+                                                   required
+                                                   id="height" placeholder="{{ lbl_height }}" name="height"
+                                                   style="width: 22%; display:inline">
+                                            <input type="text" readonly class="form-control" required id="volume"
+                                                   placeholder="{{ lbl_volume }}" name="volume"
+                                                   style="width: 22%; display:inline">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_material_type }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" required id="material_type"
+                                                   name="material_type" placeholder="{{ lbl_material_type }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_loaders }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="number" class="form-control" required id="loaders"
+                                                   name="loader"
+                                                   placeholder="{{ lbl_loaders }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_image }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            {#                                        <label class="btn-bs-file btn btn-xs btn btn-primary">#}
+                                            {#                                        {{ lbl_upload_file }}#}
+                                            <input id="filebutton1" class="file-upload" name="filebutton1" required
+                                                   type="file"
+                                                   accept="image/*"/>
+                                            {#                                        </label>#}
+
+
+                                            <input type="hidden" name="image1" id="image1">
+                                            <input type="hidden" name="success1" id="success1" value="1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="checkbox08"
+                                               class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_is_plugable }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="checkbox checkbox-primary checkbox-single checkbox-circle">
+                                                <input type="checkbox" id="singleCheckbox21" value="1"
+                                                       name="is_plugable"
+                                                       aria-label="Single checkbox Two" class="is_plugable">
+                                                <label></label>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group" id="inst_charge_div">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_installation_charge }}
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control number-only" id="installation_charge"
+                                                   value="{{ item_data.installation_charge }}"
+                                                   name="installation_charge"
+                                                   placeholder="{{ lbl_installation_charge }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button id="add_commodity_btn" type="button" class="btn btn-success">{{ lbl_submit }}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="card-box" id="div_validation" style="display: none"><label
+                                class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                            <div class="form-group" class="col-md-9 col-sm-9 col-xs-12">
+                                <font size="4px"><img src="/static/assets/images/loader.gif" style="align-self: center"
+                                                      width="100" height="100"></font>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+                {% endif %}
+                <!-- Add Admin start here-->
+                <div class="col-lg-12">
+                    <div class="card-box table-responsive">
+
+                        <h4 class="header-title m-t-0 m-b-30"> {{ lbl_commodity_list }}</h4>
+
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ lbl_item }}</th>
+                                <th>{{ lbl_volume }}</th>
+                                <th>{{ lbl_material_type }}</th>
+                                <th>{{ lbl_installation_charge }}</th>
+                                <th>{{ lbl_is_plugable }}</th>
+                                <th style="align-self: center !important;" valign="center">{{ lbl_image }}</th>
+                                {% if not disable_action %}
+                                    <th style="align-self: center !important;" valign="center">{{ lbl_edit }}</th>
+                                    <th style="align-self: center !important;" valign="center">{{ delete }}</th>
+                                {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for commodity in commodity_list %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ commodity.item_name }}</td>
+                                    <td>{{ commodity.volume }}</td>
+                                    <td>{{ commodity.material_type }}</td>
+                                    <td>{{ commodity.installation_charge|floatformat:2 }}</td>
+                                    <td style="text-align: center">{% if commodity.is_plugable %}
+                                        <i class="fa fa-check text-success" aria-hidden="true"></i>
+                                    {% else %}<i class="fa fa-times text-danger" aria-hidden="true"></i>
+                                    {% endif %}</td>
+                                    <td>
+                                        {% if commodity.image %}
+                                            <a href="{{ commodity.image }}?alt=media" target="_blank"><img
+                                                    src="{{ commodity.image }}?alt=media"
+                                                    style="width:100px; height: 100px;"></a><br>
+                                        {% endif %}
+                                    </td>
+                                    {% if not disable_action %}
+                                        <td><a href="{% url 'dashboard:edit-commodity' commodity_id=commodity.id %}"><i
+                                                class="fa fa-edit"></i></a>
+                                        </td>
+                                        <td valign="center"><a onclick="DeleteItem({{ commodity.id }})"
+                                                               id=commodity.id"><i class="fa  fa-trash"></i></a>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- end col -->
+
+                <!-- Add Admin start here-->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+{% block extra_javascript %}
+
+    <!-- DataTables  css-->
+    <link href={% static "assets/plugins/datatables/jquery.dataTables.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/buttons.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/fixedHeader.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/responsive.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/scroller.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+
+
+
+    <!-- Datatables js -->
+    <script src={% static "assets/plugins/datatables/jquery.dataTables.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.bootstrap.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.buttons.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/jszip.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/pdfmake.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/vfs_fonts.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.html5.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.print.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.fixedHeader.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.keyTable.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.responsive.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/responsive.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.scroller.min.js" %}></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <!-- Datatable init js -->
+    <script src={% static "assets/pages/datatables.init.js" %}></script>
+    <script>
+        $(function () {
+            $(".is_plugable").click(function () {
+                if ($(".is_plugable").is(":checked")) {
+                    $("#inst_charge_div").show();
+                } else {
+                    $("#inst_charge_div").hide();
+                    $("#installation_charge").val('')
+                }
+            });
+            if ($(".is_plugable").is(":checked")) {
+                $("#inst_charge_div").show();
+            } else {
+                $("#inst_charge_div").hide();
+                $("#installation_charge").val('')
+            }
+
+        });
+    </script>
+    <script>
+
+        function calculate() {
+            length = document.getElementById("length").value;
+            breadth = document.getElementById("breadth").value;
+            height = document.getElementById("height").value;
+            volume = length * breadth * height;
+            result = document.getElementById("volume").value = volume;
+        }
+    </script>
+    <script type="text/javascript">
+        function DeleteItem(commodity_id) {
+            if (confirm('{{ want_to_delete }}')) {
+                $.ajax({
+                    url: '/dashboard/delete-commodity/',
+                    data: {
+                        'commodity_id': commodity_id,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        alert(data)
+                        window.location.href = "/dashboard/list-commodity/";
+                    }
+                });
+            }
+
+        }
+    </script>
+
+    <script>
+
+        $("#add_commodity_btn").click(function (event) {
+
+            if (document.getElementById('item_name').value == '') {
+                alert('{{ lbl_validation_item_name }}')
+                document.getElementById('item_name').focus()
+            } else if (document.getElementById('length').value == '') {
+                alert('{{ lbl_validation_length }}')
+                document.getElementById('length').focus()
+            } else if (document.getElementById('breadth').value == '') {
+                alert('{{ lbl_validation_breadth }}')
+                document.getElementById('breadth').focus()
+            } else if (document.getElementById('height').value == '') {
+                alert('{{ lbl_validation_height }}')
+                document.getElementById('height').focus()
+            } else if (document.getElementById('material_type').value == '') {
+                alert('{{ lbl_validation_material_type }}')
+                document.getElementById('material_type').focus()
+            } else if (document.getElementById('filebutton1').value == '') {
+                alert('{{ lbl_validation_icon }}')
+                document.getElementById('filebutton1').focus()
+            } else {
+
+                // IMAGE1
+                // Listen for file selection
+                var filebutton1 = document.getElementById('filebutton1');
+                if (filebutton1.value != '') {
+                    // get file
+                    var file1 = filebutton1.files[0];
+                    // Create a root reference
+                    var storageRef1 = firebase.storage().ref();
+                    document.getElementById('success1').value = 0;
+                    document.getElementById('content_div').style.display = 'none';
+                    document.getElementById('div_validation').style.display = '';
+                    // Create a reference to millis
+                    var d = new Date();
+                    var timeMilli = d.getTime();
+
+                    var uploadTask1 = storageRef1.child(timeMilli + '1.jpg').put(file1);
+                    uploadTask1.on('state_changed', function (snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, function (error) {
+                        // Handle unsuccessful uploads
+                    }, function () {
+                        // Handle successful uploads on complete
+                        document.getElementById('success1').value = 1;
+                        formsubmit();
+                    });
+
+                    document.getElementById('image1').value = timeMilli + '1.jpg';
+                }
+
+                formsubmit();
+            }
+
+        });
+
+        function formsubmit() {
+            {#        $("form").css("display",'none');#}
+            {#         $("#loading-img").css({"display": "block"});#}
+
+            var success1 = document.getElementById('success1').value
+
+            if (success1 == 1) {
+                $("#add_form").submit();
+                document.getElementById('div_validation').style.display = 'none';
+                document.getElementById('content_div').style.display = '';
+            }
+
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable({
+                "aaSorting": [],
+                "oLanguage": {
+                    "sLengthMenu": "{{ lbl_display }} _MENU_ {{ lbl_entries }}",
+                    "sEmptyTable": "{{ no_items_found }}",
+                    "sSearch": "{{ lbl_search }}: ",
+                    "sInfo": "{{ lbl_showing }} _START_ to _END_ of _TOTAL_ {{ lbl_entries }}",
+                    "oPaginate": {
+                        "sPrevious": "{{ lbl_previous }}", // This is the link to the previous page
+                        "sNext": "{{ lbl_next }}", // This is the link to the next page
+                    },
+
+                },
+                dom: 'Bfrtip',
+                buttons: [{
+                    "extend": 'excel',
+                    "text": '{{ lbl_export }}',
+                    "className": 'btn btn btn-primary',
+                    "title": 'Muberz - {{ lbl_commodity_list }}',
+                    "exportOptions": {
+                        columns: [0, 1, 2, 3, 4]
+                    }
+                }],
+
+            });
+            $('#datatable-keytable').DataTable({keys: true});
+            $('#datatable-responsive').DataTable();
+            $('#datatable-scroller').DataTable({
+                ajax: "assets/plugins/datatables/json/scroller-demo.json",
+                deferRender: true,
+                scrollY: 380,
+                scrollCollapse: true,
+                scroller: true
+            });
+            var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+        });
+        TableManageButtons.init();
+
+    </script>
+
+
+
+
+{% endblock %}

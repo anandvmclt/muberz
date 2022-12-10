@@ -1,0 +1,90 @@
+from django.conf.urls import url
+from django.views.decorators.csrf import csrf_exempt
+
+from api_base.views import *
+
+urlpatterns = [
+
+    # USER APP APIS
+
+    url(r'^status-check/$', csrf_exempt(UserAppStatusCheckAPI.as_view()), name='status-check'),
+    url(r'^otp/request/$', csrf_exempt(UserSignupApi.as_view()), name='otp-request'),
+    url(r'^login/$', csrf_exempt(UserLoginApi.as_view()), name='login'),
+    url(r'^update-profile$', csrf_exempt(UpdateUserProfile.as_view()), name='update-profile'),
+    # Rest URLS
+    url(r'^commodity-list', csrf_exempt(CommodityListCityBasedApi.as_view()), name='list-commodity'),
+    url(r'^service-list', csrf_exempt(ServiceListCityBasedApi.as_view()), name='list-service'),
+    url(r'^transfer-type/list/', csrf_exempt(TransferTypeListingView.as_view()), name='transfer-type-list'),
+
+    url(r'^user-transfer-details', csrf_exempt(UserTransferDetailsApi.as_view()), name='user-transfer-details'),
+    url(r'^transfer-commodity-list', csrf_exempt(CommodityListTransferBasedApi.as_view()),
+        name='transfer-commodity-list'),
+    url(r'^transfer-submit', csrf_exempt(TransferSubmitApi.as_view()), name='transfer-submit'),
+    url(r'^payment-submit', csrf_exempt(PaymentSubmitApi.as_view()), name='payment-submit'),
+    url(r'^damage-report', csrf_exempt(DamageReportApi.as_view()), name='damage-report'),
+    url(r'^continue-search', csrf_exempt(ContinueSearchApi.as_view()), name='continue-search'),
+    url(r'^user-transfer-list', csrf_exempt(UserTransferListApi.as_view()), name='user-transfer-list'),
+    url(r'^damaged-item-list', csrf_exempt(DamagedCommoditiesApi.as_view()),
+        name='damaged-item-list'),
+    url(r'^save-location', csrf_exempt(SaveLocationApi.as_view()), name='save-location'),
+    url(r'^driver-location', csrf_exempt(DriverLocationApi.as_view()), name='driver-location'),
+    url(r'^transfer-cancel/$', csrf_exempt(UserTransferCancelApi.as_view()), name='transfer-cancel'),
+    url(r'^vehicle-details/$', csrf_exempt(GetVehicleDetails.as_view()), name='vehicle-details'),
+
+    # PARTNER APPLICATION APIs
+    url(r'^partner/otp/request/$', csrf_exempt(PartnerSignupApi.as_view()), name='partner-otp-request'),
+    url(r'^partner/login/$', csrf_exempt(PartnerLoginApi.as_view()), name='partner-login'),
+    url(r'^partner-update-basic-profile$', csrf_exempt(BasicProfileUpdate.as_view()),
+        name='partner-update-basic-profile'),
+    url(r'^partner-update-profile$', csrf_exempt(UpdatePartnerProfile.as_view()), name='partner-update-profile'),
+    url(r'^partner-assistant-update$', csrf_exempt(UpdateAssistantsProfile.as_view()), name='partner-assistant-update'),
+    url(r'^partner-fleet-list', csrf_exempt(FleetList.as_view()), name='partner-fleet-list'),
+    url(r'^partner-assistant-list', csrf_exempt(AssistantsList.as_view()), name='partner-assistant-list'),
+    url(r'^partner-assistant-delete', csrf_exempt(DeleteAssistants.as_view()), name='partner-assistant-delete'),
+    url(r'^accept-reject-request', csrf_exempt(AcceptRejectApi.as_view()), name='accept-reject-request'),
+    url(r'^complete-transfer', csrf_exempt(CompleteTransferApi.as_view()), name='complete-transfer'),
+    url(r'^partner-transfer-list', csrf_exempt(PartnerTransferListApi.as_view()), name='partner-transfer-list'),
+    url(r'^start-transfer', csrf_exempt(StartTransferApi.as_view()), name='start-transfer'),
+    url(r'^stop-transfer', csrf_exempt(CompleteTransferApi.as_view()), name='stop-transfer'),
+    url(r'^partner-transfer-basic-details', csrf_exempt(PartnerTransferBasicDetailsApi.as_view()),
+        name='partner-transfer-basic-details'),
+    url(r'^partner-transfer-details', csrf_exempt(PartnerTransferDetailsApi.as_view()),
+        name='partner-transfer-details'),
+    url(r'^partner-serviceable-area-update', csrf_exempt(UpdatePartnerServiceableArea.as_view()),
+        name='partner-serviceable-area-update'),
+    url(r'^partner-earnings-details/$', csrf_exempt(PartnerEarningsDetails.as_view()), name='partner-earnings-details'),
+    url(r'^partner-start-loading', csrf_exempt(StartLoadingRequest.as_view()), name='start-loading'),
+    url(r'^partner-pending-approval', csrf_exempt(PartnerPendingApproval.as_view()), name='partner-pending-approval'),
+
+    # COMMON FOR BOTH APPS
+    url(r'^register/device/$', csrf_exempt(UpdateRegKey.as_view())),
+    url(r'^remove/device/$', csrf_exempt(RemoveDevice.as_view())),
+    url(r'^rating', csrf_exempt(RateUsersApi.as_view()), name='rating'),
+    url(r'^notification-list/$', csrf_exempt(NotificationListApi.as_view()), name='notification-list'),
+    url(r'^notification-status-update/$', csrf_exempt(NotificationStatusUpdateApi.as_view()),
+        name='notification-status-update'),
+    # ACCESS TOKEN MANAGEMENT
+    url(r'^access-token/refresh/$', csrf_exempt(RefreshAccessToken.as_view()), name='refresh-access-token'),
+    url(r'^update-location', csrf_exempt(UpdateDriverLocation.as_view()), name='location-update'),
+    url(r'^update-notification-setting$', csrf_exempt(UpdateNotificationSettingsApi.as_view()),
+        name='update-notification-setting'),
+    url(r'^view-documents$', csrf_exempt(ViewDocumentsApi.as_view()), name='view-documents'),
+    url(r'^payout/$', csrf_exempt(PayoutRequest.as_view()), name='payout'),
+    url(r'^get-city-from-location/$', csrf_exempt(CityNameFromLocation.as_view()),
+        name='get-city-from-location'),
+    url(r'^get-district-from-location/$', csrf_exempt(DistrictNameFromLocation.as_view()),
+        name='get-district-from-location'),
+    url(r'^get-address-from-location/$', csrf_exempt(AddressFromLocation.as_view()),
+        name='get-address-from-location'),
+    url(r'^payment-status/$', csrf_exempt(GetPaymentStatus.as_view()), name='payment-status'),
+    url(r'^check_service_availability/$', csrf_exempt(ServiceAvailabilityAPI.as_view()), name='check_service_availability'),
+    url(r'^get_visa_creds/$',csrf_exempt(GetVisaCreds.as_view()),name='get-visa-creds'),
+    url(r'^get_category_list/$', csrf_exempt(GetCategoryList.as_view()), name='category_list'),
+    url(r'^get_helper_price/$', csrf_exempt(HelperCountPrice.as_view()), name='get_helper_price'),
+    url(r'^toggle-special-handling/$', csrf_exempt(ToggleSpecialHandling.as_view()), name='partner-update-handling-fee'),
+    url(r'^promotion-list/$', csrf_exempt(PromotionListApi.as_view()), name='promotion-list'),
+    url(r'^ads-list/$', csrf_exempt(AdsListApi.as_view()), name='uads-list'),
+    url(r'^get-driver-location', csrf_exempt(GetDriverLocation.as_view()), name='get-driver-location'),
+    url(r'^trip-share-partner', csrf_exempt(PartnerTripShare.as_view()), name='trip-share-partner'),
+    url(r'^fetch-nearby-drivers', csrf_exempt(GetNearbyDrivers.as_view()), name='fetch-nearby-drivers'),
+]

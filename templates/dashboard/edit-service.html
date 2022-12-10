@@ -1,0 +1,182 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                <!-- Add Admin start here-->
+                <div class="col-lg-12">
+                    <div class="card-box">
+
+                        <h4 class="header-title m-t-0 m-b-30">{{ lbl_upd_service }} - {{ item_data.get_service_name_display }}</h4>
+
+                        <form class="form-horizontal form-label-left input_mask" method="post"  action="{% url 'dashboard:edit-service' service_id=item_data.id %}">
+                        {% csrf_token %}
+                      <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_service_name_en }}<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" maxlength="40" required id="service_name_en"  value="{% if item_data.display_service_name_en != '' %}{{ item_data.display_service_name_en }}{% else %}{{ item_data.get_service_name_display }}{% endif %}" name="service_name_en" placeholder="{{ lbl_service_name_en }}">
+                        </div>
+                      </div>
+                    </div>
+                      <div class="col-md-6">
+                                <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_service_name_es }}<span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                  <input type="text" class="form-control" maxlength="40" required id="service_name_es"  value="{% if item_data.display_service_name_es != '' %}{{ item_data.display_service_name_es }}{% endif %}" name="service_name_es" placeholder="{{ lbl_service_name_es }}">
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_description_en }}<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" maxlength="60" required id="service_description_en"  value="{% if item_data.service_description_en != '' %}{{ item_data.service_description_en }}{% endif %}" name="service_description_en" placeholder="{{ lbl_description_en }}">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_description_es }}<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" maxlength="60" required id="service_description_es"  value="{% if item_data.service_description_es != '' %}{{ item_data.service_description_es }}{% endif %}" name="service_description_es" placeholder="{{ lbl_description_es }}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+{#                      <div class="row">#}
+{#                          <div class="col-md-6">#}
+{#                                <div class="form-group">#}
+{#                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_charge }}(0-10 km)<span class="required">*</span>#}
+{#                                </label>#}
+{#                                <div class="col-md-9 col-sm-9 col-xs-12">#}
+{#                                  <input type="number" min="30" max="150" step="0.1"  class="form-control number-only" required id="charge_0_10"  value="{% if item_data.charge_0_10 != None %}{{ item_data.charge_0_10 }}{% endif %}" name="charge_0_10" placeholder="{{ lbl_charge }}(0-10 km )">#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                             <div class="form-group">#}
+{#                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_charge }}(10-20 km)<span class="required">*</span>#}
+{#                                </label>#}
+{#                                <div class="col-md-9 col-sm-9 col-xs-12">#}
+{#                                  <input type="number" min="30" max="150" step="0.1" class="form-control number-only" required id="charge_10_20"  value="{% if item_data.charge_10_20 != None %}{{ item_data.charge_10_20 }}{% endif %}" name="charge_10_20" placeholder="{{ lbl_charge }}(10-20 km )">#}
+{#                                </div>#}
+{#                              </div>#}
+{#                          </div>#}
+{#                      </div>#}
+{#                        <div class="row">#}
+{#                          <div class="col-md-6">#}
+{#                            <div class="form-group">#}
+{#                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_charge }}(20-30 km)<span class="required">*</span>#}
+{#                                </label>#}
+{#                                <div class="col-md-9 col-sm-9 col-xs-12">#}
+{#                                  <input type="number" min="30" max="150" step="0.1" class="form-control number-only" required id="charge_20_30"  value="{% if item_data.charge_20_30 != None %}{{ item_data.charge_20_30 }}{% endif %}" name="charge_20_30" placeholder="{{ lbl_charge }}(20-30 km)">#}
+{#                                </div>#}
+{#                              </div>#}
+{#                          </div>#}
+{#                           <div class="col-md-6">#}
+{#                             <div class="form-group">#}
+{#                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_charge }}(30-40 km)<span class="required">*</span>#}
+{#                                </label>#}
+{#                                <div class="col-md-9 col-sm-9 col-xs-12">#}
+{#                                  <input type="number" min="30" max="150" step="0.1" class="form-control number-only" required id="charge_30_40"  value="{% if item_data.charge_30_40 != None %}{{ item_data.charge_30_40 }}{% endif %}" name="charge_30_40" placeholder="{{ lbl_charge }}(30-40 km)">#}
+{#                                </div>#}
+{#                              </div>#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <div class="row">#}
+{##}
+{#                          <div class="col-md-6">#}
+{#                               <div class="form-group">#}
+{#                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_charge }}(40-50 km)<span class="required">*</span>#}
+{#                                </label>#}
+{#                                <div class="col-md-9 col-sm-9 col-xs-12">#}
+{#                                  <input type="number" min="30" max="150" step="0.1" class="form-control number-only" required id="charge_40_50"  value="{% if item_data.charge_40_50 != None %}{{ item_data.charge_40_50 }}{% endif %}" name="charge_40_50" placeholder="{{ lbl_charge }}(40-50 km)">#}
+{#                                </div>#}
+{#                              </div>#}
+{#                          </div>#}
+{#                            <div class="col-md-6">#}
+{#                             <div class="form-group">#}
+{#                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_charge }} (50-60 km )<span class="required">*</span>#}
+{#                                </label>#}
+{#                                <div class="col-md-9 col-sm-9 col-xs-12">#}
+{#                                  <input type="number" min="30" max="150" step="0.1" class="form-control number-only" required id="charge_50_60"  value="{% if item_data.charge_50_60 != None %}{{ item_data.charge_50_60 }}{% endif %}" name="charge_50_60" placeholder="{{ lbl_charge }}(50-60 km)">#}
+{#                                </div>#}
+{#                              </div>#}
+{#                          </div>#}
+{#                        </div>#}
+                        <div class="row">
+                        <div class="col-md-6">
+                               <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_charge }}<span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                  <input type="number" min="30" max="150" step="0.1" class="form-control number-only" required id="charge"  value="{% if item_data.charge != None %}{{ item_data.charge }}{% endif %}" name="charge" placeholder="{{ lbl_charge }}">
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="submit" class="btn btn-success">{{ lbl_update }}</button>
+                        </div>
+                      </div>
+
+                    </form>
+                    </div>
+                </div><!-- end col -->
+                <!-- Add Admin start here-->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+{% endblock %}

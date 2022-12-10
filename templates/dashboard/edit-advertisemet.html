@@ -1,0 +1,275 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                <!-- Add Admin start here-->
+                <div class="col-lg-12">
+                    <div class="card-box" id="content_div">
+
+                        <h4 class="header-title m-t-0 m-b-30">{{ lbl_add_advertisement }}
+                        </h4>
+                        <div>
+                            <div id="add_offer_form" style="padding: 10px;margin-top: 30px ;width: 100%;">
+                                <form class="form-horizontal form-label-left input_mask" method="post" id="edit-advt"
+                                      name="edit-advt" action="">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_adv_header }} <span
+                                                class="required">*</span>
+                                        </label>
+                                        <div class="col-md-3 col-sm-6 col-xs-9">
+                                            <input type="text" class="form-control" name="name" id="name"
+                                                   placeholder="{{ lbl_promo_name }}" maxlength="20"  value="{{ item_data.name }}">
+                                            <input type="hidden" name="ads_id" value="{{ item_data.id }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_adv_image }} <span
+                                                class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            {#                                        <label class="btn-bs-file btn btn-xs btn btn-primary">#}
+                                            {#                                        {{ lbl_upload_file }}#}
+                                            <input id="filebutton1" class="file-upload form-control" name="filebutton1" required
+                                                   type="file"
+                                                   accept="image/*"/>
+                                            {#                                        </label>#}
+
+
+                                            <input type="hidden" name="image1" id="image1">
+                                            <input type="hidden" name="success1" id="success1" value="1">
+                                        </div>
+                                        <input type="hidden" name="image_name" value="{{ item_data.image }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_adv_start }} <span
+                                                class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-9">
+                                            <input type="datetime-local" id="meeting-time" name="date_start" value="{{ item_data.date_start|date:'Y-m-d' }}T00:00" min="2019-06-07T00:00" max="2020-06-14T00:00">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_adv_end }} <span
+                                                class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-9">
+                                            <input type="datetime-local" id="meeting-time" name="date_end" value="{{ item_data.date_end|date:'Y-m-d' }}T00:00" min="2019-06-07T00:00" max="2020-06-14T00:00">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ lbl_adv_typeof }} <span
+                                                class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-9">
+                                            <div class="form-check form-check-inline">
+
+                                                <label class="form-check-label" for="inlineCheckbox1">Users</label>
+                                                {% if item_data.user %}
+                                                    <input class="form-check-input" name="user" type="checkbox" id="inlineCheckbox1" value="user" checked>
+                                                {% else %}
+                                                    <input class="form-check-input" name="user" type="checkbox" id="inlineCheckbox1" value="user">
+                                                {% endif %}
+
+                                                <label class="form-check-label" for="inlineCheckbox2">Partners</label>
+                                                {% if item_data.partner %}
+                                                    <input class="form-check-input" name="partner" type="checkbox" id="inlineCheckbox2" value="partner" checked>
+                                                {% else %}
+                                                    <input class="form-check-input" name="partner" type="checkbox" id="inlineCheckbox2" value="partner">
+                                                {% endif %}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-2 col-sm-3 col-xs-3 col-md-offset-3">
+        {#                                <input type="submit" value="submit">#}
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-block btn-danger" ">Update Promotion</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-box" id="div_validation" style="display: none"><label
+                            class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                        <div class="form-group" class="col-md-9 col-sm-9 col-xs-12">
+                            <font size="4px"><img src="/static/assets/images/loader.gif" style="align-self: center"
+                                                  width="100" height="100"></font>
+                        </div>
+                    </div>
+                </div><!-- end col -->
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script>
+        $(function (){
+
+            if({{ item_data.user }}== "true"){
+                $("#user").prop('checked',true);
+            }else{
+                $("#partner").prop('checked', false);
+            }
+
+            if({{ item_data.partner }}){
+                $("#partner").prop('checked',true);
+            }else{
+                $("#partner").prop('checked', false);
+            }
+        });
+
+        function DeleteItem(promotion_id) {
+            if (confirm('{{ lbl_want_del_user }}')) {
+                $.ajax({
+                    url: '/dashboard/delete-promotion/',
+                    data: {
+                        'promo_id': promotion_id,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+{#                        alert(data)#}
+                        window.location.href = "/dashboard/add-promotion/";
+                    }
+                });
+            }
+
+        }
+
+    </script>
+    <link href={% static "assets/plugins/datatables/jquery.dataTables.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/buttons.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/fixedHeader.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/responsive.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "assets/plugins/datatables/scroller.bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+
+
+    <!-- Datatables js -->
+    <script src={% static "assets/plugins/datatables/jquery.dataTables.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.bootstrap.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.buttons.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/jszip.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/pdfmake.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/vfs_fonts.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.html5.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.print.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.fixedHeader.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.keyTable.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.responsive.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/responsive.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.scroller.min.js" %}></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+
+        <script>
+
+        $("button").click(function (event) {
+
+            if (document.getElementById('name').value == '') {
+                alert('Please enter name')
+                document.getElementById('name').focus()
+            }  else {
+
+                // IMAGE1
+                // Listen for file selection
+                var filebutton1 = document.getElementById('filebutton1');
+                if (filebutton1.value != '') {
+                    // get file
+                    var file1 = filebutton1.files[0];
+                    // Create a root reference
+                    var storageRef1 = firebase.storage().ref();
+                    document.getElementById('success1').value = 0;
+                    document.getElementById('content_div').style.display = 'none';
+                    document.getElementById('div_validation').style.display = '';
+                    // Create a reference to millis
+                    var d = new Date();
+                    var timeMilli = d.getTime();
+
+                    var uploadTask1 = storageRef1.child(timeMilli + '1.jpg').put(file1);
+                    uploadTask1.on('state_changed', function (snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, function (error) {
+                        // Handle unsuccessful uploads
+                    }, function () {
+                        // Handle successful uploads on complete
+                        document.getElementById('success1').value = 1;
+                        formsubmit();
+                    });
+
+                    document.getElementById('image1').value = timeMilli + '1.jpg';
+                }
+
+                formsubmit();
+            }
+
+        });
+
+        function formsubmit() {
+            {#        $("form").css("display",'none');#}
+            {#         $("#loading-img").css({"display": "block"});#}
+
+            var success1 = document.getElementById('success1').value
+
+            if (success1 == 1) {
+                $("#edit-advt").submit();
+
+            }
+
+        }
+    </script>
+
+
+
+{% endblock %}

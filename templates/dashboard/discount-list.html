@@ -1,0 +1,284 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if not disable_action %}
+                    <!-- Add Admin start here-->
+                    <div class="col-lg-12">
+                        <div class="card-box">
+
+                            <h4 class="header-title m-t-0">{{ add_new_discount }} <span
+                                    class="col-md-2 pull-right expand_click">
+                                <i class="fa fa-plus pull-right btn btn-success"></i>
+                            </span></h4>
+                            <div id="add_offer_form" style="padding: 10px;margin-top: 30px ;width: 100%">
+
+                                <form class="form-horizontal form-label-left input_mask" method="post"
+                                      action="{% url 'dashboard:add-discount' %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_service }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <select class="form-control" name="service_type" id="service_type" required>
+                                                {% for service_obj in service_list %}
+                                                    <option value="{{ service_obj.id }}"
+                                                            {% if item_data.service_type == service_obj.id %}
+                                                            selected {% endif %} >{{ service_obj.get_service_name_display }}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_price_range }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <select class="form-control" name="price_range" id="price_range" required>
+                                                <option value="101-300"
+                                                        {% if item_data.rate_from == '101'  and item_data.rate_to == '300' %}
+                                                        selected {% endif %} >101-300 S/
+                                                </option>
+                                                <option value="301-500"
+                                                        {% if item_data.rate_from == '301'  and item_data.rate_to == '500' %}
+                                                        selected {% endif %} >301-500 S/
+                                                </option>
+                                                <option value="501-700"
+                                                        {% if item_data.rate_from == '501'  and item_data.rate_to == '700' %}
+                                                        selected {% endif %} >501-700 S/
+                                                </option>
+                                                <option value="701-900"
+                                                        {% if item_data.rate_from == '701'  and item_data.rate_to == '900' %}
+                                                        selected {% endif %} >701-900 S/
+                                                </option>
+                                                <option value="901-1000"
+                                                        {% if item_data.rate_from == '901'  and item_data.rate_to == '1000' %}
+                                                        selected {% endif %} >901-1000 S/
+                                                </option>
+
+                                                <option value="1001-1200"
+                                                        {% if item_data.rate_from == '1001'  and item_data.rate_to == '1200' %}
+                                                        selected {% endif %} >1001-1200 S/
+                                                </option>
+                                                <option value="1201-1400"
+                                                        {% if item_data.rate_from == '1201'  and item_data.rate_to == '1400' %}
+                                                        selected {% endif %} >1201-1400 S/
+                                                </option>
+                                                <option value="1401-1600"
+                                                        {% if item_data.rate_from == '1401'  and item_data.rate_to == '1600' %}
+                                                        selected {% endif %} >1401-1600 S/
+                                                </option>
+                                                <option value="1601-1800"
+                                                        {% if item_data.rate_from == '1601'  and item_data.rate_to == '1800' %}
+                                                        selected {% endif %} >1601-1800 S/
+                                                </option>
+
+                                                <option value="1801-2000"
+                                                        {% if item_data.rate_from == '1801'  and item_data.rate_to == '2000' %}
+                                                        selected {% endif %} >1801-2000 S/
+                                                </option>
+                                                <option value="2001-2200"
+                                                        {% if item_data.rate_from == '2001'  and item_data.rate_to == '2200' %}
+                                                        selected {% endif %} >2001-2200 S/
+                                                </option>
+                                                <option value="2201-2400"
+                                                        {% if item_data.rate_from == '2201'  and item_data.rate_to == '2400' %}
+                                                        selected {% endif %} >2201-2400 S/
+                                                </option>
+                                                <option value="2401-2600"
+                                                        {% if item_data.rate_from == '2401'  and item_data.rate_to == '2600' %}
+                                                        selected {% endif %} >2401-2600 S/
+                                                </option>
+
+                                                <option value="2601-2800"
+                                                        {% if item_data.rate_from == '2601'  and item_data.rate_to == '2800' %}
+                                                        selected {% endif %} >2601-2800 S/
+                                                </option>
+                                                <option value="2801-3000"
+                                                        {% if item_data.rate_from == '2801'  and item_data.rate_to == '3000' %}
+                                                        selected {% endif %} >2801-3000 S/
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_discount }}
+                                            %<span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="number" step=0.01 min="0" max="100"
+                                                   class="form-control number-only" required id="discount"
+                                                   value="
+
+
+                                                           {% if item_data.discount != None %}{{ item_data.discount }}{% endif %}"
+                                                   name="discount" placeholder="{{ lbl_discount }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button type="submit" class="btn btn-success">{{ lbl_submit }}</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+                    <!-- Add Admin start here-->
+                {% endif %}
+                <div class="col-lg-12">
+                    <div class="card-box table-responsive">
+
+                        <h4 class="header-title m-t-0 m-b-30"> {{ lbl_discount_list }}</h4>
+
+
+                        <table class="table m-0" id="datatable">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ lbl_service }}</th>
+                                <th>{{ lbl_price_range }}</th>
+                                <th>{{ lbl_discount }}</th>
+                                {% if not disable_action %}
+                                    <th>{{ lbl_edit }}</th>
+                                    <th>{{ delete }}</th>
+                                {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for discount_obj in discount_list %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ discount_obj.service_type.get_service_name_display }}</td>
+                                    <td>{{ discount_obj.rate_from }} - {{ discount_obj.rate_to }} S/</td>
+                                    <td>{{ discount_obj.discount }} %</td>
+                                    {% if not disable_action %}
+                                        <td>
+                                            &nbsp;&nbsp;&nbsp;<a
+                                                href="{% url 'dashboard:edit-discount' discount_id=discount_obj.id %}"><i
+                                                class="fa fa-edit"></i></a>
+                                        </td>
+                                        <td>
+                                            &nbsp;&nbsp;&nbsp;<a onclick="DeleteItem({{ discount_obj.id }})"
+                                                                 id=discount_obj.id"><i class="fa  fa-trash"></i></a>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- end col -->
+
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+    <script type="text/javascript" src={% static "assets/js/slide_toggle.js" %}></script>
+
+    <!-- Datatables-->
+    <script src={% static "assets/plugins/datatables/jquery.dataTables.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.bootstrap.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.buttons.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/jszip.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/pdfmake.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/vfs_fonts.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.html5.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.print.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.fixedHeader.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.keyTable.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.responsive.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/responsive.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.scroller.min.js" %}></script>
+
+    <!-- Datatable init js -->
+    <script src={% static "assets/pages/datatables.init.js" %}></script>
+
+    <script type="text/javascript">
+        function DeleteItem(discount_id) {
+            if (confirm('{{ lbl_want_to_delete_discount }}')) {
+                $.ajax({
+                    url: '/dashboard/delete-discount/',
+                    data: {
+                        'discount_id': discount_id,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        alert(data)
+                        window.location.href = "/dashboard/list-discount/";
+                    }
+                });
+            }
+
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable({
+                "aaSorting": [[0, "asc"]],
+                "oLanguage": {"sEmptyTable": "{{ no_items_found }}"}
+            });
+            $('#datatable-keytable').DataTable({keys: true});
+            $('#datatable-responsive').DataTable();
+            $('#datatable-scroller').DataTable({
+                ajax: "assets/plugins/datatables/json/scroller-demo.json",
+                deferRender: true,
+                scrollY: 380,
+                scrollCollapse: true,
+                scroller: true
+            });
+            var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+        });
+        TableManageButtons.init();
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,340 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with profile='active' %}
+
+{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Change Password start here-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="card-box">
+
+                        <h4 class="header-title m-t-0 m-b-30">{{ lbl_change_password }}</h4>
+
+                        <form class="form-horizontal" role="form" data-parsley-validate novalidate
+                              action="{% url 'dashboard:change-password' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">{{ lbl_old_password }}*</label>
+                                <div class="col-sm-7">
+                                    <input type="password" required parsley-type="nam" class="form-control"
+                                           id="inputText1" placeholder="{{ lbl_old_password }}" name="old_password" minlength="8">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">{{ lbl_new_password }}*</label>
+                                <div class="col-sm-7">
+                                    <input type="password" class="form-control" required parsley-type="password"
+                                           id="inputText2" placeholder="{{ lbl_new_password }}" name="new_password" minlength="8">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <button type="submit" class="btn btn-success">
+                                        {{ lbl_change_password }}
+                                    </button>
+                                    <button type="reset"
+                                            class="btn btn-default waves-effect waves-light m-l-5">
+                                        {{ lbl_reset_changes }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- end col -->
+             <!-- Change Password end here-->
+            <!-- Update Profile start here-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="card-box" id="content_div">
+
+                        <h4 class="header-title m-t-0 m-b-30">{{ lbl_update_profile }}</h4>
+
+                        <form class="form-horizontal" role="form" data-parsley-validate novalidate
+                              action="{% url 'dashboard:update-profile' %}" method="POST" id="add_form">
+                            {% csrf_token %}
+{#                            <div class="form-group">#}
+{#                                    <label for="inputEmail3" class="col-sm-4 control-label">Company Name*</label>#}
+{#                                    <div class="col-sm-7">#}
+{#                                        <input type="text" required parsley-type="text" class="form-control"#}
+{#                                           id="company_name" placeholder="Company Name" value="{{ admin_profile.company_name }}" name="company_name">#}
+{#                                    </div>#}
+{#                                </div>#}
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">{{ first_name }}*</label>
+                                <div class="col-sm-7">
+                                    <input type="text" required parsley-type="text" class="form-control"
+                                           id="first_name" placeholder="{{ first_name }}" name="first_name" maxlength="30" value="{{ admin_profile.user.first_name }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">{{ last_name }}*</label>
+                                <div class="col-sm-7">
+                                    <input type="text" required parsley-type="text" class="form-control"
+                                           id="last_name" placeholder="{{ last_name }}" name="last_name" maxlength="30" value="{{ admin_profile.user.last_name }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">{{ address }}</label>
+                                <div class="col-sm-7">
+                                    <textarea name="address" id="address" placeholder="{{ address }}" class="form-control">{{ admin_profile.address }}</textarea>
+                                </div>
+                            </div>
+                        <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">{{ lbl_profile_photo }}</label>
+                                <div class="col-sm-7">
+                                    {% if admin_profile.profile_pic %}
+                            <a href="{{ admin_profile.profile_pic }}?alt=media" target="_blank"><img src="{{ admin_profile.profile_pic }}?alt=media" style="width:100px; height: 100px;"></a><br>
+                          <a onclick="DeleteImage({{ admin_profile.id }}, {{ admin_profile.id }})" href='javascript:void(0)' class="on-default edit-row">Delete</a>
+                        {% else %}
+                            <input id="filebutton1" class="file-upload" name="filebutton1" type="file" accept="image/*"/>
+                            <input type="hidden" name="image1" id="image1" value="">
+                            <input type="hidden" name="success1" id="success1" value="1">
+                        {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <button type="button" class="btn btn-success profile">
+                                        {{ lbl_update }}
+                                    </button>
+                                    <button type="reset"
+                                            class="btn btn-default waves-effect waves-light m-l-5">
+                                        {{ lbl_reset_changes }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                <div class="card-box" id="div_validation" style="display: none"><label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                            <div class="form-group"  class="col-md-9 col-sm-9 col-xs-12">
+                                <font size="4px"><img src="/static/assets/images/loader.gif" style="align-self: center" width="100" height="100"></font>
+                            </div>
+                         </div>
+                </div><!-- end col -->
+                <!-- Update Profile stop here-->
+
+            <!-- System on/off start here-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="card-box">
+
+                        <h4 class="header-title m-t-0 m-b-30">{{ lbl_on_off_switch }}</h4>
+                            {% for switch in onoffswitch %}
+                                    {% if switch.status == True %}
+
+                                    <div class="systemon">
+                                        <button class="btn btn-success" onclick="turnSystemOff(0)" id="on-off-button" value="ON">ON</button>
+
+                                                <h4> Start time : {{ switch.start_date }} || End time : {{ switch.end_date }} </h4>
+
+                                            <form class="form-horizontal" role="form" data-parsley-validate novalidate action="{% url 'dashboard:add-on-off-switch' %}" method="POST">
+                                                {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <label for="inputEmail3" class="col-sm-4 control-label">{{ lbl_start_time }}*</label>
+                                                        <div class="col-sm-7">
+                                                            <input id="timepicker1" width="270" name="start-time" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputEmail3" class="col-sm-4 control-label">{{ lbl_end_time }}*</label>
+                                                        <div class="col-sm-7">
+                                                            <input id="timepicker2" width="270" name="end-time" required/>
+                                                            <input type="hidden" name="status" value="1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-offset-4 col-sm-8">
+                                                            <button type="submit" class="btn btn-success">
+                                                                {{ lbl_submit }}
+                                                            </button>
+                                                            <button type="reset"
+                                                                    class="btn btn-default waves-effect waves-light m-l-5">
+                                                                {{ lbl_reset }}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                            </form>
+                                        </div>
+                                     {% else %}
+                                        <div class="systemoff">
+                                            <button class="btn btn-success" onclick="turnSystemOff(1)" id="on-off-button" value="off">OFF</button>
+                                        </div>
+                                     {% endif %}
+                                {% endfor %}
+                        <div id="on-off-div" style="display: none">
+                            {% if onoffswitch %}
+
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div><!-- end col -->
+             <!-- System on/off end here-->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+{% block extra_javascript %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<script>
+    $('#timepicker1').timepicker({
+        uiLibrary: 'bootstrap'
+    });
+
+    $('#timepicker2').timepicker({
+        uiLibrary: 'bootstrap'
+    });
+
+    $( ".profile" ).click(function( event ) {
+
+       if(document.getElementById('first_name').value==''){
+            alert('Please enter First Name')
+            document.getElementById('first_name').focus()
+        }
+        else{
+            {% if admin_profile.profile_pic %}
+                $("#add_form").submit();
+            {% else %}
+                if(document.getElementById('filebutton1').value==''){
+                $("#add_form").submit();
+            }
+            else{
+
+                // IMAGE1
+                // Listen for file selection
+                var filebutton1 = document.getElementById('filebutton1');
+                if (filebutton1.value != '') {
+                    // get file
+                    var file1 = filebutton1.files[0];
+                    // Create a root reference
+                    var storageRef1 = firebase.storage().ref();
+                    document.getElementById('success1').value = 0;
+                    document.getElementById('content_div').style.display='none';
+                    document.getElementById('div_validation').style.display='';
+                    // Create a reference to millis
+                    var d = new Date();
+                    var timeMilli = d.getTime();
+
+                    var uploadTask1 = storageRef1.child(timeMilli + '1.jpg').put(file1);
+                    uploadTask1.on('state_changed', function (snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, function (error) {
+                        // Handle unsuccessful uploads
+                    }, function () {
+                        // Handle successful uploads on complete
+                        document.getElementById('success1').value = 1;
+                        formsubmit();
+                    });
+
+                    document.getElementById('image1').value = timeMilli + '1.jpg';
+                }
+
+                formsubmit();
+            }
+
+            {% endif %}
+
+        }
+    });
+
+    function formsubmit() {
+{#        $("form").css("display",'none');#}
+{#         $("#loading-img").css({"display": "block"});#}
+
+        var success1 = document.getElementById('success1').value
+
+        if(success1==1){
+            $("#add_form").submit();
+            document.getElementById('div_validation').style.display='none';
+            document.getElementById('content_div').style.display='';
+        }
+
+    }
+
+    function formActive() {
+         $("#on-off-button").toggleClass('btn-success btn-primary');
+
+         var elem = document.getElementById("on-off-button");
+         var x = document.getElementById("on-off-div");
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            $("#on-off-button").text('ON');
+        } else {
+            x.style.display = "none";
+            $("#on-off-button").text('OFF');
+        }
+    }
+
+    function turnSystemOff(status_value) {
+        console.log(status_value)
+            window.location.href = "/dashboard/turn-system-off/"+status_value;
+    }
+    function turnSystemOn() {
+        console.log("call system on")
+    }
+</script>
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form').parsley();
+        });
+
+        $(function () {
+            $(".delete_form").submit(function () {
+                var r = confirm("Are you sure you want to delete this admin?");
+                return r == true;
+            })
+        });
+    function DeleteImage(user_id) {
+        if(confirm('Do you want to delete this Image?')) {
+            $.ajax({
+                url: '/dashboard/delete-profile-image/',
+                data: {
+                    'user_id': user_id,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    window.location.href = "/dashboard/update-profile/";
+                }
+            });
+        }
+
+    }
+    </script>
+{% endblock %}

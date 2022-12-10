@@ -1,0 +1,36 @@
+{% extends "dashboard/front-base.html" %}
+{% load staticfiles %}
+{% block heading %}
+{{ lbl_forgot_password }}
+{% endblock %}
+{% block page_content %}
+    <div class="panel-body">
+        <form class="form-horizontal m-t-20" action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input class="form-control" type="email" required="" placeholder="{{ lbl_enter_email }}" name="email">
+                </div>
+            </div>
+
+            <div class="form-group text-center m-t-20 m-b-0">
+                <div class="col-xs-12">
+                    <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">{{ lbl_send_email }}
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group m-t-30 m-b-0">
+                <div class="col-sm-6">
+                    <a href="{% url 'dashboard:dashboard-login' %}" class="text-muted"><i class="fa fa-sign-in m-r-5"></i>{{ lbl_sign_in }}</a>
+                </div>
+                <div class="col-sm-6">
+                    <span style="float: right;"><a href="javascript:void(0)" onclick="SetSession(1)" id=session_english"> English</a>
+                &nbsp;&nbsp;<a onclick="SetSession(2)" href="javascript:void(0)" id=session_spanish">Español</a></span>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+{% endblock %}

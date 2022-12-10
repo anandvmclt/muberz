@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Muberz">
+    <meta name="author" content="Muberz">
+
+    <!-- App Favicon -->
+    <link rel="shortcut icon" href={% static "assets/images/favicon.ico" %}>
+
+    <!-- App title -->
+    <title>Muberz</title>
+
+    <!-- App CSS -->
+    <link href={% static "assets/css/bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/css/bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/css/core.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/css/components.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/css/icons.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/css/pages.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/css/menu.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/css/responsive.css" %} rel="stylesheet" type="text/css"/>
+    {% block extra_stylesheet %}
+
+    {% endblock %}
+
+    <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src={% static "assets/js/modernizr.min.js" %}></script>
+
+</head>
+<body>
+
+<div class="account-pages"></div>
+<div class="clearfix"></div>
+<div id="wrapper">
+    <div class="text-center">
+{#        <a href="{% url 'dashboard-login' %}" class="logo"><img src="{% static 'assets/images/track.png' %}"#}
+{#                                                                width="50%" height="auto" alt=""></a>#}
+        <a href="{% url 'dashboard:dashboard-login' %}" class="logo">Muberz </a>
+    </div>
+{#<img style="width: 130px; height: 44px;" src="{% static 'assets/images/salus-logo-1mm.png' %}" border="0" width="325px">#}
+    <div class="m-t-40 card-box" style="border-radius: 0px">
+        <div class="text-center">
+            <h4 class="text-uppercase font-bold m-b-0">{% block heading %}{% endblock %}</h4>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                      class="alert alert-{{ message.tags }}" {% endif %}>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block page_content %}
+
+        {% endblock %}
+
+        <div class="col-md-12" style="margin-top: 40%;text-align: center; margin-bottom: 20%">
+{#            <img src="{% static 'assets/images/logo_republic.svg' %}" width="50%" height="auto" alt="">#}
+            <span style="display: block; color: white;"><b
+                    style="font-size: 12px">{{ lbl_footer }}</b></span>
+        </div>
+
+    </div>
+    <!-- end card-box-->
+</div>
+<!-- end wrapper page -->
+
+
+<script>
+    var resizefunc = [];
+</script>
+
+<!-- jQuery  -->
+<script src={% static "assets/js/jquery.min.js" %}></script>
+<script src={% static "assets/js/bootstrap.min.js" %}></script>
+<script src={% static "assets/js/detect.js" %}></script>
+<script src={% static "assets/js/fastclick.js" %}></script>
+<script src={% static "assets/js/jquery.slimscroll.js" %}></script>
+<script src={% static "assets/js/jquery.blockUI.js" %}></script>
+<script src={% static "assets/js/waves.js" %}></script>
+<script src={% static "assets/js/wow.min.js" %}></script>
+<script src={% static "assets/js/jquery.nicescroll.js" %}></script>
+<script src={% static "assets/js/jquery.scrollTo.min.js" %}></script>
+{% block extra_javascript %}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script type="text/javascript">
+
+        function SetSession(id) {
+{#            alert(id)#}
+        $.ajax({
+            url: '/dashboard/set-session/',
+            data: {
+                'language': id,
+            },
+            dataType: 'json',
+            success: function (data) {
+                window.location.reload()
+{#                alert(data)#}
+            }
+        });
+
+    }
+    </script>
+{% endblock %}
+<!-- App js -->
+<script src={% static "assets/js/jquery.core.js" %}></script>
+<script src={% static "assets/js/jquery.app.js" %}></script>
+
+</body>
+
+</html>

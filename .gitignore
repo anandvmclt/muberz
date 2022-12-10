@@ -1,0 +1,11 @@
+*.log
+migrations/
+*.pem
+.idea
+*.pyc
+.DS_Store
+staticfiles
+/media
+env.json
+push-certificates
+venv/

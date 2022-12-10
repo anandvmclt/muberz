@@ -1,0 +1,325 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+     <!-- add truck types start here -->
+    {% if not disable_action %}
+                    <div class="col-lg-12">
+                        <div class="card-box" id="content_div">
+
+                            <h4 class="header-title m-t-0">Add New Truck Category
+                                <span class="col-md-2 pull-right expand_click">
+                            </span></h4>
+                            <div id="add_offer_form" style="padding: 10px;margin-top: 30px ;width: 100%">
+                                <form method="POST" enctype="multipart/form-data" id="add_form" name="add_form"
+                                      class="form-horizontal form-label-left input_mask"
+                                      action="{% url 'dashboard:add-truckcategory' %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-3 col-sm-3 col-xs-12">Category Name
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" name="cat_name" required
+                                                   id="cat_name"
+                                                   placeholder="Category Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-3 col-sm-3 col-xs-12">Minimum Volume
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="number" class="form-control number-only" name="min_vol" required
+                                                   id="item_name"
+                                                   placeholder="Minimum Volume">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-3 col-sm-3 col-xs-12">Maximum Volume
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="number" class="form-control number-only" name="max_vol" required
+                                                   id="item_name"
+                                                   placeholder="Maximum Volume">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 col-lg-2">{{ lbl_image }}
+                                            <span
+                                                    class="required">*</span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            {#                                        <label class="btn-bs-file btn btn-xs btn btn-primary">#}
+                                            {#                                        {{ lbl_upload_file }}#}
+                                            <input id="filebutton1" class="file-upload form-control" name="filebutton1" required
+                                                   type="file"
+                                                   accept="image/*"/>
+                                            {#                                        </label>#}
+
+
+                                            <input type="hidden" name="image1" id="image1">
+                                            <input type="hidden" name="success1" id="success1" value="1">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button type="button" class="btn btn-success">{{ lbl_submit }}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="card-box" id="div_validation" style="display: none"><label
+                                class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                            <div class="form-group" class="col-md-9 col-sm-9 col-xs-12">
+                                <font size="4px"><img src="/static/assets/images/loader.gif" style="align-self: center"
+                                                      width="100" height="100"></font>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+                {% endif %}
+
+        <!-- add truck types end here -->
+
+                <div class="col-lg-12">
+                    <div class="card-box table-responsive">
+
+                        <h4 class="header-title m-t-0 m-b-30"></h4>
+
+
+                        <table class="table m-0">
+                            <thead>
+                            <tr>
+                              <th>Image</th>
+                              <th>Truck Category Name</th>
+                              <th>Minium Volume</th>
+                              <th>Maxium Volume</th>
+                              <!--<th>Maxium Volume</th> -->
+                              {% if not disable_action %}
+                                    <th style="align-self: center !important;" valign="center">{{ lbl_edit }}</th>
+                                    <th style="align-self: center !important;" valign="center">{{ delete }}</th>
+                              {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if not queryset %}
+                                <tr>
+                                    <td align="center" colspan="6">
+                                       <strong>{{ no_items_found }}</strong>
+                                    </td>
+                                </tr>
+                            {% else %}
+
+		                         {% for query in queryset %}
+			                        <tr>
+
+				                    <form method="POST" action="">
+				                        {% csrf_token %}
+
+                                        <td>
+                                        {% if query.image %}
+                                            <a href="{{ query.image }}?alt=media" target="_blank">
+                                                <img src="{{ query.image }}?alt=media" style="width:100px; height: 100px;"></a>
+                                            <br>
+                                        {% endif %}
+                                        </td>
+
+                                        <td>
+					                        <input type="hidden" name="truck_id" value="{{query.id}}">
+					                        <input type="text" class="form-control" name="category_name" id="category_name" value="{{query.category_name}}">
+				                        </td>
+
+				                        <td>
+					                        <input type="number" name="vol_min" class="form-control number-only" value="{{query.vol_min}}" id="vol_min" required>
+				                        </td>
+				                        <td>
+					                        <input type="number" name="vol_max" class="form-control number-only" value="{{query.vol_max}}" id="vol_max" required>
+				                        </td>
+                                        <!--
+                                        <td>
+                                        <input id="filebutton1" class="file-upload" name="filebutton1" required
+                                                   type="file"
+                                                   accept="image/*"/>
+                                            <input type="hidden" name="image1" id="image1">
+				                        </td>
+				                        -->
+                                        {% if not disable_action %}
+                                        <td><input type="submit" name="Change Value" value="Update" class="btn btn-primary" >
+                                        </td>
+                                            <td valign="center"><a onclick="DeleteItem({{ query.id }})"><i class="fa  fa-trash"></i></a>
+                                           
+                                        </td>
+                                    {% endif %}
+				                    </form>
+			                        </tr>
+
+		                            {% endfor %}
+                                {% endif %}
+                            </tbody>
+		                </table>
+                    </div>
+                </div>
+            {% endblock %}
+
+
+{% block extra_javascript %}
+     <!-- DataTables  css-->
+    <link href={% static "assets/plugins/datatables/jquery.dataTables.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/buttons.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/fixedHeader.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/responsive.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "assets/plugins/datatables/scroller.bootstrap.min.css" %} rel="stylesheet" type="text/css"/>
+
+
+
+    <!-- Datatables js -->
+    <script src={% static "assets/plugins/datatables/jquery.dataTables.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.bootstrap.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.buttons.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/jszip.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/pdfmake.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/vfs_fonts.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.html5.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/buttons.print.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.fixedHeader.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.keyTable.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.responsive.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/responsive.bootstrap.min.js" %}></script>
+    <script src={% static "assets/plugins/datatables/dataTables.scroller.min.js" %}></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+
+    <script type="text/javascript">
+        function DeleteItem(truck_id) {
+        if(confirm('Do you want to delete this truck type')) {
+            $.ajax({
+                url: "/dashboard/delete-truck-category",
+                data: {
+                    'truck_id': truck_id,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    alert(data)
+                    window.location.href = "/dashboard/trucktypes/";
+                }
+            });
+        }
+
+    }
+    </script>
+
+    <script>
+
+        $("button").click(function (event) {
+
+            if (document.getElementById('category_name').value == '') {
+                alert('Please enter category name')
+                document.getElementById('category_name').focus()
+            } else if (document.getElementById('vol_min').value == '') {
+                 alert('Please enter minium volume')
+                document.getElementById('vol_min').focus()
+            } else if (document.getElementById('vol_max').value == '') {
+                 alert('Please enter maxium volume')
+                document.getElementById('vol_max').focus()
+            } else if (document.getElementById('filebutton1').value == '') {
+                alert('{{ lbl_validation_icon }}')
+                document.getElementById('filebutton1').focus()
+            } else {
+
+                // IMAGE1
+                // Listen for file selection
+                var filebutton1 = document.getElementById('filebutton1');
+                if (filebutton1.value != '') {
+                    // get file
+                    var file1 = filebutton1.files[0];
+                    // Create a root reference
+                    var storageRef1 = firebase.storage().ref();
+                    document.getElementById('success1').value = 0;
+                    document.getElementById('content_div').style.display = 'none';
+                    document.getElementById('div_validation').style.display = '';
+                    // Create a reference to millis
+                    var d = new Date();
+                    var timeMilli = d.getTime();
+
+                    var uploadTask1 = storageRef1.child(timeMilli + '1.jpg').put(file1);
+                    uploadTask1.on('state_changed', function (snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    }, function (error) {
+                        // Handle unsuccessful uploads
+                    }, function () {
+                        // Handle successful uploads on complete
+                        document.getElementById('success1').value = 1;
+                        formsubmit();
+                    });
+
+                    document.getElementById('image1').value = timeMilli + '1.jpg';
+                }
+
+                formsubmit();
+            }
+
+        });
+
+        function formsubmit() {
+            {#        $("form").css("display",'none');#}
+            {#         $("#loading-img").css({"display": "block"});#}
+
+            var success1 = document.getElementById('success1').value
+
+            if (success1 == 1) {
+                $("#add_form").submit();
+                document.getElementById('div_validation').style.display = 'none';
+                document.getElementById('content_div').style.display = '';
+            }
+
+        }
+    </script>
+
+
+{% endblock %}

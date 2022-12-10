@@ -1,0 +1,308 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load staticfiles %}
+
+{% block side_menu_block %}
+
+    {% include "dashboard/navigation_panel.html" with super_admin='active' %}
+
+{% endblock %}
+{% block extra_stylesheet %}
+    <style>
+        .time {
+            display: none;
+        }
+
+        .trip {
+            display: none;
+        }
+
+        .cash {
+            display: none;
+        }
+
+        .perc {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+{% endblock %}
+{% block title %}Super Admin List{% endblock %}
+{% block page-title %}Super Admin List{% endblock %}
+{% block super-users-active %}active{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags == "error" %} class="alert alert-danger" {% else %}
+                                                              class="alert alert-{{ message.tags }}" {% endif %}>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <!-- Add Admin start here-->
+                <div class="col-lg-12">
+                    <div class="card-box">
+
+                        <h4 class="header-title m-t-0 ">{{ lbl_edit_offer }}
+
+                        </h4>
+                        <div id="add_offer_form" style="padding: 10px;margin-top: 30px ;width: 100%">
+                            <form class="form-horizontal form-label-left input_mask" method="post" action=""
+                            >
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_type }} <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <select class="form-control" name="type" id="trip_type" required>
+                                            <option value="time" {% if offer_obj.offer_based_on == 'time' %}
+                                                    selected{% endif %}>{{ lbl_time }}</option>
+                                            <option value="trip" {% if offer_obj.offer_based_on == 'trip' %}
+                                                    selected {% endif %}>{{ lbl_trip }}</option>
+                                        </select>
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_appliedto }} <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <select class="form-control" name="applied_to" id="applied" required>
+                                            <option value="user"
+                                                    {% if offer_obj.offer_applied_to == 'user' %}selected {% endif %}>{{ lbl_user }}</option>
+                                            <option value="fleet"
+                                                    {% if offer_obj.offer_applied_to == 'fleet' %}selected {% endif %}>{{ lbl_fleet }}</option>
+                                        </select>
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_based_on }}
+                                        <span
+                                                class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <select class="form-control" name="based_on" id="based_on" required>
+                                            <option value="daily"
+                                                    {% if offer_obj.offer_base == 'daily' %}selected {% endif %}>{{ lbl_daily }}</option>
+                                            <option value="weekly"
+                                                    {% if offer_obj.offer_base == 'weekly' %}selected {% endif %}>{{ lbl_weekly }}</option>
+                                        </select>
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group time">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_trip_duration }}
+                                        <span
+                                                class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input class="form-control" name="duration" id="duration" type="number"
+                                               value="{{ offer_obj.total_duration }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group trip">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_count }} <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input class="form-control" name="trip_count" min="1" step="1" id="count" type="number"
+                                               value="{{ offer_obj.total_trip_count }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_cash }} <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <select class="form-control" name="cashcomm" id="cashcom" required>
+                                            <option value="cash"
+                                                    {% if offer_obj.offer_type == 'cash' %}selected {% endif %}>{{ lbl_cash }}</option>
+                                            <option value="discount"
+                                                    {% if offer_obj.offer_type == 'discount' %}selected {% endif %}>{{ lbl_perc }}</option>
+                                        </select>
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group cash">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_cashamt }}
+                                        <span
+                                                class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input class="form-control" max="1000" name="offer_cash" min="1" step="0.1" id="cash" type="number"
+                                               value="{{ offer_obj.offer_commission_cash }}" >
+                                    </div>
+                                </div>
+                                <div class="form-group perc">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_perc }} %<span
+                                            class="required"> *</span>
+                                    </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input class="form-control" name="offer_perc" id="perc" type="number"
+                                               value="{{ offer_obj.offer_commission_percent }}" max="100">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ lbl_offer_duration }}<span
+                                            class="required"> *</span>
+                                    </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input id="demo" type="text" name="daterange" class="form-control"
+
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success">{{ lbl_submit }}</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- end col -->
+                <!-- Add Admin start here-->
+
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        {% include "dashboard/footer.html" %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block extra_javascript %}
+    <script src="{% static 'assets/plugins/moment/moment.js' %}"></script>
+    <!-- Validation js (Parsleyjs) -->
+    <script type="text/javascript" src={% static "assets/plugins/parsleyjs/dist/parsley.min.js" %}></script>
+    <script type="text/javascript"
+            src={% static "assets/plugins/bootstrap-daterangepicker/daterangepicker.js" %}></script>
+    <script type="text/javascript">
+
+
+        function DeleteItem(offer_id) {
+            if (confirm('{{ lbl_want_to_delete_offer }}')) {
+                $.ajax({
+                    url: '/dashboard/delete-offer/',
+                    data: {
+                        'offer_id': offer_id,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        alert(data);
+                        window.location.href = "/dashboard/offer-management/";
+                    }
+                });
+            }
+
+        }
+
+        $(function () {
+            {#$('#add_offer_form').css('display', 'none');#}
+            var date = new Date();
+            $('.time').css('display', 'block');
+            $('.cash').css('display', 'block');
+            var today = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+            $('#demo').daterangepicker({
+                "startDate": "{{ offer_obj.offer_valid_from|date:"m/d/Y" }}",
+                "endDate":"{{ offer_obj.offer_valid_to|date:"m/d/Y" }}",
+                "minDate": today
+            }, function (start, end, label) {
+                console.log(start,end,label)
+            });
+            var trip_type = $('#trip_type').val();
+            if (trip_type == 'trip') {
+                $('.trip').slideDown();
+                $('.time').slideUp();
+            }
+            else {
+                $('.time').slideDown();
+                $('.trip').slideUp();
+            }
+            var cash_com = $('#cashcom').val();
+            if (cash_com == 'cash') {
+                    $('.cash').slideDown();
+                    $('.perc').slideUp();
+                }
+                else {
+
+                    $('.perc').slideDown();
+                    $('.cash').slideUp();
+                }
+            $('#trip_type').change(function () {
+                var typ = $(this).val();
+                if (typ == 'trip') {
+                    $('.trip').slideDown();
+                    $('.time').slideUp();
+                }
+                else {
+
+                    $('.time').slideDown();
+                    $('.trip').slideUp();
+                }
+            });
+
+            $('#cashcom').change(function () {
+                var typ = $(this).val();
+                if (typ == 'cash') {
+                    $('.cash').slideDown();
+                    $('.perc').slideUp();
+                }
+                else {
+
+                    $('.perc').slideDown();
+                    $('.cash').slideUp();
+                }
+            });
+
+            $('.expand_click').click(function () {
+                $('#add_offer_form').slideToggle();
+                if ($(this).find('i').hasClass('fa-plus')) {
+                    $(this).find('i').removeClass('btn-success');
+                    $(this).find('i').removeClass('fa-plus');
+
+                    $(this).find('i').addClass('btn-danger');
+                    $(this).find('i').addClass('fa-minus');
+                }
+                else {
+                    $(this).find('i').removeClass('btn-danger');
+                    $(this).find('i').removeClass('fa-minus');
+
+                    $(this).find('i').addClass('btn-success');
+                    $(this).find('i').addClass('fa-plus');
+                }
+            })
+
+
+        })
+    </script>
+
+
+{% endblock %}
