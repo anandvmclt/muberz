@@ -7,3 +7,6 @@ staticfiles
 /media
 push-certificates
 venv/
+*.sqlite3
+db.*
+db.sqlite3
