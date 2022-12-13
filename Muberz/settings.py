@@ -140,7 +140,7 @@ DATABASES = {
         'NAME': get_config('DATABASE_NAME'),
         'USER': get_config('DATABASE_USER'),
         'PASSWORD': get_config('DATABASE_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': get_config('DATABASE_HOST'),
         'PORT': '5432',
     }
 }

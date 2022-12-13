@@ -5,6 +5,5 @@
 .DS_Store
 staticfiles
 /media
-env.json
 push-certificates
 venv/
