@@ -134,23 +134,23 @@ WSGI_APPLICATION = 'Muberz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': get_config('DATABASE_ENGINE'),
-#         'NAME': get_config('DATABASE_NAME'),
-#         'USER': get_config('DATABASE_USER'),
-#         'PASSWORD': get_config('DATABASE_PASSWORD'),
-#         'HOST': get_config('DATABASE_HOST'),
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': get_config('DATABASE_ENGINE'),
+        'NAME': get_config('DATABASE_NAME'),
+        'USER': get_config('DATABASE_USER'),
+        'PASSWORD': get_config('DATABASE_PASSWORD'),
+        'HOST': get_config('DATABASE_HOST'),
+        'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
