@@ -1,5 +1,4 @@
 *.log
-migrations/
 *.pem
 .idea
 *.pyc
