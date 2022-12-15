@@ -190,15 +190,21 @@ class UserSignupApi(ApiView):
 
             if user_profile.user_type == 'app_user':
                 user_profile.set_otp()
-                otp_text = "<#> " + user_profile.raw_otp + " is your verification code for Muberz User App. \n" + hash_key
-                if send_sms_twilio(mobile_number, otp_text) == 200:
-                    logger_me.debug(request.language)
-                    logger_me.debug('----request.language')
-                    dic['message'] = lang_obj.get_lang_word(request.language, 'lbl_otp_sent')
-                    self.flag = StatusCode.HTTP_200_OK
-                else:
-                    dic['message'] = lang_obj.get_lang_word(request.language, 'lbl_otp_resent')
-                    self.flag = StatusCode.HTTP_400_BAD_REQUEST
+                dic['message'] = lang_obj.get_lang_word(request.language, 'lbl_otp_sent')
+                self.flag = StatusCode.HTTP_200_OK
+                
+                #TODO Uncomment later.
+                # user_profile.set_otp()
+                # otp_text = "<#> " + user_profile.raw_otp + " is your verification code for Muberz User App. \n" + hash_key
+                # if send_sms_twilio(mobile_number, otp_text) == 200:
+                #     logger_me.debug(request.language)
+                #     logger_me.debug('----request.language')
+                #     dic['message'] = lang_obj.get_lang_word(request.language, 'lbl_otp_sent')
+                #     self.flag = StatusCode.HTTP_200_OK
+                # else:
+                #     dic['message'] = lang_obj.get_lang_word(request.language, 'lbl_otp_resent')
+                #     self.flag = StatusCode.HTTP_400_BAD_REQUEST
+            
             else:
                 dic['message'] = lang_obj.get_lang_word(request.language, 'lbl_invalid_app_user')
                 self.flag = StatusCode.HTTP_400_BAD_REQUEST
