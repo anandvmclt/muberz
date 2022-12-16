@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django_api_base.api_base import *
 from django_api_base.utils import send_template_email
+from django_api_base.utils import random_number_generator
 from push_notifications.models import APNSDevice
 from push_notifications.models import GCMDevice
 from rest_framework.generics import ListAPIView
@@ -222,7 +223,8 @@ class UserLoginApi(ApiView):
         mobile_number = request.DATA.get('mobile_number', '')
         password = request.DATA.get('otp', '')
         language = request.META.get('HTTP_LANGUAGE')
-        device_id = request.META.get('HTTP_DEVICE')
+        # device_id = request.META.get('HTTP_DEVICE')
+        device_id = random_number_generator()
         if language == '':
             request.language = 'en'
         else:
