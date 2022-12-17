@@ -223,7 +223,7 @@ class Commodity(BaseModel):
     material_type = models.CharField(max_length=200, default="", blank=True)
     added_on = models.DateTimeField(default=timezone.now)
     added_by = models.ForeignKey(BaseProfile)
-    city = models.ForeignKey(City)
+    city = models.ForeignKey(City, null=True, blank=True)
     is_plugable = models.BooleanField(default=False)
     loaders = models.IntegerField(default=1)
 
