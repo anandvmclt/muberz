@@ -1,0 +1,12 @@
+[0;1;31m●[0m gunicorn.service - gunicorn daemon
+   Loaded: loaded (/etc/systemd/system/gunicorn.service; disabled; vendor preset: enabled)
+   Active: [0;1;31mfailed[0m (Result: signal) since Fri 2022-12-16 15:45:08 UTC; 2min 42s ago
+  Process: 22547 ExecStart=/home/vass/projects/vass/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock Muberz.wsgi:application [0;1;31m(code=killed, signal=KILL)[0m
+ Main PID: 22547 (code=killed, signal=KILL)
+
+Dec 16 15:39:20 ip-172-26-2-95 gunicorn[22547]: [2022-12-16 15:39:20 +0000] [22547] [INFO] Starting gunicorn 19.7.1
+Dec 16 15:39:20 ip-172-26-2-95 gunicorn[22547]: [2022-12-16 15:39:20 +0000] [22547] [INFO] Listening at: unix:/run/gunicorn.sock (22547)
+Dec 16 15:39:20 ip-172-26-2-95 gunicorn[22547]: [2022-12-16 15:39:20 +0000] [22547] [INFO] Using worker: sync
+Dec 16 15:39:20 ip-172-26-2-95 gunicorn[22547]: [2022-12-16 15:39:20 +0000] [22572] [INFO] Booting worker with pid: 22572
+Dec 16 15:39:20 ip-172-26-2-95 gunicorn[22547]: [2022-12-16 15:39:20 +0000] [22576] [INFO] Booting worker with pid: 22576
+Dec 16 15:39:21 ip-172-26-2-95 gunicorn[22547]: [2022-12-16 15:39:21 +0000] [22581] [INFO] Booting worker with pid: 22581
